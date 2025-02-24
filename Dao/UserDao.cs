@@ -13,6 +13,11 @@ namespace ArchiveManagerApp.Dao
 {
     public class UserDao : Dao<User>
     {
+        public UserDao()
+        {
+            TableName = "user";
+        }
+
         public override int Add(User instance)
         {
             try

@@ -13,6 +13,10 @@ namespace ArchiveManagerApp.Dao
 {
     public class DocumentDao : Dao<Document>
     {
+        public DocumentDao()
+        {
+            TableName = "document";
+        }
         public override int Add(Document instance)
         {
             try

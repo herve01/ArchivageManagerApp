@@ -7,23 +7,34 @@ using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
 using NetFact_MVP.Dao.Util;
+using RoadTripAgencyApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
 {
     public class ArchiveDao : Dao<Archive>
     {
+        public ArchiveDao()
+        {
+            TableName = "archive";
+        }
         public override int Add(Archive instance)
         {
             try
             {
+                var id = TableKeyHelper.GetKey(TableName);
+
                 Command.CommandText = "INSERT INTO Archive (id, document_id, user_id, date_archivage) VALUES (@id, @document_id, @user_id, @date_archivage)";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, "id"));
+                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, id));
                 Command.Parameters.Add(Parametres.CreateParameter(Command, "@document_id", System.Data.DbType.String, instance.Document.Id));
                 Command.Parameters.Add(Parametres.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
                 Command.Parameters.Add(Parametres.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
                 Command.Parameters.Add(Parametres.CreateParameter(Command, "@date_archivage", System.Data.DbType.String, instance.Date_Archivage));
-                Command.ExecuteNonQuery();
+                
+                var feed = Command.ExecuteNonQuery();
+
+                if (feed > 0)
+                    instance.Id = id;
 
                 return 1;
             }
