@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArchiveManagerApp.Modules.View.Pop;
 
 namespace ArchiveManagerApp.Modules.View
 {
@@ -16,12 +15,6 @@ namespace ArchiveManagerApp.Modules.View
         public AgentCtrlView()
         {
             InitializeComponent();
-        }
-
-        private void btn_ajouter_Click(object sender, EventArgs e)
-        {
-            Form Page = new PopAgent();
-            Page.ShowDialog();
         }
     }
 }

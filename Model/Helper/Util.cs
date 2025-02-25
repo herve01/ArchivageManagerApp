@@ -6,7 +6,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace RoadTripAgencyApp.Model.Helper
+namespace ArchiveManagerApp.Model.Helper
 {
     public class Util
     {

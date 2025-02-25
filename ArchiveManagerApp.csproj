@@ -84,38 +84,17 @@
     <Compile Include="Modules\View\AgentCtrlView.Designer.cs">
       <DependentUpon>AgentCtrlView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\View\AproposCtrlView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\View\AproposCtrlView.Designer.cs">
-      <DependentUpon>AproposCtrlView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Modules\View\ArchiveCtrlView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\View\ArchiveCtrlView.Designer.cs">
       <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\View\Controls\BoutonRond.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Modules\View\ParametreCtrlView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\View\ParametreCtrlView.Designer.cs">
       <DependentUpon>ParametreCtrlView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\View\Pop\PopAgent.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\View\Pop\PopAgent.Designer.cs">
-      <DependentUpon>PopAgent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\View\Pop\PopArchive.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\View\Pop\PopArchive.Designer.cs">
-      <DependentUpon>PopArchive.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,20 +104,11 @@
     <EmbeddedResource Include="Modules\View\AgentCtrlView.resx">
       <DependentUpon>AgentCtrlView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\View\AproposCtrlView.resx">
-      <DependentUpon>AproposCtrlView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\ArchiveCtrlView.resx">
       <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\ParametreCtrlView.resx">
       <DependentUpon>ParametreCtrlView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\View\Pop\PopAgent.resx">
-      <DependentUpon>PopAgent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\View\Pop\PopArchive.resx">
-      <DependentUpon>PopArchive.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -150,6 +120,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
