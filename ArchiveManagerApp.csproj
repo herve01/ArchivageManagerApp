@@ -95,8 +95,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Modules\View\AgentCtrlView.resx">
+      <DependentUpon>AgentCtrlView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\ArchiveCtrlView.resx">
       <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\View\ParametreCtrlView.resx">
+      <DependentUpon>ParametreCtrlView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
