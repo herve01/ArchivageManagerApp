@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Dao.Util;
 using RoadTripAgencyApp.Dao.Helper;
+using System.ComponentModel;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -81,12 +82,12 @@ namespace ArchiveManagerApp.Dao
             }
         }
 
-        public int Add(DbCommand command, Affectation instance)
+        public async Task<int> AddAsync(DbCommand command, Affectation instance)
         {
             Command = command;
             Command.Parameters.Clear();
 
-            return Add(instance);
+            return await AddAsync(instance);
         }
 
         public override int Delete(Affectation instance)
@@ -128,7 +129,7 @@ namespace ArchiveManagerApp.Dao
                 Affectation instance = null;
                 Dictionary<string, object> _instance = null;
 
-                Command.CommandText = "SELECT * FROM affectation WHERE id=@v_id";
+                Command.CommandText = "SELECT * FROM affectation WHERE id = @v_id";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
 
@@ -154,31 +155,29 @@ namespace ArchiveManagerApp.Dao
         }
         public async Task<List<Affectation>> GetAllAsync()
         {
-            List<Affectation> liste_affectations = new List<Affectation>();
+            var instances = new List<Affectation>();
+            var _instances = new List<Dictionary<string, object>>();
 
             try
             {
-                Command.CommandText = $"SELECT * FROM affectation";
+                Command.CommandText = "SELECT * FROM affectation";
                 Reader = await Command.ExecuteReaderAsync();
 
-                while (Reader.Read())
-                {
 
-                    if (Reader != null & Reader.HasRows)
+                if (Reader != null & Reader.HasRows)
+                    while (Reader.Read())
                     {
-                        affectation nouveau_affectation = new affectation();
-                        //nouveau_affectation.Id = Reader["id"].ToString();
-                        //nouveau_affectation.Expediteur = await new UserDao().Get(Reader["expediteur"].ToString());
-                        //nouveau_affectation.Destinateur =await new UserDao().Get(Reader["destinateur"].ToString());
-                        //nouveau_affectation.Description = Reader["description"].ToString();
-                        //nouveau_affectation.DateEnvoie = Convert.ToDateTime(Reader["date_envoie"].ToString());
-
-                        liste_affectations.Add(nouveau_affectation);
+                        _instances.Add(GetMapping(Reader));
                     }
-                }
 
                 Reader.Close();
-                return liste_affectations;
+
+                foreach (var row in _instances)
+                {
+                    instances.Add(Create(row));
+                }
+
+                return instances;
             }
             catch (Exception)
             {
@@ -188,7 +187,32 @@ namespace ArchiveManagerApp.Dao
 
         protected override Dictionary<string, object> GetMapping(DbDataReader reader)
         {
-            throw new NotImplementedException();
+            return new Dictionary<string, object>()
+            {
+                { "id", reader["id"] },
+                { "agent_id", reader["agent_id"] },
+                { "old_service_id", reader["old_service_id"] },
+                { "service_id", reader["service_id"] },
+                { "date", reader["date"] },
+            };
+        }
+        Affectation Create(Dictionary<string, object> row, bool withAgent = false, bool withService = false, bool withOldService = false)
+        {
+            var instance = new Affectation();
+
+            instance.Id = row["id"].ToString();
+            instance.Date = DateTime.Parse(row["date"].ToString());
+
+            if (withAgent)
+                instance.Agent = new AgentDao().Get(row["agent_id"].ToString());
+
+            if (withService)
+                instance.Service = new ServiceDao().Get(row["service_id"].ToString());
+
+            if (withOldService)
+                instance.OldService = new ServiceDao().Get(row["old_service_id"].ToString());
+
+            return instance;
         }
     }
        
