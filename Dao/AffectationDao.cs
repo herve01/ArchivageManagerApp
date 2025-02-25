@@ -6,22 +6,36 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using NetFact_MVP.Dao.Util;
+using ArchiveManagerApp.Dao.Util;
+using RoadTripAgencyApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
 {
     public class AffectationDao : Dao<Affectation>
     {
+        public AffectationDao()
+        {
+            TableName = "affectation";
+        }
         public override int Add(Affectation instance)
         {
             try
             {
-                Command.CommandText = "INSERT INTO Affectattion (id, agent_id, service_id) VALUES (@id, @agent_id, @service_id) ";
+                var id = TableKeyHelper.GetKey(TableName);
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, instance.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@agent_id", System.Data.DbType.String, instance.Agent.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@service_id", System.Data.DbType.String, instance.Service.Id));
-                Command.ExecuteNonQuery();
+                Command.CommandText = "INSERT INTO affectation (id, agent_id, old_service_id, service_id, date) " +
+                    "VALUES (@v_id, @v_agent_id, @v_old_service_id, @v_service_id, @v_date) ";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, instance.Agent.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_old_service_id", System.Data.DbType.String, instance.OldService.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_service_id", System.Data.DbType.String, instance.Service.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
+
+                var feed = Command.ExecuteNonQuery();
+
+                if (feed > 0)
+                    instance.Id = id;
 
                 return 1;
             }
@@ -30,11 +44,57 @@ namespace ArchiveManagerApp.Dao
                 return 0;
             }
         }
+
+        public int Add(DbCommand command,  Affectation instance)
+        {
+            Command = command;
+            Command.Parameters.Clear();
+
+            return Add(instance);
+        }
+
+        public async Task<int> AddAsync(Affectation instance)
+        {
+            try
+            {
+                var id = TableKeyHelper.GetKey(TableName);
+
+                Command.CommandText = "INSERT INTO affectation (id, agent_id, old_service_id, service_id, date) " +
+                    "VALUES (@v_id, @v_agent_id, @v_old_service_id, @v_service_id, @v_date) ";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, instance.Agent.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_old_service_id", System.Data.DbType.String, instance.OldService.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_service_id", System.Data.DbType.String, instance.Service.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
+
+                var feed = await Command.ExecuteNonQueryAsync();
+
+                if (feed > 0)
+                    instance.Id = id;
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        public int Add(DbCommand command, Affectation instance)
+        {
+            Command = command;
+            Command.Parameters.Clear();
+
+            return Add(instance);
+        }
+
         public override int Delete(Affectation instance)
         {
             try
             {
-                Command.CommandText = $"DELETE FROM Affectation WHERE Id={instance.Id}";
+                Command.CommandText = "DELETE FROM affectation WHERE id = @v_id";
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
                 Command.ExecuteNonQuery();
                 return 1;
             }
@@ -47,11 +107,11 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = $"UPDATE Affectation SET agent_id=@agent_id, service_id=@service_id WHERE Id=@id";
+                Command.CommandText = $"UPDATE affectation SET agent_id=@agent_id, service_id=@service_id WHERE Id=@id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, instance.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@agent_id", System.Data.DbType.String, instance.Agent.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@service_id", System.Data.DbType.String, instance.Service.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@agent_id", System.Data.DbType.String, instance.Agent.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@service_id", System.Data.DbType.String, instance.Service.Id));
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -61,24 +121,30 @@ namespace ArchiveManagerApp.Dao
                 return 0;
             }
         }
-        public  async Task<Affectation> Get(string id)
+        public Affectation Get(string id)
         {
             try
             {
-                Affectation affectation = new Affectation();
-                Command.CommandText = $"SELECT * FROM Affectation WHERE Id={@id}";
+                Affectation instance = null;
+                Dictionary<string, object> _instance = null;
 
-                Reader = await Command.ExecuteReaderAsync();
+                Command.CommandText = "SELECT * FROM affectation WHERE id=@v_id";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+
+
+                Reader = Command.ExecuteReader();
 
                 if (Reader != null && Reader.HasRows)
-                {
-                    affectation.Id = id;
-                    affectation.Agent =  new AgentDao().Get(Reader["expediteur"].ToString());
-                    affectation.Service =  new ServiceDao().Get(Reader["destinateur"].ToString());
-                }
+                    if (Reader.Read())
+                        _instance = GetMapping(Reader);
 
                 Reader.Close();
-                return affectation;
+
+                if (_instance != null)
+                    instance = Create(_instance);
+
+                return instance;
             }
             catch (Exception)
             {
@@ -88,11 +154,11 @@ namespace ArchiveManagerApp.Dao
         }
         public async Task<List<Affectation>> GetAllAsync()
         {
-            List<Affectation> liste_Affectations = new List<Affectation>();
+            List<Affectation> liste_affectations = new List<Affectation>();
 
             try
             {
-                Command.CommandText = $"SELECT * FROM Affectation";
+                Command.CommandText = $"SELECT * FROM affectation";
                 Reader = await Command.ExecuteReaderAsync();
 
                 while (Reader.Read())
@@ -100,19 +166,19 @@ namespace ArchiveManagerApp.Dao
 
                     if (Reader != null & Reader.HasRows)
                     {
-                        Affectation nouveau_Affectation = new Affectation();
-                        //nouveau_Affectation.Id = Reader["id"].ToString();
-                        //nouveau_Affectation.Expediteur = await new UserDao().Get(Reader["expediteur"].ToString());
-                        //nouveau_Affectation.Destinateur =await new UserDao().Get(Reader["destinateur"].ToString());
-                        //nouveau_Affectation.Description = Reader["description"].ToString();
-                        //nouveau_Affectation.DateEnvoie = Convert.ToDateTime(Reader["date_envoie"].ToString());
+                        affectation nouveau_affectation = new affectation();
+                        //nouveau_affectation.Id = Reader["id"].ToString();
+                        //nouveau_affectation.Expediteur = await new UserDao().Get(Reader["expediteur"].ToString());
+                        //nouveau_affectation.Destinateur =await new UserDao().Get(Reader["destinateur"].ToString());
+                        //nouveau_affectation.Description = Reader["description"].ToString();
+                        //nouveau_affectation.DateEnvoie = Convert.ToDateTime(Reader["date_envoie"].ToString());
 
-                        liste_Affectations.Add(nouveau_Affectation);
+                        liste_affectations.Add(nouveau_affectation);
                     }
                 }
 
                 Reader.Close();
-                return liste_Affectations;
+                return liste_affectations;
             }
             catch (Exception)
             {

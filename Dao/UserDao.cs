@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Management.Instrumentation;
-using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using NetFact_MVP.Dao.Util;
 using RoadTripAgencyApp.Dao.Helper;
+using System.Data.Common;
+using ArchiveManagerApp.Dao.Util;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -24,14 +22,20 @@ namespace ArchiveManagerApp.Dao
             {
                 var id = TableKeyHelper.GetKey(TableName);
 
-                Command.CommandText = "INSERT INTO user (id, agent_id, login, passeword) " +
-                    "VALUES (@v_id, @v_agent_id, @v_login, @v_passeword) ";
+                var hash = PasswordStorage.CreateHash(instance.PassWd);
+                var split = hash.Split(':');
+                var salt = split[0];
+                var pwd = string.Format("{0}:{1}", split[1], split[2]);
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, instance.Agent.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_login", System.Data.DbType.String, instance.Login));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_passeword", System.Data.DbType.String, instance.Password));
-        
+                Command.CommandText = "INSERT INTO user (id, agent_id, username, passwd, salt) " +
+                    "VALUES (@v_id, @v_agent_id, @v_username, @v_passwd, @v_salt) ";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", DbType.String, instance.Agent.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_login", DbType.String, instance.UserName));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_passwd", DbType.String, pwd));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_salt", DbType.String, salt));
+
                 var feed = Command.ExecuteNonQuery();
 
                 if (feed > 0)
@@ -49,9 +53,9 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = $"DELETE FROM Annonce WHERE id = @v_id";
+                Command.CommandText = $"DELETE FROM user WHERE id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", DbType.String, instance.Id));
 
                 Command.ExecuteNonQuery();
 
@@ -66,12 +70,14 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = $"UPDATE Message SET passeword=@v_description, photo=@v_images WHERE Id=@v_id";
+                Command.CommandText = $"UPDATE user " +
+                    "SET agent_id = @v_agent_id, " +
+                    "username = @v_username" +
+                    "WHERE id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, instance.Agent.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_login", System.Data.DbType.String, instance.Login));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_passeword", System.Data.DbType.String, instance.Password));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", DbType.String, instance.Agent.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_username", DbType.String, instance.UserName));
                 
                 Command.ExecuteNonQuery();
 
@@ -91,7 +97,7 @@ namespace ArchiveManagerApp.Dao
             {
                 Command.CommandText = $"SELECT * FROM user WHERE id=@v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", DbType.String, id));
 
                 Reader = Command.ExecuteReader();
 
@@ -111,14 +117,50 @@ namespace ArchiveManagerApp.Dao
                 return null;
             }
         }
-        public async Task<List<User>> GetAllAsync()
+
+        public User Get(string username, string passwd)
         {
-            List<User> instances = new List<User>();
-            List<Dictionary<string, object>> _instances = new List<Dictionary<string, object>>();
+            User user = null;
+            Dictionary<string, object> _user = null;
 
             try
             {
-                Command.CommandText = "SELECT * FROM annonce";
+                Command.CommandText = "select * " +
+                    "from user " +
+                    "where username = @v_username or email = @v_username";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_username", DbType.String, username));
+
+                Reader = Command.ExecuteReader();
+
+                if (Reader.HasRows && Reader.Read())
+                {
+                    var uPwd = Reader["passwd"].ToString();
+                    var uSalt = Reader["m_salt"].ToString();
+
+                    if (PasswordStorage.VerifyPassword(passwd, uSalt, uPwd))
+                        _user = GetMapping(Reader);
+                }
+
+                Reader.Close();
+
+                if (_user != null)
+                    user = Create(_user);
+            }
+            catch (Exception)
+            {
+            }
+
+            return user;
+        }
+        public async Task<List<User>> GetAllAsync()
+        {
+            var instances = new List<User>();
+            var _instances = new List<Dictionary<string, object>>();
+
+            try
+            {
+                Command.CommandText = "SELECT * FROM user";
 
                 Reader = await Command.ExecuteReaderAsync();
 
@@ -148,25 +190,18 @@ namespace ArchiveManagerApp.Dao
             {
                 { "id", reader["id"] },
                 { "agent_id", reader["agent_id"] },
-                { "login", reader["login"] },
-                { "passeword", reader["passeword"] },
-                { "photo", reader["photo"] },
-                { "date_publication", reader["date_publication"] }
+                { "username", reader["username"] },
             };
         }
-        User Create(Dictionary<string, object> row, bool withagent_id = false)
+        User Create(Dictionary<string, object> row, bool withAgent = true)
         {
             var instance = new User();
 
             instance.Id = row["id"].ToString();
-            
-            //instance.login = row["login"].ToString();
-            //instance.Description = row["passeword"].ToString();
-            //instance.DatePublication = DateTime.Parse(row["date_publication"].ToString());
+            instance.UserName = row["username"].ToString();
 
-            //if (withagent_id)
-            //    instance.agent_id = new AgentDao().Get(row["agent_id"].ToString());
-
+            if (withAgent)
+                instance.Agent = new AgentDao().Get(row["agent_id"].ToString());
 
             return instance;
         }

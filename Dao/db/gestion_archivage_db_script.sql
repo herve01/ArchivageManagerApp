@@ -1,5 +1,6 @@
 create database gestion_archivage_db;
 use gestion_archivage_db;
+
 create table service
 (
 	id varchar(32),
@@ -33,17 +34,20 @@ create table affectation
 (
 	id varchar(32),
 	agent_id varchar(32),
+	old_service_id varchar(32),
     service_id varchar(32),
+	date datetime,
 	constraint pk_affectation primary key(id),
     constraint fk_affectation_agent foreign key(agent_id) references agent(id),
-    constraint fk_affectation_service foreign key(service_id) references service(id)
+    constraint fk_affectation_old_service foreign key(old_service_id) references service(id),
+	constraint fk_affectation_service foreign key(service_id) references service(id)
 );
 create table user
 (
 	id varchar(32),
 	agent_id varchar(32),
-    login varchar(32),
-    pswrd varchar(32),
+    username varchar(32),
+    passwd varchar(32),
     salt varchar(32),
 	constraint pk_user primary key(id),
     constraint fk_user_agent foreign key(agent_id) references agent(id)
@@ -53,7 +57,7 @@ create table archive
 	id varchar(32),
 	user_id varchar(32),
     document_id varchar(32),
-    date_archivage datetime,
+    date datetime,
 	constraint pk_archive primary key(id),
     constraint fk_archive_user foreign key(user_id) references user(id),
     constraint fk_archive_document foreign key(document_id) references document(id)

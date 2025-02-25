@@ -6,7 +6,7 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using NetFact_MVP.Dao.Util;
+using ArchiveManagerApp.Dao.Util;
 using RoadTripAgencyApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
@@ -25,11 +25,11 @@ namespace ArchiveManagerApp.Dao
 
                 Command.CommandText = "INSERT INTO Archive (id, document_id, user_id, date_archivage) VALUES (@id, @document_id, @user_id, @date_archivage)";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@document_id", System.Data.DbType.String, instance.Document.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@date_archivage", System.Data.DbType.String, instance.Date_Archivage));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@document_id", System.Data.DbType.String, instance.Document.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@date_archivage", System.Data.DbType.String, instance.Date_Archivage));
                 
                 var feed = Command.ExecuteNonQuery();
 
@@ -64,11 +64,11 @@ namespace ArchiveManagerApp.Dao
             {
                 Command.CommandText = $"UPDATE Archive SET document_id=@document_id, user_id=@user_id, date_archivage=@date_archivage WHERE Id=@id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, "id"));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@document_id", System.Data.DbType.String, instance.Document.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@date_archivage", System.Data.DbType.String, instance.Date_Archivage));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, "id"));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@document_id", System.Data.DbType.String, instance.Document.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@date_archivage", System.Data.DbType.String, instance.Date_Archivage));
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -88,7 +88,7 @@ namespace ArchiveManagerApp.Dao
                 ;
                 Command.CommandText = $"SELECT * FROM Archive WHERE id=@id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
 
                 Reader = await Command.ExecuteReaderAsync();
 
@@ -118,7 +118,7 @@ namespace ArchiveManagerApp.Dao
                 Command.CommandText = $"SELECT * FROM Archive WHERE id=@id";
 
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
 
                 Reader = Command.ExecuteReader();
 

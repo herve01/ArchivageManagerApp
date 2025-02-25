@@ -8,6 +8,10 @@ namespace ArchiveManagerApp.Model
 {
     public class Agent : ModelBase
     {
+        public Agent()
+        {
+            CurrentAffectation = new Affectation(this);
+        }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string PostNom { get; set; }
@@ -17,5 +21,7 @@ namespace ArchiveManagerApp.Model
         public byte[] Photo { get; set; }
         public string Fonction { get; set; }
         public string Grade { get; set; }
+
+        public Affectation CurrentAffectation { get; set; }
     }
 }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\Util.cs" />
     <Compile Include="Model\App\AppConfig.cs" />
     <Compile Include="Dao\AffectationDao.cs" />
     <Compile Include="Dao\AgentDao.cs" />
@@ -53,7 +54,7 @@
     <Compile Include="Dao\Dao.cs" />
     <Compile Include="Dao\DocumentDao.cs" />
     <Compile Include="Dao\Helper\Connection.cs" />
-    <Compile Include="Dao\Helper\Parametres.cs" />
+    <Compile Include="Dao\Helper\DbUtil.cs" />
     <Compile Include="Dao\Helper\TableKeyHelper.cs" />
     <Compile Include="Dao\ServiceDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Model\Helper\NumberToLetter.cs" />
     <Compile Include="Model\Helper\Util.cs" />
     <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Model\PasswordStorage.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />

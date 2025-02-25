@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Management.Instrumentation;
-using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using NetFact_MVP.Dao.Util;
+using ArchiveManagerApp.Dao.Util;
 using RoadTripAgencyApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
@@ -25,8 +22,8 @@ namespace ArchiveManagerApp.Dao
 
                 Command.CommandText = "INSERT INTO service (id, designation) VALUES (@v_id, @v_designation)";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_designation", System.Data.DbType.String, instance.Designation));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_designation", System.Data.DbType.String, instance.Designation));
                 
                 var feed = Command.ExecuteNonQuery();
 
@@ -45,7 +42,7 @@ namespace ArchiveManagerApp.Dao
             try
             {
                 Command.CommandText = $"DELETE FROM service WHERE id = @v_id";
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -63,8 +60,8 @@ namespace ArchiveManagerApp.Dao
                     $"SET designation = @v_designation " +
                     $"WHERE Id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_designation", System.Data.DbType.String, instance.Designation));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_designation", System.Data.DbType.String, instance.Designation));
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -83,7 +80,7 @@ namespace ArchiveManagerApp.Dao
             {
                 Command.CommandText = $"SELECT * FROM service WHERE id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
 
                 Reader = Command.ExecuteReader();
 
@@ -105,8 +102,8 @@ namespace ArchiveManagerApp.Dao
         }
         public async Task<List<Service>> GetAllAsync()
         {
-            List<Service> instances = new List<Service>();
-            List<Dictionary<string, object>> _instances = new List<Dictionary<string, object>>();
+            var instances = new List<Service>();
+            var _instances = new List<Dictionary<string, object>>();
 
             try
             {

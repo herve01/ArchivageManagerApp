@@ -6,7 +6,7 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using NetFact_MVP.Dao.Util;
+using ArchiveManagerApp.Dao.Util;
 using RoadTripAgencyApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
@@ -26,16 +26,16 @@ namespace ArchiveManagerApp.Dao
                 Command.CommandText = "INSERT INTO Agent (id, nom, postnom, prenom, sexe, telephone, photo, fonction, grade) " +
                                       "VALUES (@v_id, @v_nom, @v_postnom, @v_prenom, @v_sexe, @v_telephone, @v_photo, @v_fonction, @v_grade)";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_nom", System.Data.DbType.String, instance.Nom));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_postnom", System.Data.DbType.String, instance.PostNom));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_prenom", System.Data.DbType.String, instance.Prenom));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_sexe", System.Data.DbType.String, instance.Sexe));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Telephone));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Mail));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance.Photo));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_nom", System.Data.DbType.String, instance.Nom));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_postnom", System.Data.DbType.String, instance.PostNom));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_prenom", System.Data.DbType.String, instance.Prenom));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_sexe", System.Data.DbType.String, instance.Sexe));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Telephone));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Mail));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance.Photo));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
                 
                 var feed = Command.ExecuteNonQuery();
 
@@ -54,7 +54,7 @@ namespace ArchiveManagerApp.Dao
             try
             {
                 Command.CommandText = $"DELETE FROM Agent WHERE Id=@v_id";
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
                 Command.ExecuteNonQuery();
                 return 1;
             }
@@ -80,16 +80,16 @@ namespace ArchiveManagerApp.Dao
                                       "grade = @v_grade " +
                                       "WHERE id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_nom", System.Data.DbType.String, instance.Nom));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_postnom", System.Data.DbType.String, instance.PostNom));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_prenom", System.Data.DbType.String, instance.Prenom));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_sexe", System.Data.DbType.String, instance.Sexe));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Telephone));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Mail));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance.Photo));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_nom", System.Data.DbType.String, instance.Nom));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_postnom", System.Data.DbType.String, instance.PostNom));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_prenom", System.Data.DbType.String, instance.Prenom));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_sexe", System.Data.DbType.String, instance.Sexe));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Telephone));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Mail));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance.Photo));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -109,7 +109,7 @@ namespace ArchiveManagerApp.Dao
                 ;
                 Command.CommandText = $"SELECT * FROM Agent WHERE id=@id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
 
                 Reader = await Command.ExecuteReaderAsync();
 
@@ -139,7 +139,7 @@ namespace ArchiveManagerApp.Dao
                 Command.CommandText = $"SELECT * FROM Agent WHERE id=@id";
 
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
 
                 Reader = Command.ExecuteReader();
 
@@ -220,7 +220,8 @@ namespace ArchiveManagerApp.Dao
             instance.Grade = row["grade"].ToString();
 
             if (!(row["photo"] is DBNull))
-                instance.Photo = Convert.FromBase64String(row["photo"].ToString());
+                instance.Photo = (byte[])row["photo"];
+            //instance.Photo = Convert.FromBase64String(row["photo"].ToString());
 
             return instance;
         }

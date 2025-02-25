@@ -10,5 +10,16 @@ namespace ArchiveManagerApp.Model
     {
         public Agent Agent { get; set; }
         public Service Service { get; set; }
+        public Service OldService { get; set; }
+        public DateTime Date { get; set; }
+
+        public Affectation(Agent agent)
+        {
+            Agent = agent;
+        }
+        public Affectation()
+        {
+                
+        }
     }
 }

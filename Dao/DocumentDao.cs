@@ -6,8 +6,9 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using NetFact_MVP.Dao.Util;
+using ArchiveManagerApp.Dao.Util;
 using RoadTripAgencyApp.Dao.Helper;
+using static RoadTripAgencyApp.Model.Helper.Util;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -26,11 +27,11 @@ namespace ArchiveManagerApp.Dao
                 Command.CommandText = "INSERT INTO document (id, libelle, extension, mot_cle, fichier) " +
                     "VALUES (@v_id, @v_libelle, @v_extension, @v_mot_cle, @v_fichier) ";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_libelle", System.Data.DbType.String, instance.Libelle));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_extension", System.Data.DbType.String, instance.Extension));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_mot_cle", System.Data.DbType.String, instance.MotCle));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_fichier", System.Data.DbType.Binary, instance.Fichier));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_libelle", System.Data.DbType.String, instance.Libelle));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_extension", System.Data.DbType.String, instance.Extension));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mot_cle", System.Data.DbType.String, instance.MotCle));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fichier", System.Data.DbType.Binary, instance.Fichier));
 
                 var feed = Command.ExecuteNonQuery();
 
@@ -43,15 +44,59 @@ namespace ArchiveManagerApp.Dao
             {
                 return 0;
             }
-
         }
+
+        public int Add(DbCommand command, Document instance)
+        {
+            Command = command;
+            Command.Parameters.Clear();
+
+            return Add(instance);
+        }
+
+        public async Task<int> AddAsync(Document instance)
+        {
+            try
+            {
+                var id = TableKeyHelper.GetKey(TableName);
+
+                Command.CommandText = "INSERT INTO document (id, libelle, extension, mot_cle, fichier) " +
+                    "VALUES (@v_id, @v_libelle, @v_extension, @v_mot_cle, @v_fichier) ";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_libelle", System.Data.DbType.String, instance.Libelle));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_extension", System.Data.DbType.String, instance.Extension));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mot_cle", System.Data.DbType.String, instance.MotCle));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fichier", System.Data.DbType.Binary, instance.Fichier));
+
+                var feed = await Command.ExecuteNonQueryAsync();
+
+                if (feed > 0)
+                    instance.Id = id;
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        public async Task<int> AddAsync(DbCommand command, Document instance)
+        {
+            Command = command;
+            Command.Parameters.Clear();
+
+            return await AddAsync(instance);
+        }
+
         public override int Delete(Document instance)
         {
             try
             {
                 Command.CommandText = $"DELETE FROM Annonce WHERE id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
 
                 Command.ExecuteNonQuery();
 
@@ -73,11 +118,11 @@ namespace ArchiveManagerApp.Dao
                     "fichier = @v_fichier " +
                     "WHERE id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_libelle", System.Data.DbType.String, instance.Libelle));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_extension", System.Data.DbType.String, instance.Extension));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_mot_cle", System.Data.DbType.String, instance.MotCle));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_fichier", System.Data.DbType.Binary, instance.Fichier));
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_libelle", System.Data.DbType.String, instance.Libelle));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_extension", System.Data.DbType.String, instance.Extension));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mot_cle", System.Data.DbType.String, instance.MotCle));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fichier", System.Data.DbType.Binary, instance.Fichier));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
 
                 Command.ExecuteNonQuery();
 
@@ -95,9 +140,9 @@ namespace ArchiveManagerApp.Dao
 
             try
             {
-                Command.CommandText = $"SELECT * FROM document WHERE id = @v_id";
+                Command.CommandText = "SELECT * FROM document WHERE id = @v_id";
 
-                Command.Parameters.Add(Parametres.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
 
                 Reader = Command.ExecuteReader();
 
@@ -165,7 +210,7 @@ namespace ArchiveManagerApp.Dao
 
             instance.Id = row["id"].ToString();
             
-            //instance.Extension = row["extension"].ToString();
+            instance.Extension = AppUtil.Util.ToExtensionType(row["extension"].ToString());
             instance.Libelle = row["libelle"].ToString();
             instance.MotCle = row["mot_cle"].ToString();
 
