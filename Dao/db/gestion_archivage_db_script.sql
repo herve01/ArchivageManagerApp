@@ -45,7 +45,7 @@ create table affectation
 create table user
 (
 	id varchar(32),
-	agent_id varchar(32),
+	agent_id varchar(32) null,
     username varchar(32),
     passwd varchar(32),
     salt varchar(32),

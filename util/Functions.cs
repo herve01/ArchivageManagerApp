@@ -36,6 +36,25 @@ namespace ArchiveManagerApp.Util
             return tempFile;
         }
 
+        public static void InitControl(Control parent)
+        {
+            foreach (var control in parent.Controls.OfType<TextBox>())
+            {
+                if (control.Text != string.Empty)
+                    control.Text = string.Empty;
+            }
+        }
+
+        public static bool IsEmptyTextBox(Control parent)
+        {
+            foreach (var control in parent.Controls.OfType<TextBox>())
+            {
+                if (control.Text == string.Empty)
+                    return true;
+            }
+            return false;
+        }
+
         public static string completeStringByZeros(string chaine)
         {
             return (int.Parse(chaine)).ToString("D5");
