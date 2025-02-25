@@ -75,6 +75,12 @@
     <Compile Include="Model\PasswordStorage.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Modules\View\AgentCtrlView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\View\AgentCtrlView.Designer.cs">
+      <DependentUpon>AgentCtrlView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\View\ArchiveCtrlView.cs">
       <SubType>UserControl</SubType>
     </Compile>
