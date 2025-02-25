@@ -30,147 +30,85 @@
         private void InitializeComponent()
         {
             this.pnl_ruban = new System.Windows.Forms.Panel();
-            this.btn_min = new System.Windows.Forms.Button();
-            this.btn_max = new System.Windows.Forms.Button();
-            this.btn_apropos = new System.Windows.Forms.Button();
-            this.btn_close = new System.Windows.Forms.Button();
-            this.btn_parametre = new System.Windows.Forms.Button();
-            this.btn_agent = new System.Windows.Forms.Button();
-            this.btn_document = new System.Windows.Forms.Button();
-            this.lbl_entete = new System.Windows.Forms.Label();
             this.pnl_body = new System.Windows.Forms.Panel();
+            this.txt_recherche = new System.Windows.Forms.TextBox();
+            this.btn_ajouter = new System.Windows.Forms.Button();
+            this.pnl_document = new System.Windows.Forms.FlowLayoutPanel();
+            this.lbl_entete = new System.Windows.Forms.Label();
+            this.btn_filtrer = new System.Windows.Forms.Button();
+            this.btn_apropos = new System.Windows.Forms.Button();
+            this.btn_parametre = new System.Windows.Forms.Button();
+            this.btn_utilisateur = new System.Windows.Forms.Button();
+            this.btn_document = new System.Windows.Forms.Button();
             this.pnl_ruban.SuspendLayout();
+            this.pnl_body.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_ruban
             // 
             this.pnl_ruban.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(63)))), ((int)(((byte)(89)))));
-            this.pnl_ruban.Controls.Add(this.btn_min);
-            this.pnl_ruban.Controls.Add(this.btn_max);
             this.pnl_ruban.Controls.Add(this.btn_apropos);
-            this.pnl_ruban.Controls.Add(this.btn_close);
             this.pnl_ruban.Controls.Add(this.btn_parametre);
-            this.pnl_ruban.Controls.Add(this.btn_agent);
+            this.pnl_ruban.Controls.Add(this.btn_utilisateur);
             this.pnl_ruban.Controls.Add(this.btn_document);
             this.pnl_ruban.Controls.Add(this.lbl_entete);
             this.pnl_ruban.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_ruban.Location = new System.Drawing.Point(0, 0);
             this.pnl_ruban.Name = "pnl_ruban";
-            this.pnl_ruban.Size = new System.Drawing.Size(1386, 30);
+            this.pnl_ruban.Size = new System.Drawing.Size(900, 30);
             this.pnl_ruban.TabIndex = 0;
-            this.pnl_ruban.DoubleClick += new System.EventHandler(this.DoubleClick_);
-            this.pnl_ruban.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_);
-            this.pnl_ruban.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_);
-            this.pnl_ruban.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_);
             // 
-            // btn_min
+            // pnl_body
             // 
-            this.btn_min.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(209)))), ((int)(((byte)(79)))));
-            this.btn_min.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_min.FlatAppearance.BorderSize = 0;
-            this.btn_min.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_min.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_min.ForeColor = System.Drawing.Color.White;
-            this.btn_min.Location = new System.Drawing.Point(1299, 0);
-            this.btn_min.Name = "btn_min";
-            this.btn_min.Size = new System.Drawing.Size(29, 30);
-            this.btn_min.TabIndex = 6;
-            this.btn_min.UseVisualStyleBackColor = false;
-            this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
+            this.pnl_body.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.pnl_body.Controls.Add(this.pnl_document);
+            this.pnl_body.Controls.Add(this.btn_filtrer);
+            this.pnl_body.Controls.Add(this.btn_ajouter);
+            this.pnl_body.Controls.Add(this.txt_recherche);
+            this.pnl_body.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_body.Location = new System.Drawing.Point(0, 30);
+            this.pnl_body.Name = "pnl_body";
+            this.pnl_body.Size = new System.Drawing.Size(900, 570);
+            this.pnl_body.TabIndex = 1;
             // 
-            // btn_max
+            // txt_recherche
             // 
-            this.btn_max.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(255)))), ((int)(((byte)(94)))));
-            this.btn_max.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_max.FlatAppearance.BorderSize = 0;
-            this.btn_max.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_max.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_max.ForeColor = System.Drawing.Color.White;
-            this.btn_max.Location = new System.Drawing.Point(1328, 0);
-            this.btn_max.Name = "btn_max";
-            this.btn_max.Size = new System.Drawing.Size(29, 30);
-            this.btn_max.TabIndex = 5;
-            this.btn_max.UseVisualStyleBackColor = false;
-            this.btn_max.Click += new System.EventHandler(this.btn_max_Click);
+            this.txt_recherche.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_recherche.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_recherche.Font = new System.Drawing.Font("Poppins Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_recherche.Location = new System.Drawing.Point(14, 8);
+            this.txt_recherche.Margin = new System.Windows.Forms.Padding(5);
+            this.txt_recherche.Name = "txt_recherche";
+            this.txt_recherche.Size = new System.Drawing.Size(568, 24);
+            this.txt_recherche.TabIndex = 0;
             // 
-            // btn_apropos
+            // btn_ajouter
             // 
-            this.btn_apropos.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_apropos.FlatAppearance.BorderSize = 0;
-            this.btn_apropos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_apropos.Font = new System.Drawing.Font("Poppins Light", 12F);
-            this.btn_apropos.ForeColor = System.Drawing.Color.White;
-            this.btn_apropos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_apropos.Location = new System.Drawing.Point(570, 0);
-            this.btn_apropos.Name = "btn_apropos";
-            this.btn_apropos.Size = new System.Drawing.Size(110, 30);
-            this.btn_apropos.TabIndex = 4;
-            this.btn_apropos.Text = "Apropos";
-            this.btn_apropos.UseVisualStyleBackColor = true;
-            this.btn_apropos.Click += new System.EventHandler(this.btn_apropos_Click);
+            this.btn_ajouter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ajouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(63)))), ((int)(((byte)(89)))));
+            this.btn_ajouter.FlatAppearance.BorderSize = 0;
+            this.btn_ajouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ajouter.Font = new System.Drawing.Font("Poppins Light", 12F);
+            this.btn_ajouter.ForeColor = System.Drawing.Color.White;
+            this.btn_ajouter.Location = new System.Drawing.Point(758, 528);
+            this.btn_ajouter.Name = "btn_ajouter";
+            this.btn_ajouter.Size = new System.Drawing.Size(130, 30);
+            this.btn_ajouter.TabIndex = 1;
+            this.btn_ajouter.Text = "Ajouter";
+            this.btn_ajouter.UseVisualStyleBackColor = false;
             // 
-            // btn_close
+            // pnl_document
             // 
-            this.btn_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(88)))), ((int)(((byte)(70)))));
-            this.btn_close.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_close.FlatAppearance.BorderSize = 0;
-            this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_close.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.ForeColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(1357, 0);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(29, 30);
-            this.btn_close.TabIndex = 1;
-            this.btn_close.UseVisualStyleBackColor = false;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // btn_parametre
-            // 
-            this.btn_parametre.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_parametre.FlatAppearance.BorderSize = 0;
-            this.btn_parametre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_parametre.Font = new System.Drawing.Font("Poppins Light", 12F);
-            this.btn_parametre.ForeColor = System.Drawing.Color.White;
-            this.btn_parametre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_parametre.Location = new System.Drawing.Point(460, 0);
-            this.btn_parametre.Name = "btn_parametre";
-            this.btn_parametre.Size = new System.Drawing.Size(110, 30);
-            this.btn_parametre.TabIndex = 3;
-            this.btn_parametre.Text = "Paramètres";
-            this.btn_parametre.UseVisualStyleBackColor = true;
-            this.btn_parametre.Click += new System.EventHandler(this.btn_parametre_Click);
-            // 
-            // btn_agent
-            // 
-            this.btn_agent.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_agent.FlatAppearance.BorderSize = 0;
-            this.btn_agent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_agent.Font = new System.Drawing.Font("Poppins Light", 12F);
-            this.btn_agent.ForeColor = System.Drawing.Color.White;
-            this.btn_agent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_agent.Location = new System.Drawing.Point(350, 0);
-            this.btn_agent.Name = "btn_agent";
-            this.btn_agent.Size = new System.Drawing.Size(110, 30);
-            this.btn_agent.TabIndex = 2;
-            this.btn_agent.Text = "Agents";
-            this.btn_agent.UseVisualStyleBackColor = true;
-            this.btn_agent.Click += new System.EventHandler(this.btn_utilisateur_Click);
-            // 
-            // btn_document
-            // 
-            this.btn_document.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_document.FlatAppearance.BorderSize = 0;
-            this.btn_document.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_document.Font = new System.Drawing.Font("Poppins Light", 12F);
-            this.btn_document.ForeColor = System.Drawing.Color.White;
-            this.btn_document.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_document.Location = new System.Drawing.Point(240, 0);
-            this.btn_document.Name = "btn_document";
-            this.btn_document.Size = new System.Drawing.Size(110, 30);
-            this.btn_document.TabIndex = 1;
-            this.btn_document.Text = "Documents";
-            this.btn_document.UseVisualStyleBackColor = true;
-            this.btn_document.Click += new System.EventHandler(this.btn_document_Click);
+            this.pnl_document.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnl_document.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.pnl_document.Location = new System.Drawing.Point(16, 42);
+            this.pnl_document.Margin = new System.Windows.Forms.Padding(5);
+            this.pnl_document.Name = "pnl_document";
+            this.pnl_document.Size = new System.Drawing.Size(700, 520);
+            this.pnl_document.TabIndex = 2;
             // 
             // lbl_entete
             // 
@@ -180,37 +118,101 @@
             this.lbl_entete.ForeColor = System.Drawing.Color.White;
             this.lbl_entete.Location = new System.Drawing.Point(0, 0);
             this.lbl_entete.Name = "lbl_entete";
-            this.lbl_entete.Size = new System.Drawing.Size(240, 30);
+            this.lbl_entete.Size = new System.Drawing.Size(200, 30);
             this.lbl_entete.TabIndex = 0;
             this.lbl_entete.Text = "Archive Manager App";
-            this.lbl_entete.DoubleClick += new System.EventHandler(this.DoubleClick_);
-            this.lbl_entete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_);
-            this.lbl_entete.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_);
-            this.lbl_entete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_);
             // 
-            // pnl_body
+            // btn_filtrer
             // 
-            this.pnl_body.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.pnl_body.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_body.Location = new System.Drawing.Point(0, 30);
-            this.pnl_body.Name = "pnl_body";
-            this.pnl_body.Size = new System.Drawing.Size(1386, 758);
-            this.pnl_body.TabIndex = 1;
+            this.btn_filtrer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_filtrer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(63)))), ((int)(((byte)(89)))));
+            this.btn_filtrer.FlatAppearance.BorderSize = 0;
+            this.btn_filtrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_filtrer.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_filtrer.ForeColor = System.Drawing.Color.White;
+            this.btn_filtrer.Location = new System.Drawing.Point(590, 4);
+            this.btn_filtrer.Name = "btn_filtrer";
+            this.btn_filtrer.Size = new System.Drawing.Size(130, 30);
+            this.btn_filtrer.TabIndex = 1;
+            this.btn_filtrer.Text = "Filtrer";
+            this.btn_filtrer.UseVisualStyleBackColor = false;
             // 
-            // Main
+            // btn_apropos
+            // 
+            this.btn_apropos.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_apropos.FlatAppearance.BorderSize = 0;
+            this.btn_apropos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_apropos.Font = new System.Drawing.Font("Poppins Light", 12F);
+            this.btn_apropos.ForeColor = System.Drawing.Color.White;
+            this.btn_apropos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_apropos.Location = new System.Drawing.Point(620, 0);
+            this.btn_apropos.Name = "btn_apropos";
+            this.btn_apropos.Size = new System.Drawing.Size(140, 30);
+            this.btn_apropos.TabIndex = 4;
+            this.btn_apropos.Text = "     Apropos";
+            this.btn_apropos.UseVisualStyleBackColor = true;
+            // 
+            // btn_parametre
+            // 
+            this.btn_parametre.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_parametre.FlatAppearance.BorderSize = 0;
+            this.btn_parametre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_parametre.Font = new System.Drawing.Font("Poppins Light", 12F);
+            this.btn_parametre.ForeColor = System.Drawing.Color.White;
+            this.btn_parametre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_parametre.Location = new System.Drawing.Point(480, 0);
+            this.btn_parametre.Name = "btn_parametre";
+            this.btn_parametre.Size = new System.Drawing.Size(140, 30);
+            this.btn_parametre.TabIndex = 3;
+            this.btn_parametre.Text = "      Paramètres";
+            this.btn_parametre.UseVisualStyleBackColor = true;
+            // 
+            // btn_utilisateur
+            // 
+            this.btn_utilisateur.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_utilisateur.FlatAppearance.BorderSize = 0;
+            this.btn_utilisateur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_utilisateur.Font = new System.Drawing.Font("Poppins Light", 12F);
+            this.btn_utilisateur.ForeColor = System.Drawing.Color.White;
+            this.btn_utilisateur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_utilisateur.Location = new System.Drawing.Point(340, 0);
+            this.btn_utilisateur.Name = "btn_utilisateur";
+            this.btn_utilisateur.Size = new System.Drawing.Size(140, 30);
+            this.btn_utilisateur.TabIndex = 2;
+            this.btn_utilisateur.Text = "     Utilisateurs";
+            this.btn_utilisateur.UseVisualStyleBackColor = true;
+            // 
+            // btn_document
+            // 
+            this.btn_document.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_document.FlatAppearance.BorderSize = 0;
+            this.btn_document.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_document.Font = new System.Drawing.Font("Poppins Light", 12F);
+            this.btn_document.ForeColor = System.Drawing.Color.White;
+            this.btn_document.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_document.Location = new System.Drawing.Point(200, 0);
+            this.btn_document.Name = "btn_document";
+            this.btn_document.Size = new System.Drawing.Size(140, 30);
+            this.btn_document.TabIndex = 1;
+            this.btn_document.Text = "      Documents";
+            this.btn_document.UseVisualStyleBackColor = true;
+            // 
+            // Forme_Principale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.pnl_body);
             this.Controls.Add(this.pnl_ruban);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(900, 600);
-            this.Name = "Main";
+            this.Name = "Forme_Principale";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Archive Manager App";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnl_ruban.ResumeLayout(false);
+            this.pnl_body.ResumeLayout(false);
+            this.pnl_body.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -219,14 +221,15 @@
 
         private System.Windows.Forms.Panel pnl_ruban;
         private System.Windows.Forms.Panel pnl_body;
+        private System.Windows.Forms.TextBox txt_recherche;
+        private System.Windows.Forms.FlowLayoutPanel pnl_document;
+        private System.Windows.Forms.Button btn_ajouter;
         private System.Windows.Forms.Label lbl_entete;
         private System.Windows.Forms.Button btn_document;
         private System.Windows.Forms.Button btn_apropos;
         private System.Windows.Forms.Button btn_parametre;
-        private System.Windows.Forms.Button btn_agent;
-        private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.Button btn_min;
-        private System.Windows.Forms.Button btn_max;
+        private System.Windows.Forms.Button btn_utilisateur;
+        private System.Windows.Forms.Button btn_filtrer;
     }
 }
 
