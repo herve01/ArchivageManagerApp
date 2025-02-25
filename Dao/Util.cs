@@ -1,6 +1,6 @@
 ﻿
 
-using static RoadTripAgencyApp.Model.Helper.Util;
+using static ArchiveManagerApp.Model.Helper.Util;
 
 namespace ArchiveManagerApp.Dao.AppUtil
 {

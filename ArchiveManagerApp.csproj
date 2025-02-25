@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util\Functions.cs" />
     <EmbeddedResource Include="Modules\View\AgentCtrlView.resx">
       <DependentUpon>AgentCtrlView.cs</DependentUpon>
     </EmbeddedResource>
