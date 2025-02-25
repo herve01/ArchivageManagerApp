@@ -1,9 +1,8 @@
 ﻿using ArchiveManagerApp.Model.App;
-using RoadTripAgencyApp.Model.Helper;
 using System;
 using System.Data;
 
-namespace RoadTripAgencyApp.Dao.Helper
+namespace ArchiveManagerApp.Dao.Helper
 {
     public class TableKeyHelper
     {
@@ -15,8 +14,8 @@ namespace RoadTripAgencyApp.Dao.Helper
 
                 key = AppConfig.CURRENT_USER?.Id ?? 1 + "" + tableName;
 
-                key += Util.GetMacAddress();
-                key += Util.GetClientIPAddress();
+                key += Model.Helper.Util.GetMacAddress();
+                key += Model.Helper.Util.GetClientIPAddress();
 
                 key += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff");         
 

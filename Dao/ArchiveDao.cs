@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Dao.Util;
-using RoadTripAgencyApp.Dao.Helper;
+using ArchiveManagerApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -21,33 +21,57 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
+                Command.Transaction = Connection.BeginTransaction();
+
+
+                if (new DocumentDao().Add(Command, instance.Document) <= 0)
+                {
+                    instance.Id = null;
+
+                    Command.Transaction.Rollback();
+                    return -1;
+                }
+
                 var id = TableKeyHelper.GetKey(TableName);
 
-                Command.CommandText = "INSERT INTO Archive (id, document_id, user_id, date_archivage) VALUES (@id, @document_id, @user_id, @date_archivage)";
+                Command.CommandText = "INSERT INTO archive (id, user_id, document_id, date) " +
+                    "VALUES (@v_id, @v_user_id, @v_document_id, @v_date)";
 
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@document_id", System.Data.DbType.String, instance.Document.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@date_archivage", System.Data.DbType.String, instance.Date_Archivage));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance.Document.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_document_id", System.Data.DbType.String, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.User.Id));
                 
                 var feed = Command.ExecuteNonQuery();
+                instance.Id = id;
 
-                if (feed > 0)
-                    instance.Id = id;
+                if (feed < 0)
+                {
+                    instance.Id = null;
+                    Command.Transaction.Rollback();
+                    return -2;
+                }
 
-                return 1;
+                Command.Transaction.Commit();
+
+                return feed;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return 0;
+                System.Windows.Forms.MessageBox.Show(TableName + " " + e.Message);
+                if (Command.Transaction != null)
+                    Command.Transaction.Rollback();
+                return -1;
             }
         }
         public override int Delete(Archive instance)
         {
             try
             {
-                Command.CommandText = $"DELETE FROM Archive WHERE Id={instance.Id}";
+                Command.CommandText = "DELETE FROM Archive WHERE id = @v_id";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -62,13 +86,17 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = $"UPDATE Archive SET document_id=@document_id, user_id=@user_id, date_archivage=@date_archivage WHERE Id=@id";
+                Command.CommandText = "UPDATE Archive SET " +
+                    "user_id = @v_user_id, " +
+                    "document_id = @v_document_id, " +
+                    "date = @v_date" +
+                    "WHERE id = @v_id";
 
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, "id"));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@document_id", System.Data.DbType.String, instance.Document.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@user_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@date_archivage", System.Data.DbType.String, instance.Date_Archivage));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance.Document.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_document_id", System.Data.DbType.String, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -78,7 +106,7 @@ namespace ArchiveManagerApp.Dao
                 return 0;
             }
         }
-        public async Task<Archive> GetAsync(string id)
+        public Archive Get(string id)
         {
             Archive instance = null;
             Dictionary<string, object> _instance = null;
@@ -86,11 +114,11 @@ namespace ArchiveManagerApp.Dao
             try
             {
                 ;
-                Command.CommandText = $"SELECT * FROM Archive WHERE id=@id";
+                Command.CommandText = "SELECT * FROM archive WHERE id = @v_id";
 
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
 
-                Reader = await Command.ExecuteReaderAsync();
+                Reader = Command.ExecuteReader();
 
                 if (Reader != null && Reader.HasRows)
                     _instance = GetMapping(Reader);
@@ -107,45 +135,14 @@ namespace ArchiveManagerApp.Dao
                 return null;
             }
         }
-        public Archive Get(string id)
-        {
-            Archive instance = null;
-            Dictionary<string, object> _instance = null;
-
-            try
-            {
-               
-                Command.CommandText = $"SELECT * FROM Archive WHERE id=@id";
-
-
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
-
-                Reader = Command.ExecuteReader();
-
-                if (Reader != null && Reader.HasRows)
-                    if(Reader.Read())
-                        _instance = GetMapping(Reader);
-
-                Reader.Close();
-
-                if (_instance != null)
-                    instance = Create(_instance);
-
-                return instance;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
         public async Task<List<Archive>> GetAllAsync()
         {
-            List<Archive> instances = new List<Archive>();
-            List<Dictionary<string, object>> _instances = new List<Dictionary<string, object>>();
+            var instances = new List<Archive>();
+            var _instances = new List<Dictionary<string, object>>();
 
             try
             {
-                Command.CommandText = "SELECT * FROM Archive";
+                Command.CommandText = "SELECT * FROM archive";
 
                 Reader = await Command.ExecuteReaderAsync();
 
@@ -159,7 +156,7 @@ namespace ArchiveManagerApp.Dao
 
                 foreach (var row in _instances)
                 {
-                    instances.Add(Create(row));
+                    instances.Add(Create(row, true, true));
                 }
 
                 return instances;
@@ -176,17 +173,21 @@ namespace ArchiveManagerApp.Dao
                 { "id", reader["id"] },
                 { "document_id", reader["document_id"] },
                 { "user_id", reader["user_id"] },
-                { "date_archivage", reader["date_archivage"] },
+                { "date", reader["date"] },
             };
         }
-        Archive Create(Dictionary<string, object> row)
+        Archive Create(Dictionary<string, object> row, bool withUser = false, bool withDoc = false)
         {
             var instance = new Archive();
 
             instance.Id = row["id"].ToString();
-            //instance.Document = row["nom"].ToString();
-            //instance.User = row["postnom"].ToString();
-            instance.Date_Archivage = DateTime.Parse(row["date_archivage"].ToString());
+            instance.Date = DateTime.Parse(row["date"].ToString());
+
+            if (withUser)
+                instance.User = new UserDao().Get(row["user_id"].ToString());
+
+            if (withDoc)
+                instance.Document = new DocumentDao().Get(row["document_id"].ToString());
 
             return instance;
         }

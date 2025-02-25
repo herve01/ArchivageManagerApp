@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Dao.Util;
-using RoadTripAgencyApp.Dao.Helper;
+using ArchiveManagerApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -21,6 +21,8 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
+                Command.Transaction = Connection.BeginTransaction();
+
                 var id = TableKeyHelper.GetKey(TableName);
 
                 Command.CommandText = "INSERT INTO Agent (id, nom, postnom, prenom, sexe, telephone, photo, fonction, grade) " +
@@ -38,15 +40,33 @@ namespace ArchiveManagerApp.Dao
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
                 
                 var feed = Command.ExecuteNonQuery();
+                instance.Id = id;
 
-                if (feed > 0)
-                    instance.Id = id;
+                if (feed < 0)
+                {
+                    instance.Id = null;
+                    Command.Transaction.Rollback();
+                    return -1;
+                }
 
-                return 1;
+                if (new AffectationDao().Add(Command, instance.CurrentAffectation) <= 0)
+                {
+                    instance.Id = null;
+
+                    Command.Transaction.Rollback();
+                    return -2;
+                }
+
+                Command.Transaction.Commit();
+
+                return feed;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return 0;
+                System.Windows.Forms.MessageBox.Show(TableName + " " + e.Message);
+                if (Command.Transaction != null)
+                    Command.Transaction.Rollback();
+                return -1;
             }
         }
         public override int Delete(Agent instance)

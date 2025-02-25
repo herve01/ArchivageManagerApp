@@ -7,8 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Dao.Util;
-using RoadTripAgencyApp.Dao.Helper;
-using static RoadTripAgencyApp.Model.Helper.Util;
+using ArchiveManagerApp.Dao.Helper;
+using static ArchiveManagerApp.Model.Helper.Util;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -215,7 +215,7 @@ namespace ArchiveManagerApp.Dao
             instance.MotCle = row["mot_cle"].ToString();
 
             if (!(row["fichier"] is DBNull))
-                instance.Fichier = Convert.FromBase64String(row["fichier"].ToString());
+                instance.Fichier = (byte[])row["fichier"];
 
             return instance;
         }

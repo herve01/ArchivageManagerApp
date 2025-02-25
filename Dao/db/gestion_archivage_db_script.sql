@@ -27,7 +27,7 @@ create table document
     libelle varchar(50),
     extension enum('PDF', 'IMAGE') default 'PDF',
     mot_cle varchar(50),
-    fichier mediumblob,
+    fichier longblob,
 	constraint pk_document primary key(id)
 );
 create table affectation
@@ -45,7 +45,7 @@ create table affectation
 create table user
 (
 	id varchar(32),
-	agent_id varchar(32),
+	agent_id varchar(32) null,
     username varchar(32),
     passwd varchar(32),
     salt varchar(32),

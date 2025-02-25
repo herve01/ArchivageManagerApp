@@ -10,6 +10,6 @@ namespace ArchiveManagerApp.Model
     {
         public User User { get; set; }
         public Document Document { get; set; }
-        public DateTime Date_Archivage { get; set; }
+        public DateTime Date { get; set; }
     }
 }
