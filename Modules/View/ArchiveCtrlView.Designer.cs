@@ -31,6 +31,7 @@
             this.pnl_document = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_filtrer = new System.Windows.Forms.Button();
             this.txt_recherche = new System.Windows.Forms.TextBox();
+            this.btn_ajouter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnl_document
@@ -39,10 +40,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnl_document.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.pnl_document.Location = new System.Drawing.Point(18, 44);
+            this.pnl_document.Location = new System.Drawing.Point(16, 44);
             this.pnl_document.Margin = new System.Windows.Forms.Padding(5);
             this.pnl_document.Name = "pnl_document";
-            this.pnl_document.Size = new System.Drawing.Size(752, 499);
+            this.pnl_document.Size = new System.Drawing.Size(1143, 651);
             this.pnl_document.TabIndex = 5;
             // 
             // btn_filtrer
@@ -53,7 +54,7 @@
             this.btn_filtrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_filtrer.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_filtrer.ForeColor = System.Drawing.Color.White;
-            this.btn_filtrer.Location = new System.Drawing.Point(644, 6);
+            this.btn_filtrer.Location = new System.Drawing.Point(1029, 6);
             this.btn_filtrer.Name = "btn_filtrer";
             this.btn_filtrer.Size = new System.Drawing.Size(130, 30);
             this.btn_filtrer.TabIndex = 4;
@@ -69,19 +70,36 @@
             this.txt_recherche.Location = new System.Drawing.Point(16, 10);
             this.txt_recherche.Margin = new System.Windows.Forms.Padding(5);
             this.txt_recherche.Name = "txt_recherche";
-            this.txt_recherche.Size = new System.Drawing.Size(620, 24);
+            this.txt_recherche.Size = new System.Drawing.Size(1005, 24);
             this.txt_recherche.TabIndex = 3;
+            // 
+            // btn_ajouter
+            // 
+            this.btn_ajouter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ajouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(63)))), ((int)(((byte)(89)))));
+            this.btn_ajouter.FlatAppearance.BorderSize = 0;
+            this.btn_ajouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ajouter.Font = new System.Drawing.Font("Poppins Light", 12F);
+            this.btn_ajouter.ForeColor = System.Drawing.Color.White;
+            this.btn_ajouter.Location = new System.Drawing.Point(1167, 665);
+            this.btn_ajouter.Name = "btn_ajouter";
+            this.btn_ajouter.Size = new System.Drawing.Size(130, 30);
+            this.btn_ajouter.TabIndex = 6;
+            this.btn_ajouter.Text = "Ajouter";
+            this.btn_ajouter.UseVisualStyleBackColor = false;
+            this.btn_ajouter.Click += new System.EventHandler(this.btn_ajouter_Click);
             // 
             // ArchiveCtrlView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_ajouter);
             this.Controls.Add(this.pnl_document);
             this.Controls.Add(this.btn_filtrer);
             this.Controls.Add(this.txt_recherche);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ArchiveCtrlView";
-            this.Size = new System.Drawing.Size(889, 469);
+            this.Size = new System.Drawing.Size(1300, 700);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,5 +110,6 @@
         private System.Windows.Forms.FlowLayoutPanel pnl_document;
         private System.Windows.Forms.Button btn_filtrer;
         private System.Windows.Forms.TextBox txt_recherche;
+        private System.Windows.Forms.Button btn_ajouter;
     }
 }

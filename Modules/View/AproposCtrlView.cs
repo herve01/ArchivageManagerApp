@@ -7,21 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArchiveManagerApp.Modules.View.Pop;
 
 namespace ArchiveManagerApp.Modules.View
 {
-    public partial class AgentCtrlView: UserControl
+    public partial class AproposCtrlView: UserControl
     {
-        public AgentCtrlView()
+        public AproposCtrlView()
         {
             InitializeComponent();
-        }
-
-        private void btn_ajouter_Click(object sender, EventArgs e)
-        {
-            Form Page = new PopAgent();
-            Page.ShowDialog();
         }
     }
 }
