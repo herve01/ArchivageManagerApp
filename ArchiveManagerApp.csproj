@@ -75,8 +75,23 @@
     <Compile Include="Model\PasswordStorage.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Modules\View\AgentCtrlView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\View\AgentCtrlView.Designer.cs">
+      <DependentUpon>AgentCtrlView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\View\ArchiveCtrlView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\View\ArchiveCtrlView.Designer.cs">
+      <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Modules\View\ArchiveCtrlView.resx">
+      <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -107,7 +122,6 @@
     <Folder Include="DLL\" />
     <Folder Include="Global\" />
     <Folder Include="Modules\Raports\" />
-    <Folder Include="Modules\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
