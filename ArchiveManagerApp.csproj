@@ -87,6 +87,12 @@
     <Compile Include="Modules\View\ArchiveCtrlView.Designer.cs">
       <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\View\ParametreCtrlView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\View\ParametreCtrlView.Designer.cs">
+      <DependentUpon>ParametreCtrlView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Modules\View\ArchiveCtrlView.resx">
