@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Guna.UI2 4.0">
-      <HintPath>..\..\..\OneDrive\Mes Outils\FramWork\DLL\Guna.UI2 4.0.dll</HintPath>
+    <Reference Include="PdfiumViewer">
+      <HintPath>DLL\PdfiumViewer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -84,11 +84,20 @@
     <Compile Include="Modules\View\AgentCtrlView.Designer.cs">
       <DependentUpon>AgentCtrlView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\View\AproposCtrlView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\View\AproposCtrlView.Designer.cs">
+      <DependentUpon>AproposCtrlView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\View\ArchiveCtrlView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\View\ArchiveCtrlView.Designer.cs">
       <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\View\Controls\BoutonRond.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Modules\View\ParametreCtrlView.cs">
       <SubType>UserControl</SubType>
@@ -96,19 +105,41 @@
     <Compile Include="Modules\View\ParametreCtrlView.Designer.cs">
       <DependentUpon>ParametreCtrlView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\View\Pop\PopAgent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\View\Pop\PopAgent.Designer.cs">
+      <DependentUpon>PopAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\View\Pop\PopArchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\View\Pop\PopArchive.Designer.cs">
+      <DependentUpon>PopArchive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util\Functions.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\AgentCtrlView.resx">
       <DependentUpon>AgentCtrlView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\View\AproposCtrlView.resx">
+      <DependentUpon>AproposCtrlView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\ArchiveCtrlView.resx">
       <DependentUpon>ArchiveCtrlView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\ParametreCtrlView.resx">
       <DependentUpon>ParametreCtrlView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\View\Pop\PopAgent.resx">
+      <DependentUpon>PopAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\View\Pop\PopArchive.resx">
+      <DependentUpon>PopArchive.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
