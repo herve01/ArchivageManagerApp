@@ -41,7 +41,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.label2 = new System.Windows.Forms.Label();
             this.btn_archiver = new System.Windows.Forms.Button();
             this.pnl_body = new System.Windows.Forms.Panel();
-            this.pnl_pdf = new System.Windows.Forms.Panel();
+            this.pnlPdfFile = new System.Windows.Forms.Panel();
             this.btn_nettoyer = new System.Windows.Forms.Button();
             this.txt_path = new System.Windows.Forms.TextBox();
             this.pnl_ruban.SuspendLayout();
@@ -55,7 +55,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.pnl_ruban.Controls.Add(this.lbl_entete);
             this.pnl_ruban.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_ruban.Location = new System.Drawing.Point(0, 0);
-            this.pnl_ruban.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_ruban.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_ruban.Name = "pnl_ruban";
             this.pnl_ruban.Size = new System.Drawing.Size(1375, 37);
             this.pnl_ruban.TabIndex = 1;
@@ -69,7 +69,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.ForeColor = System.Drawing.Color.White;
             this.btn_close.Location = new System.Drawing.Point(1336, 0);
-            this.btn_close.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(4);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(39, 37);
             this.btn_close.TabIndex = 1;
@@ -99,7 +99,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btn_impoter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_impoter.ForeColor = System.Drawing.Color.White;
             this.btn_impoter.Location = new System.Drawing.Point(16, 44);
-            this.btn_impoter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_impoter.Margin = new System.Windows.Forms.Padding(4);
             this.btn_impoter.Name = "btn_impoter";
             this.btn_impoter.Size = new System.Drawing.Size(405, 37);
             this.btn_impoter.TabIndex = 5;
@@ -116,7 +116,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btn_annuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_annuler.ForeColor = System.Drawing.Color.White;
             this.btn_annuler.Location = new System.Drawing.Point(953, 798);
-            this.btn_annuler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_annuler.Margin = new System.Windows.Forms.Padding(4);
             this.btn_annuler.Name = "btn_annuler";
             this.btn_annuler.Size = new System.Drawing.Size(200, 49);
             this.btn_annuler.TabIndex = 5;
@@ -177,7 +177,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btn_archiver.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_archiver.ForeColor = System.Drawing.Color.White;
             this.btn_archiver.Location = new System.Drawing.Point(1161, 798);
-            this.btn_archiver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_archiver.Margin = new System.Windows.Forms.Padding(4);
             this.btn_archiver.Name = "btn_archiver";
             this.btn_archiver.Size = new System.Drawing.Size(200, 49);
             this.btn_archiver.TabIndex = 5;
@@ -187,7 +187,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             // pnl_body
             // 
             this.pnl_body.BackColor = System.Drawing.SystemColors.Control;
-            this.pnl_body.Controls.Add(this.pnl_pdf);
+            this.pnl_body.Controls.Add(this.pnlPdfFile);
             this.pnl_body.Controls.Add(this.btn_nettoyer);
             this.pnl_body.Controls.Add(this.btn_archiver);
             this.pnl_body.Controls.Add(this.btn_annuler);
@@ -200,19 +200,19 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.pnl_body.Controls.Add(this.pnl_ruban);
             this.pnl_body.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_body.Location = new System.Drawing.Point(1, 1);
-            this.pnl_body.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_body.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_body.Name = "pnl_body";
             this.pnl_body.Size = new System.Drawing.Size(1375, 860);
             this.pnl_body.TabIndex = 9;
             // 
-            // pnl_pdf
+            // pnlPdfFile
             // 
-            this.pnl_pdf.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.pnl_pdf.Location = new System.Drawing.Point(16, 90);
-            this.pnl_pdf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pnl_pdf.Name = "pnl_pdf";
-            this.pnl_pdf.Size = new System.Drawing.Size(920, 757);
-            this.pnl_pdf.TabIndex = 8;
+            this.pnlPdfFile.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.pnlPdfFile.Location = new System.Drawing.Point(16, 89);
+            this.pnlPdfFile.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlPdfFile.Name = "pnlPdfFile";
+            this.pnlPdfFile.Size = new System.Drawing.Size(920, 758);
+            this.pnlPdfFile.TabIndex = 8;
             // 
             // btn_nettoyer
             // 
@@ -223,7 +223,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btn_nettoyer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_nettoyer.ForeColor = System.Drawing.Color.White;
             this.btn_nettoyer.Location = new System.Drawing.Point(947, 44);
-            this.btn_nettoyer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_nettoyer.Margin = new System.Windows.Forms.Padding(4);
             this.btn_nettoyer.Name = "btn_nettoyer";
             this.btn_nettoyer.Size = new System.Drawing.Size(415, 37);
             this.btn_nettoyer.TabIndex = 5;
@@ -251,7 +251,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.ClientSize = new System.Drawing.Size(1377, 862);
             this.Controls.Add(this.pnl_body);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PopArchive";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -279,6 +279,6 @@ namespace ArchiveManagerApp.Modules.View.Pop
         private System.Windows.Forms.Panel pnl_body;
         private System.Windows.Forms.TextBox txt_path;
         private System.Windows.Forms.Button btn_nettoyer;
-        private System.Windows.Forms.Panel pnl_pdf;
+        private System.Windows.Forms.Panel pnlPdfFile;
     }
 }

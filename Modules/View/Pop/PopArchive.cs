@@ -9,20 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using PdfiumViewer;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Word;
 
 namespace ArchiveManagerApp.Modules.View.Pop
 {
     public partial class PopArchive: Form
     {
         string path;
-        private PdfViewer pdfViewer;
-        PdfRenderer renderer;
+        private PdfViewer viewer;
+        private Microsoft.Office.Interop.Word.Application wordApp;
+        private Document wordDoc;
         public PopArchive()
         {
             InitializeComponent();
-            pdfViewer = new PdfViewer();
-            pdfViewer.Dock = DockStyle.Fill;
-            pnl_pdf.Controls.Add(pdfViewer);
+
+            viewer = new PdfViewer();
+
+            viewer = new PdfViewer
+            {
+                Dock = DockStyle.Fill,
+                Parent = this.pnlPdfFile // Set panel1 as the parent container
+            };
 
             btn_annuler.Click += btn_close_Click;
         }
@@ -34,23 +41,28 @@ namespace ArchiveManagerApp.Modules.View.Pop
 
         private void btn_impoter_Click(object sender, EventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Filter = "Documents|*.pdf;*.doc;*.txt;*.jpg;*.png";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Documents|*.pdf;*.doc;*.docx;*.txt;*.jpg;*.png";
+            openFileDialog.Title = "Sélectionné fichier";
 
-            if (op.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                path = op.FileName;
-                var data = File.ReadAllBytes(path);
-                PdfiumViewer.PdfDocument doc;
-                using (Stream stream = new MemoryStream(data))
+                path = openFileDialog.FileName;
+
+                if(path.ToLower().Contains(".pdf"))
                 {
-                    doc = PdfiumViewer.PdfDocument.Load(stream);
-                    var viewer = new PdfiumViewer.PdfViewer();
+                    var doc = PdfDocument.Load(path);
                     viewer.Document = doc;
-                    viewer.Dock = DockStyle.Fill;
-                    pnl_pdf.Controls.Add(viewer);
                 }
-                
+                else if(path.ToLower().Contains(".doc") | path.ToLower().Contains(".docx"))
+                {
+                    wordApp = new Microsoft.Office.Interop.Word.Application();
+                    wordDoc = wordApp.Documents.Open(path);
+
+                    // Make Word visible (optional)
+                    wordApp.Visible = true;
+                }
+
                 txt_path.Text = path;
             }
         }
