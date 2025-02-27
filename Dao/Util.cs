@@ -12,6 +12,8 @@ namespace ArchiveManagerApp.Dao.AppUtil
             {
                 case "PDF":
                     return ExtensionType.PDF;
+                case "DOC":
+                    return ExtensionType.DOC;
                 case "IMAGE":
                     return ExtensionType.IMAGE;
 
