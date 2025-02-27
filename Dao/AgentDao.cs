@@ -25,7 +25,7 @@ namespace ArchiveManagerApp.Dao
 
                 var id = TableKeyHelper.GetKey(TableName);
 
-                Command.CommandText = "INSERT INTO Agent (id, nom, postnom, prenom, sexe, telephone, photo, fonction, grade) " +
+                Command.CommandText = "INSERT INTO agent (id, nom, postnom, prenom, sexe, telephone, photo, fonction, grade) " +
                                       "VALUES (@v_id, @v_nom, @v_postnom, @v_prenom, @v_sexe, @v_telephone, @v_photo, @v_fonction, @v_grade)";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
@@ -73,7 +73,7 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = $"DELETE FROM Agent WHERE Id=@v_id";
+                Command.CommandText = "DELETE FROM agent WHERE id = @v_id";
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
                 Command.ExecuteNonQuery();
                 return 1;
@@ -110,6 +110,7 @@ namespace ArchiveManagerApp.Dao
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                
                 Command.ExecuteNonQuery();
 
                 return 1;
@@ -119,47 +120,16 @@ namespace ArchiveManagerApp.Dao
                 return 0;
             }
         }
-        public async Task<Agent> GetAsync(string id)
-        {
-            Agent instance = null;
-            Dictionary<string, object> _instance = null;
-
-            try
-            {
-                ;
-                Command.CommandText = $"SELECT * FROM Agent WHERE id=@id";
-
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
-
-                Reader = await Command.ExecuteReaderAsync();
-
-                if (Reader != null && Reader.HasRows)
-                    _instance = GetMapping(Reader);
-
-                Reader.Close();
-
-                if (_instance != null)
-                    instance = Create(_instance);
-
-                return instance;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
         public Agent Get(string id)
         {
             Agent instance = null;
             Dictionary<string, object> _instance = null;
 
             try
-            {
-               
-                Command.CommandText = $"SELECT * FROM Agent WHERE id=@id";
+            {              
+                Command.CommandText = "SELECT * FROM agent WHERE id = @v_id";
 
-
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
 
                 Reader = Command.ExecuteReader();
 
@@ -186,7 +156,7 @@ namespace ArchiveManagerApp.Dao
 
             try
             {
-                Command.CommandText = "SELECT * FROM Agent";
+                Command.CommandText = "SELECT * FROM agent";
 
                 Reader = await Command.ExecuteReaderAsync();
 
@@ -225,7 +195,7 @@ namespace ArchiveManagerApp.Dao
                 { "grade", reader["grade"] },
             };
         }
-        Agent Create(Dictionary<string, object> row)
+        Agent Create(Dictionary<string, object> row, bool withCurrentAffec = false)
         {
             var instance = new Agent();
 
@@ -238,6 +208,9 @@ namespace ArchiveManagerApp.Dao
             instance.Mail = row["mail"].ToString();
             instance.Fonction = row["fonction"].ToString();
             instance.Grade = row["grade"].ToString();
+
+            if (withCurrentAffec)
+                instance.CurrentAffectation = new AffectationDao().Get(instance);
 
             if (!(row["photo"] is DBNull))
                 instance.Photo = (byte[])row["photo"];

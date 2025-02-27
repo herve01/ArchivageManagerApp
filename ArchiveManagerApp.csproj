@@ -179,6 +179,7 @@
   <ItemGroup>
     <Folder Include="DLL\" />
     <Folder Include="Global\" />
+    <Folder Include="Model\POCO\" />
     <Folder Include="Modules\Raports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

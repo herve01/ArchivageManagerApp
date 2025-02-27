@@ -12,6 +12,7 @@ namespace ArchiveManagerApp.Model
         public Service Service { get; set; }
         public Service OldService { get; set; }
         public DateTime Date { get; set; }
+        public bool IsEnd { get; set; }
 
         public Affectation(Agent agent)
         {
@@ -19,7 +20,7 @@ namespace ArchiveManagerApp.Model
         }
         public Affectation()
         {
-                
+            IsEnd = false;
         }
     }
 }
