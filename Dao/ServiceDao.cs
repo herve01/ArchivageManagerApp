@@ -146,7 +146,7 @@ namespace ArchiveManagerApp.Dao
             instance.Id = row["id"].ToString();          
             instance.Designation = row["designation"].ToString();
 
-            if (withAgents) ;
+            //if (withAgents) ;
 
             return instance;
         }

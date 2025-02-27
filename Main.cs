@@ -9,90 +9,91 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using G = Guna.UI2.WinForms;
 
 namespace WindowsFormsApp1
 {
     public partial class Main: Form
     {
-        private Point mouseOffset; // Stocke la position de la souris
-        private bool isDragging = false; // Indique si on est en train de déplacer
+        UserControl page_archives, page_agents, page_parametres, page_apropos,
+                    page_tableau_de_bord, page_services;
+        UserControl page_selectionnee;
 
         public Main()
         {
             InitializeComponent();
-
-            lbl_entete.MouseDown += MouseDown_;
-            lbl_entete.MouseMove += MouseMove_;
-            lbl_entete.MouseUp += MouseUp_;
-            //lbl_entete.DoubleClick += DoubleClick_;
-
-            pnl_ruban.MouseDown += MouseDown_;
-            pnl_ruban.MouseMove += MouseMove_;
-            pnl_ruban.MouseUp += MouseUp_;
-            //pnl_ruban.DoubleClick += DoubleClick_;
-        }
-
-        private void btn_close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void btn_max_Click(object sender, EventArgs e)
-        {
-            this.WindowState = this.WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
-        }
-        private void btn_min_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void MouseDown_(object sender, MouseEventArgs e)
-        {
-            isDragging = true;
-            mouseOffset = new Point(e.X, e.Y);
-        }
-        private void MouseMove_(object sender, MouseEventArgs e) 
-        {           
-            if (isDragging)
-            {
-                this.Left = Cursor.Position.X - mouseOffset.X;
-                this.Top = Cursor.Position.Y - mouseOffset.Y;
-            }
-        }
-        private void MouseUp_(object sender, MouseEventArgs e)
-        {
-            isDragging = false;
-        }
-        private void DoubleClick_(object sender, EventArgs e) 
-        {
-            this.WindowState = this.WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
+            page_archives = new ArchiveView();
+            page_agents = new AgentView();
+            page_parametres = new ParametreView();
+            page_apropos = new AproposView();
+            page_tableau_de_bord = new TableDeBordView();
+            page_services= new ServiceView();
+            Initialisation();
         }
 
         private void btn_apropos_Click(object sender, EventArgs e)
         {
-            UserControl Page = new AproposCtrlView();
-            AfficherPage(Page);
+            AfficherPage(page_apropos);
+            Checker(sender, pnl_menu);
         }
-        private void btn_utilisateur_Click(object sender, EventArgs e)
+        private void btn_agents_Click(object sender, EventArgs e)
         {
-            UserControl Page = new AgentCtrlView();
-            AfficherPage(Page);
+            AfficherPage(page_agents);
+            Checker(sender, pnl_menu);
         }
-        private void btn_parametre_Click(object sender, EventArgs e)
+        private void btn_parametres_Click(object sender, EventArgs e)
         {
-            UserControl Page = new ParametreCtrlView();
-            AfficherPage(Page);
+            AfficherPage(page_parametres);
+            Checker(sender, pnl_menu);
         }
-        private void btn_document_Click(object sender, EventArgs e)
+        private void btn_archives_Click(object sender, EventArgs e)
         {
-            UserControl Page = new ArchiveCtrlView();
-            AfficherPage(Page);
+            AfficherPage(page_archives);
+            Checker(sender, pnl_menu);
         }
 
+        private void btn_tdb_Click(object sender, EventArgs e)
+        {
+            AfficherPage(page_tableau_de_bord);
+            Checker(sender, pnl_menu);
+        }
+
+        private void btn_services_Click(object sender, EventArgs e)
+        {
+            AfficherPage(page_services);
+            Checker(sender, pnl_menu);
+        }
+
+        private void Main_SizeChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void AfficherPage(UserControl Page)
         {
-            pnl_body.Controls.Clear();
-            pnl_body.Controls.Add(Page);
+            if(Page != page_selectionnee)
+            {
+                pnl_body.Controls.Clear();
+                Page.Size = pnl_body.Size;
+                pnl_body.Controls.Add(Page);
+                page_selectionnee = Page;
+            }
+            
+        }
+        private void Checker(object btn, Panel conteneur)
+        {
+            if(((G.Guna2Button)btn).Checked == false)
+            {
+                foreach(G.Guna2Button btn_ in conteneur.Controls.OfType<G.Guna2Button>())
+                {
+                    btn_.Checked = false;
+                }
+                ((G.Guna2Button)btn).Checked = true;
+            }
+        }
+        private void Initialisation()
+        {
+            btn_tdb.PerformClick();
         }
     }
 }
