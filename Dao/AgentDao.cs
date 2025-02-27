@@ -180,6 +180,44 @@ namespace ArchiveManagerApp.Dao
                 return null;
             }
         }
+
+        public List<Agent> GetAll(Service service)
+        {
+            var instances = new List<Agent>();
+            var _instances = new List<Dictionary<string, object>>();
+
+            try
+            {
+                Command.CommandText = "SELECT Ag.* FROM agent Ag " +
+                    "INNER JOIN " +
+                    "(select * FROM affectation where is_end = 1) A " +
+                    "ON Ag.id = A.agent_id " +
+                    "WHERE A.service_id = @v_service_id";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_service_id", System.Data.DbType.String, service.Id));
+
+                Reader = Command.ExecuteReader();
+
+                if (Reader.HasRows)
+                    while (Reader.Read())
+                    {
+                        _instances.Add(GetMapping(Reader));
+                    }
+
+                Reader.Close();
+
+                foreach (var row in _instances)
+                {
+                    instances.Add(Create(row));
+                }
+
+                return instances;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         protected override Dictionary<string, object> GetMapping(DbDataReader reader)
         {
             return new Dictionary<string, object>()
