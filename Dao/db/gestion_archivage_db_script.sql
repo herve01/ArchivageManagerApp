@@ -25,7 +25,7 @@ create table document
 (
 	id varchar(32),
     libelle varchar(50),
-    extension enum('PDF', 'IMAGE') default 'PDF',
+    extension enum('PDF', 'DOC', 'IMAGE') default 'PDF',
     mot_cle varchar(50),
     fichier longblob,
 	constraint pk_document primary key(id)
@@ -37,6 +37,7 @@ create table affectation
 	old_service_id varchar(32),
     service_id varchar(32),
 	date datetime,
+	is_end tinyint(1),
 	constraint pk_affectation primary key(id),
     constraint fk_affectation_agent foreign key(agent_id) references agent(id),
     constraint fk_affectation_old_service foreign key(old_service_id) references service(id),

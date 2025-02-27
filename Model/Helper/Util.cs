@@ -87,6 +87,7 @@ namespace ArchiveManagerApp.Model.Helper
         public enum ExtensionType
         {
             PDF,
+            DOC,
             IMAGE
         }
     }

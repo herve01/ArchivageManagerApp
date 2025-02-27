@@ -233,6 +233,7 @@
   <ItemGroup>
     <Folder Include="DLL\" />
     <Folder Include="Global\" />
+    <Folder Include="Model\POCO\" />
     <Folder Include="Modules\Raports\" />
     <Folder Include="Modules\View\Pop\" />
   </ItemGroup>

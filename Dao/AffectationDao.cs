@@ -60,14 +60,15 @@ namespace ArchiveManagerApp.Dao
             {
                 var id = TableKeyHelper.GetKey(TableName);
 
-                Command.CommandText = "INSERT INTO affectation (id, agent_id, old_service_id, service_id, date) " +
-                    "VALUES (@v_id, @v_agent_id, @v_old_service_id, @v_service_id, @v_date) ";
+                Command.CommandText = "INSERT INTO affectation (id, agent_id, old_service_id, service_id, date, is_end) " +
+                    "VALUES (@v_id, @v_agent_id, @v_old_service_id, @v_service_id, @v_date, @v_is_end) ";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, instance.Agent.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_old_service_id", System.Data.DbType.String, instance.OldService.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_service_id", System.Data.DbType.String, instance.Service.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_is_end", System.Data.DbType.Boolean, instance.IsEnd));
 
                 var feed = await Command.ExecuteNonQueryAsync();
 
@@ -108,13 +109,21 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = $"UPDATE affectation SET agent_id=@agent_id, service_id=@service_id WHERE Id=@id";
+                Command.CommandText = "UPDATE affectation SET " +
+                    "agent_id = @v_agent_id, " +
+                    "old_service_id = @v_old_service_id, " +
+                    "service_id = @v_service_id, " +
+                    "date = @v_service_id, " +
+                    "is_end = @v_is_end " +
+                    "WHERE id = @v_id";
 
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@id", System.Data.DbType.String, instance.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@agent_id", System.Data.DbType.String, instance.Agent.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@service_id", System.Data.DbType.String, instance.Service.Id));
-                Command.ExecuteNonQuery();
-
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, instance.Agent.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_old_service_id", System.Data.DbType.String, instance.OldService.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_service_id", System.Data.DbType.String, instance.Service.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_is_end", System.Data.DbType.Boolean, instance.IsEnd));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                
                 return 1;
             }
             catch (Exception)
@@ -144,6 +153,43 @@ namespace ArchiveManagerApp.Dao
 
                 if (_instance != null)
                     instance = Create(_instance);
+
+                return instance;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public Affectation Get(Agent agent)
+        {
+            try
+            {
+                Affectation instance = null;
+                Dictionary<string, object> _instance = null;
+
+                Command.CommandText = "SELECT * FROM affectation WHERE agent_id = @v_agent_id " +
+                    "order by date desc " +
+                    "limit 1";
+
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, agent.Id));
+
+
+                Reader = Command.ExecuteReader();
+
+                if (Reader != null && Reader.HasRows)
+                    if (Reader.Read())
+                        _instance = GetMapping(Reader);
+
+                Reader.Close();
+
+                if (_instance != null)
+                {
+                    instance = Create(_instance, false, true, true);
+                    instance.Agent = agent;
+                }                   
 
                 return instance;
             }

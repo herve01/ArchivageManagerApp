@@ -113,7 +113,6 @@ namespace ArchiveManagerApp.Dao
 
             try
             {
-                ;
                 Command.CommandText = "SELECT * FROM archive WHERE id = @v_id";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
@@ -142,7 +141,7 @@ namespace ArchiveManagerApp.Dao
 
             try
             {
-                Command.CommandText = "SELECT * FROM archive";
+                Command.CommandText = "SELECT * FROM archive order by date asc";
 
                 Reader = await Command.ExecuteReaderAsync();
 
