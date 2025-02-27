@@ -19,22 +19,23 @@ namespace ArchiveManagerApp.Dao
     public class Connection
     {
         private static DbConnection _connection;
-        static string server = "192.168.68.107";
-        static string user = "sa";
-        static string pwd = "Bird@1600";
-        static string db = "facnet_mvp";
-        static string port = "1433";
+        static string server = "127.0.0.1";
+        static string user = "root";
+        static string pwd = "linda";
+        static string db = "gestion_archivage_db";
+        static string port = "3306";
 
         public static DbConnection GetConnection()
         {
             if (_connection == null)
             {
-                var connectionString = $"server={server},{port};user={user};password={pwd};database={db};MultipleActiveResultSets=True";
+                //"server={0};user={1};password={2};database={3};port={4}"
 
+                var connectionString = $"server={server};{port};user={user};password={pwd};database={db}";
 
                 try
                 {
-                    _connection = DbProviderFactories.GetFactory("System.Data.SqlClient").CreateConnection();
+                    _connection = DbProviderFactories.GetFactory("MySql.Data.MySqlClient").CreateConnection();
                     _connection.ConnectionString = connectionString;
                     _connection.Open();
                     Console.WriteLine("> Connection établie avec le serveur.");
