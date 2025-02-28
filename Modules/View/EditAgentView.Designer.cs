@@ -42,8 +42,8 @@
             this.cbxSexe = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtFonction = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtGrade = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtMail = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtTelephone = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtPhone = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtPrenom = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtPostnom = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtNom = new Guna.UI2.WinForms.Guna2TextBox();
@@ -99,8 +99,8 @@
             this.pnl_body.Controls.Add(this.cbxSexe);
             this.pnl_body.Controls.Add(this.txtFonction);
             this.pnl_body.Controls.Add(this.txtGrade);
-            this.pnl_body.Controls.Add(this.txtMail);
-            this.pnl_body.Controls.Add(this.txtTelephone);
+            this.pnl_body.Controls.Add(this.txtEmail);
+            this.pnl_body.Controls.Add(this.txtPhone);
             this.pnl_body.Controls.Add(this.txtPrenom);
             this.pnl_body.Controls.Add(this.txtPostnom);
             this.pnl_body.Controls.Add(this.txtNom);
@@ -131,6 +131,7 @@
             this.btnNettoyer.Name = "btnNettoyer";
             this.btnNettoyer.Size = new System.Drawing.Size(40, 40);
             this.btnNettoyer.TabIndex = 17;
+            this.btnNettoyer.Click += new System.EventHandler(this.btnNettoyer_Click);
             // 
             // btnAnnuler
             // 
@@ -165,6 +166,7 @@
             this.btnEnregistrer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnEnregistrer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnEnregistrer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnEnregistrer.Enabled = false;
             this.btnEnregistrer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(252)))));
             this.btnEnregistrer.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnEnregistrer.ForeColor = System.Drawing.Color.White;
@@ -199,6 +201,7 @@
             this.btnImporter.Size = new System.Drawing.Size(150, 40);
             this.btnImporter.TabIndex = 14;
             this.btnImporter.Text = "Importer";
+            this.btnImporter.Click += new System.EventHandler(this.btnImporter_Click);
             // 
             // picProfile
             // 
@@ -207,6 +210,7 @@
             this.picProfile.Location = new System.Drawing.Point(358, 59);
             this.picProfile.Name = "picProfile";
             this.picProfile.Size = new System.Drawing.Size(150, 170);
+            this.picProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picProfile.TabIndex = 13;
             this.picProfile.TabStop = false;
             // 
@@ -301,55 +305,55 @@
             this.txtGrade.Size = new System.Drawing.Size(300, 35);
             this.txtGrade.TabIndex = 6;
             // 
-            // txtMail
+            // txtEmail
             // 
-            this.txtMail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtMail.Animated = true;
-            this.txtMail.BorderRadius = 16;
-            this.txtMail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMail.DefaultText = "";
-            this.txtMail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMail.Font = new System.Drawing.Font("Open Sans", 10F);
-            this.txtMail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMail.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.txtMail.Location = new System.Drawing.Point(42, 300);
-            this.txtMail.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.PlaceholderText = "Mail";
-            this.txtMail.SelectedText = "";
-            this.txtMail.ShadowDecoration.Color = System.Drawing.Color.DarkGray;
-            this.txtMail.ShadowDecoration.Depth = 50;
-            this.txtMail.Size = new System.Drawing.Size(300, 35);
-            this.txtMail.TabIndex = 5;
+            this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtEmail.Animated = true;
+            this.txtEmail.BorderRadius = 16;
+            this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtEmail.DefaultText = "";
+            this.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtEmail.Font = new System.Drawing.Font("Open Sans", 10F);
+            this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtEmail.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.txtEmail.Location = new System.Drawing.Point(42, 300);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.PlaceholderText = "Mail";
+            this.txtEmail.SelectedText = "";
+            this.txtEmail.ShadowDecoration.Color = System.Drawing.Color.DarkGray;
+            this.txtEmail.ShadowDecoration.Depth = 50;
+            this.txtEmail.Size = new System.Drawing.Size(300, 35);
+            this.txtEmail.TabIndex = 5;
             // 
-            // txtTelephone
+            // txtPhone
             // 
-            this.txtTelephone.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTelephone.Animated = true;
-            this.txtTelephone.BorderRadius = 16;
-            this.txtTelephone.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTelephone.DefaultText = "";
-            this.txtTelephone.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTelephone.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTelephone.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTelephone.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTelephone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTelephone.Font = new System.Drawing.Font("Open Sans", 10F);
-            this.txtTelephone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTelephone.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.txtTelephone.Location = new System.Drawing.Point(42, 252);
-            this.txtTelephone.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTelephone.Name = "txtTelephone";
-            this.txtTelephone.PlaceholderText = "Téléphone";
-            this.txtTelephone.SelectedText = "";
-            this.txtTelephone.ShadowDecoration.Color = System.Drawing.Color.DarkGray;
-            this.txtTelephone.ShadowDecoration.Depth = 50;
-            this.txtTelephone.Size = new System.Drawing.Size(300, 35);
-            this.txtTelephone.TabIndex = 4;
+            this.txtPhone.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtPhone.Animated = true;
+            this.txtPhone.BorderRadius = 16;
+            this.txtPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPhone.DefaultText = "";
+            this.txtPhone.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtPhone.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtPhone.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPhone.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPhone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtPhone.Font = new System.Drawing.Font("Open Sans", 10F);
+            this.txtPhone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtPhone.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.txtPhone.Location = new System.Drawing.Point(42, 252);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.PlaceholderText = "Téléphone";
+            this.txtPhone.SelectedText = "";
+            this.txtPhone.ShadowDecoration.Color = System.Drawing.Color.DarkGray;
+            this.txtPhone.ShadowDecoration.Depth = 50;
+            this.txtPhone.Size = new System.Drawing.Size(300, 35);
+            this.txtPhone.TabIndex = 4;
             // 
             // txtPrenom
             // 
@@ -445,6 +449,7 @@
             this.Padding = new System.Windows.Forms.Padding(1);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PopArchive";
+            this.Load += new System.EventHandler(this.EditAgentView_Load);
             this.pnl_ruban.ResumeLayout(false);
             this.pnl_body.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).EndInit();
@@ -460,8 +465,8 @@
         private Guna.UI2.WinForms.Guna2DragControl bouger;
         private Guna.UI2.WinForms.Guna2TextBox txtFonction;
         private Guna.UI2.WinForms.Guna2TextBox txtGrade;
-        private Guna.UI2.WinForms.Guna2TextBox txtMail;
-        private Guna.UI2.WinForms.Guna2TextBox txtTelephone;
+        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
+        private Guna.UI2.WinForms.Guna2TextBox txtPhone;
         private Guna.UI2.WinForms.Guna2TextBox txtPrenom;
         private Guna.UI2.WinForms.Guna2TextBox txtPostnom;
         private Guna.UI2.WinForms.Guna2TextBox txtNom;

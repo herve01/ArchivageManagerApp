@@ -10,18 +10,33 @@ namespace ArchiveManagerApp.Model
     {
         public Agent()
         {
-            CurrentAffectation = new Affectation(this);
+            CurrentAffectation = new Affectation() { Agent = this};
         }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string PostNom { get; set; }
         public string Sexe { get; set; }
-        public string Telephone { get; set; }
-        public string Mail {  get; set; }
+        public string Phone { get; set; }
+        public string Email {  get; set; }
         public byte[] Photo { get; set; }
         public string Fonction { get; set; }
         public string Grade { get; set; }
 
         public Affectation CurrentAffectation { get; set; }
+
+        public string Name
+        {
+            get => Prenom + " " + Nom + " " + PostNom;
+        }
+
+        public override string ToString()
+        {
+            return NumberRow.ToString();
+        }
+
+        public string[] data
+        {
+            get => new string[] { "" + this, Name, Sexe, Phone, Email, Grade + "" + Fonction  , CurrentAffectation.Service.ToString()};
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace ArchiveManagerApp.Dao
             {
                 Connection = Dao.Connection.GetConnection();
                 Command = Connection.CreateCommand();
-                Adapter = DbProviderFactories.GetFactory("System.Data.SqlClient").CreateDataAdapter();
+                Adapter = DbProviderFactories.GetFactory("MySql.Data.MySqlClient").CreateDataAdapter();
 
                 if (Connection.State == System.Data.ConnectionState.Closed)
                     Connection.Open();

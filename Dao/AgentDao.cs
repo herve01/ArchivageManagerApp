@@ -33,8 +33,8 @@ namespace ArchiveManagerApp.Dao
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_postnom", System.Data.DbType.String, instance.PostNom));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_prenom", System.Data.DbType.String, instance.Prenom));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_sexe", System.Data.DbType.String, instance.Sexe));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Telephone));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Mail));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Phone));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Email));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance.Photo));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
@@ -104,8 +104,8 @@ namespace ArchiveManagerApp.Dao
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_postnom", System.Data.DbType.String, instance.PostNom));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_prenom", System.Data.DbType.String, instance.Prenom));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_sexe", System.Data.DbType.String, instance.Sexe));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Telephone));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Mail));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Phone));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Email));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance.Photo));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
@@ -167,10 +167,13 @@ namespace ArchiveManagerApp.Dao
                     }
 
                 Reader.Close();
-
+                int i = 0;
                 foreach (var row in _instances)
                 {
-                    instances.Add(Create(row));
+                    i++;
+                    var _obj = Create(row, true); 
+                    _obj.NumberRow = i;
+                    instances.Add(_obj);
                 }
 
                 return instances;
@@ -180,7 +183,6 @@ namespace ArchiveManagerApp.Dao
                 return null;
             }
         }
-
         public List<Agent> GetAll(Service service)
         {
             var instances = new List<Agent>();
@@ -242,8 +244,8 @@ namespace ArchiveManagerApp.Dao
             instance.PostNom = row["postnom"].ToString();
             instance.Prenom = row["prenom"].ToString();
             instance.Sexe = row["sexe"].ToString();
-            instance.Telephone = row["telephone"].ToString();
-            instance.Mail = row["mail"].ToString();
+            instance.Phone = row["telephone"].ToString();
+            instance.Email = row["mail"].ToString();
             instance.Fonction = row["fonction"].ToString();
             instance.Grade = row["grade"].ToString();
 

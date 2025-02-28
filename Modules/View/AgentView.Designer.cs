@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pnl_document = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_filtrer = new Guna.UI2.WinForms.Guna2Button();
             this.btn_ajouter = new Guna.UI2.WinForms.Guna2Button();
             this.txt_recherche = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lst_agents = new System.Windows.Forms.ListView();
             this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.BorderRadius = 10;
-            this.guna2Panel1.Controls.Add(this.pnl_document);
+            this.guna2Panel1.Controls.Add(this.lst_agents);
             this.guna2Panel1.FillColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.Location = new System.Drawing.Point(24, 77);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(10);
@@ -51,16 +51,6 @@
             this.guna2Panel1.Padding = new System.Windows.Forms.Padding(10);
             this.guna2Panel1.Size = new System.Drawing.Size(853, 493);
             this.guna2Panel1.TabIndex = 13;
-            // 
-            // pnl_document
-            // 
-            this.pnl_document.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_document.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_document.Location = new System.Drawing.Point(10, 10);
-            this.pnl_document.Margin = new System.Windows.Forms.Padding(5);
-            this.pnl_document.Name = "pnl_document";
-            this.pnl_document.Size = new System.Drawing.Size(833, 473);
-            this.pnl_document.TabIndex = 5;
             // 
             // btn_filtrer
             // 
@@ -104,7 +94,7 @@
             this.btn_ajouter.Size = new System.Drawing.Size(170, 40);
             this.btn_ajouter.TabIndex = 12;
             this.btn_ajouter.Text = "Ajouter";
-            this.btn_ajouter.Click += new System.EventHandler(this.btn_ajouter_Click_1);
+            this.btn_ajouter.Click += new System.EventHandler(this.btn_ajouter_Click);
             // 
             // txt_recherche
             // 
@@ -134,6 +124,20 @@
             this.txt_recherche.Size = new System.Drawing.Size(548, 35);
             this.txt_recherche.TabIndex = 10;
             // 
+            // lst_agents
+            // 
+            this.lst_agents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lst_agents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lst_agents.GridLines = true;
+            this.lst_agents.HideSelection = false;
+            this.lst_agents.Location = new System.Drawing.Point(10, 10);
+            this.lst_agents.Name = "lst_agents";
+            this.lst_agents.ShowItemToolTips = true;
+            this.lst_agents.Size = new System.Drawing.Size(833, 473);
+            this.lst_agents.TabIndex = 1;
+            this.lst_agents.UseCompatibleStateImageBehavior = false;
+            this.lst_agents.View = System.Windows.Forms.View.Details;
+            // 
             // AgentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,9 +157,9 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private System.Windows.Forms.FlowLayoutPanel pnl_document;
         private Guna.UI2.WinForms.Guna2Button btn_filtrer;
         private Guna.UI2.WinForms.Guna2Button btn_ajouter;
         private Guna.UI2.WinForms.Guna2TextBox txt_recherche;
+        private System.Windows.Forms.ListView lst_agents;
     }
 }

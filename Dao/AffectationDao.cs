@@ -24,14 +24,15 @@ namespace ArchiveManagerApp.Dao
             {
                 var id = TableKeyHelper.GetKey(TableName);
 
-                Command.CommandText = "INSERT INTO affectation (id, agent_id, old_service_id, service_id, date) " +
-                    "VALUES (@v_id, @v_agent_id, @v_old_service_id, @v_service_id, @v_date) ";
+                Command.CommandText = "INSERT INTO affectation (id, agent_id, old_service_id, service_id, date, is_end) " +
+                    "VALUES (@v_id, @v_agent_id, @v_old_service_id, @v_service_id, @v_date, @v_is_end) ";
 
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, instance.Agent.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_old_service_id", System.Data.DbType.String, instance.OldService.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_old_service_id", System.Data.DbType.String, instance?.OldService?.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_service_id", System.Data.DbType.String, instance.Service.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_is_end", System.Data.DbType.Boolean, instance.IsEnd));
 
                 var feed = Command.ExecuteNonQuery();
 

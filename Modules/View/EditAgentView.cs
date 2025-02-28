@@ -1,8 +1,11 @@
-﻿using System;
+﻿using ArchiveManagerApp.Model;
+using ArchiveManagerApp.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +16,101 @@ namespace ArchiveManagerApp.Modules.View.Pop
     public partial class EditAgentView: Form
     {
         string path;
+        public Agent Agent { get; set; }
         public EditAgentView()
         {
             InitializeComponent();
-            NettoyageControle(this);
+        }
+        private void btn_nettoyer_Click(object sender, EventArgs e)
+        {
+            Functions.InitControl(pnl_body);
+            txtNom.Focus();
+        }
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
+        private void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+            if (Functions.IsEmptyTextBox(this))
+            {
+                MessageBox.Show("Veuillez remplir tous les champs", "Erreur",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (cbxService.SelectedIndex == -1)
+            {
+                MessageBox.Show("Veuillez selectionner un service", "Erreur",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                Agent = new Agent();
+                Agent.Nom = txtNom.Text;
+                Agent.PostNom = txtPostnom.Text;
+                Agent.Prenom = txtPrenom.Text;
+                Agent.Sexe = cbxSexe.SelectedItem.ToString();
+                Agent.Phone = txtPhone.Text;
+                Agent.Email = txtEmail.Text;
+                Agent.Grade = txtGrade.Text;
+                Agent.Fonction = txtFonction.Text;
+                Agent.Photo = picProfile.Image != null ? Model.Helper.ImageUtil.ImageFileToByte(path) : null;
+                Agent.CurrentAffectation.Service = (Service)cbxService.SelectedItem;
+                Agent.CurrentAffectation.Date = DateTime.Now;
+                Agent.CurrentAffectation.IsEnd = false;              
 
-        private void btn_importer_Click(object sender, EventArgs e)
+                if (new Dao.AgentDao().Add(Agent) > 0)
+                {
+                    MessageBox.Show("Enregistrement effectué avec succès", "Information",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Functions.InitControl(pnl_body);
+                }
+                else
+                {
+                    MessageBox.Show("Une Erreur est survenue lors de l'enregistrement.\n" +
+                                    " Rassurez-vous d'avoir rempli tous les champs !!", "Erreur",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                this.Close();
+            }
+        }
+
+        private void EditAgentView_Load(object sender, EventArgs e)
+        {
+            btnEnregistrer.Enabled = !Functions.IsEmptyTextBox(this);
+            LoadServices();
+        }
+
+        async Task LoadServices()
+        {
+
+            cbxService.Items.Clear();
+            var list = await Task.Run(() => new Dao.ServiceDao().GetAllAsync());
+
+            //cbxService.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            foreach (var row in list)
+            {
+                //cbxService.AutoCompleteCustomSource.Add(row.ToString());
+                cbxService.Items.Add(row);
+            }
+
+            cbxService.SelectedIndex = list != null ? 0 : -1;
+        }
+
+        private void btnNettoyer_Click(object sender, EventArgs e)
+        {
+            Functions.InitControl(pnl_body);
+        }
+
+        private void btnImporter_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
             op.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
@@ -30,55 +120,6 @@ namespace ArchiveManagerApp.Modules.View.Pop
                 path = op.FileName;
                 picProfile.Image = Image.FromFile(op.FileName); // Charger l'image
             }
-        }
-
-        private void btn_nettoyer_Click(object sender, EventArgs e)
-        {
-            NettoyageControle(this);
-            txtNom.Focus();
-        }
-
-        private void btn_close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btn_archiver_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void NettoyageControle(Control conteneur)
-        {
-            foreach(Control control in conteneur.Controls)
-            {
-                if (control is TextBox)
-                {
-                    ((TextBox)control).Clear();
-                }
-                else if(control is PictureBox)
-                {
-                    ((PictureBox)control).Image = null;
-                }
-                else if(control is ComboBox)
-                {
-                    ((ComboBox)control).SelectedIndex = 0;
-                }
-                else
-                {
-                    NettoyageControle(control);
-                }
-            }
-        }
-
-        private void btnAnnuler_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnEnregistrer_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

@@ -53,8 +53,9 @@ namespace ArchiveManagerApp.Modules.View
                 lstServices.Items.Add(new ListViewItem(instance.data));
 
                 services.Add(instance);
-                //"{0}"
             }
+
+            lblNombreService.Text = services.Count.ToString();
         }
 
         async System.Threading.Tasks.Task LoadServices()
@@ -91,22 +92,18 @@ namespace ArchiveManagerApp.Modules.View
 
                 if (new Dao.ServiceDao().Add(service) > 0)
                 {
-                    MessageBox.Show("Enregistrement reussi avec succès !!", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    AddItemInListView(service);
-                    Functions.InitControl(pnlControls);
+                    AddItemInListView(service); //Ajouter dans la liste
+                    Functions.InitControl(pnlControls); //Nettoyer les champs
+                }
+                else
+                {
+                    MessageBox.Show("Une Erreur est survenue lors de l'enregistrement.\n" +
+                                    " Rassurez-vous d'avoir rempli tous les champs !!", "Erreur",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            //int nb = lstServices.Items.Count + 1;
-            //lstServices.Items.Add(new ListViewItem(new string[] { nb.ToString(), txtService.Text, "0" }));
-            //txtService.Clear();
-
 
             btnAjouter.Enabled = false;
-        }
-
-        private void txtService_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txt_recherche_TextChanged(object sender, EventArgs e)

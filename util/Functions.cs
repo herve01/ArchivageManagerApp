@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -38,16 +39,24 @@ namespace ArchiveManagerApp.Util
 
         public static void InitControl(Control parent)
         {
-            foreach (var control in parent.Controls.OfType<TextBox>())
+            foreach (var control in parent.Controls.OfType<Guna2TextBox>())
             {
                 if (control.Text != string.Empty)
                     control.Text = string.Empty;
+            }
+            foreach (var control in parent.Controls.OfType<Guna2ComboBox>())
+            {
+                control.SelectedIndex = 0;
+            }
+            foreach (var control in parent.Controls.OfType<Guna2PictureBox>())
+            {
+                control.Image = null;
             }
         }
 
         public static bool IsEmptyTextBox(Control parent)
         {
-            foreach (var control in parent.Controls.OfType<TextBox>())
+            foreach (var control in parent.Controls.OfType<Guna2TextBox>())
             {
                 if (control.Text == string.Empty)
                     return true;
