@@ -22,7 +22,7 @@ namespace ArchiveManagerApp.Model
 
         public string[] data
         {
-            get => new string[] { NumberRow.ToString(), Designation };
+            get => new string[] { NumberRow.ToString(), ""+this };
         }
     }
 }
