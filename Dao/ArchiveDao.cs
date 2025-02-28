@@ -23,7 +23,6 @@ namespace ArchiveManagerApp.Dao
             {
                 Command.Transaction = Connection.BeginTransaction();
 
-
                 if (new DocumentDao().Add(Command, instance.Document) <= 0)
                 {
                     instance.Id = null;
@@ -32,15 +31,17 @@ namespace ArchiveManagerApp.Dao
                     return -1;
                 }
 
+                Command.Parameters.Clear();
+
                 var id = TableKeyHelper.GetKey(TableName);
 
                 Command.CommandText = "INSERT INTO archive (id, user_id, document_id, date) " +
                     "VALUES (@v_id, @v_user_id, @v_document_id, @v_date)";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance.Document.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_document_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance?.User?.Id?? "11"));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_document_id", System.Data.DbType.String, instance.Document.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
                 
                 var feed = Command.ExecuteNonQuery();
                 instance.Id = id;
@@ -68,7 +69,7 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = "DELETE FROM Archive WHERE id = @v_id";
+                Command.CommandText = "DELETE FROM archive WHERE id = @v_id";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
 
@@ -86,15 +87,15 @@ namespace ArchiveManagerApp.Dao
         {
             try
             {
-                Command.CommandText = "UPDATE Archive SET " +
+                Command.CommandText = "UPDATE archive SET " +
                     "user_id = @v_user_id, " +
                     "document_id = @v_document_id, " +
                     "date = @v_date" +
                     "WHERE id = @v_id";
 
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance.Document.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_document_id", System.Data.DbType.String, instance.User.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance.User.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_document_id", System.Data.DbType.String, instance.Document.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, instance.Id));
 
                 Command.ExecuteNonQuery();
@@ -153,9 +154,13 @@ namespace ArchiveManagerApp.Dao
 
                 Reader.Close();
 
+                int i = 0;
                 foreach (var row in _instances)
                 {
-                    instances.Add(Create(row, true, true));
+                    i++;
+                    var _obj = Create(row, true, true);
+                    _obj.NumberRow = i;
+                    instances.Add(_obj);
                 }
 
                 return instances;

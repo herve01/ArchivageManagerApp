@@ -16,7 +16,7 @@ create table agent
     sexe varchar(10),
     mail varchar(100),
     telephone varchar(13),
-    photo mediumtext,
+    photo mediumblob,
     grade varchar(50),
     fonction varchar(50),
 	constraint pk_agent primary key(id)

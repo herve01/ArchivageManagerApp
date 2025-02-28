@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Dao.Util;
 using ArchiveManagerApp.Dao.Helper;
+using ArchiveManagerApp.Util;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -25,8 +26,8 @@ namespace ArchiveManagerApp.Dao
 
                 var id = TableKeyHelper.GetKey(TableName);
 
-                Command.CommandText = "INSERT INTO agent (id, nom, postnom, prenom, sexe, telephone, photo, fonction, grade) " +
-                                      "VALUES (@v_id, @v_nom, @v_postnom, @v_prenom, @v_sexe, @v_telephone, @v_photo, @v_fonction, @v_grade)";
+                Command.CommandText = "INSERT INTO agent (id, nom, postnom, prenom, sexe, mail, telephone, photo, fonction, grade) " +
+                                      "VALUES (@v_id, @v_nom, @v_postnom, @v_prenom, @v_sexe, @v_mail, @v_telephone, @v_photo, @v_fonction, @v_grade)";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_nom", System.Data.DbType.String, instance.Nom));
@@ -35,7 +36,7 @@ namespace ArchiveManagerApp.Dao
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_sexe", System.Data.DbType.String, instance.Sexe));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_telephone", System.Data.DbType.String, instance.Phone));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_mail", System.Data.DbType.String, instance.Email));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance.Photo));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_photo", System.Data.DbType.Binary, instance?.Photo));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_fonction", System.Data.DbType.String, instance.Fonction));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_grade", System.Data.DbType.String, instance.Grade));
                 
@@ -178,7 +179,7 @@ namespace ArchiveManagerApp.Dao
 
                 return instances;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return null;
             }
@@ -229,8 +230,9 @@ namespace ArchiveManagerApp.Dao
                 { "postnom", reader["prenom"] },
                 { "prenom", reader["prenom"] },
                 { "sexe", reader["sexe"] },
-                { "telephone", reader["telephone"] },
                 { "mail", reader["mail"] },
+                { "telephone", reader["telephone"] },
+                { "photo", reader["photo"] },
                 { "fonction", reader["fonction"] },
                 { "grade", reader["grade"] },
             };
@@ -238,7 +240,6 @@ namespace ArchiveManagerApp.Dao
         Agent Create(Dictionary<string, object> row, bool withCurrentAffec = false)
         {
             var instance = new Agent();
-
             instance.Id = row["id"].ToString();
             instance.Nom = row["nom"].ToString();
             instance.PostNom = row["postnom"].ToString();
@@ -254,7 +255,6 @@ namespace ArchiveManagerApp.Dao
 
             if (!(row["photo"] is DBNull))
                 instance.Photo = (byte[])row["photo"];
-            //instance.Photo = Convert.FromBase64String(row["photo"].ToString());
 
             return instance;
         }

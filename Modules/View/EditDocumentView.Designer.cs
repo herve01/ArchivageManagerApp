@@ -60,19 +60,21 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.pnl_ruban.Controls.Add(this.btn_close);
             this.pnl_ruban.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_ruban.Location = new System.Drawing.Point(0, 0);
+            this.pnl_ruban.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnl_ruban.Name = "pnl_ruban";
-            this.pnl_ruban.Size = new System.Drawing.Size(1031, 35);
+            this.pnl_ruban.Size = new System.Drawing.Size(1375, 43);
             this.pnl_ruban.TabIndex = 1;
             // 
             // lbl_entete
             // 
             this.lbl_entete.BackColor = System.Drawing.Color.Transparent;
             this.lbl_entete.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lbl_entete.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lbl_entete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lbl_entete.ForeColor = System.Drawing.Color.White;
             this.lbl_entete.Location = new System.Drawing.Point(0, 0);
+            this.lbl_entete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_entete.Name = "lbl_entete";
-            this.lbl_entete.Size = new System.Drawing.Size(180, 35);
+            this.lbl_entete.Size = new System.Drawing.Size(240, 43);
             this.lbl_entete.TabIndex = 0;
             this.lbl_entete.Text = "Archive - Agent";
             this.lbl_entete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -82,9 +84,10 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btn_close.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_close.FillColor = System.Drawing.Color.Transparent;
             this.btn_close.IconColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(981, 0);
+            this.btn_close.Location = new System.Drawing.Point(1308, 0);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(50, 35);
+            this.btn_close.Size = new System.Drawing.Size(67, 43);
             this.btn_close.TabIndex = 1;
             // 
             // pnl_body
@@ -106,76 +109,84 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.pnl_body.Controls.Add(this.pnl_ruban);
             this.pnl_body.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_body.Location = new System.Drawing.Point(1, 1);
+            this.pnl_body.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnl_body.Name = "pnl_body";
-            this.pnl_body.Size = new System.Drawing.Size(1031, 638);
+            this.pnl_body.Size = new System.Drawing.Size(1375, 786);
             this.pnl_body.TabIndex = 9;
             // 
             // pnlDocument
             // 
             this.pnlDocument.BackColor = System.Drawing.Color.Transparent;
             this.pnlDocument.BorderRadius = 10;
-            this.pnlDocument.Location = new System.Drawing.Point(13, 48);
+            this.pnlDocument.Location = new System.Drawing.Point(17, 59);
+            this.pnlDocument.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlDocument.Name = "pnlDocument";
-            this.pnlDocument.Size = new System.Drawing.Size(670, 580);
+            this.pnlDocument.Size = new System.Drawing.Size(893, 714);
             this.pnlDocument.TabIndex = 12;
             // 
             // lblDate
             // 
-            this.lblDate.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.lblDate.Location = new System.Drawing.Point(831, 312);
+            this.lblDate.Location = new System.Drawing.Point(1108, 384);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(190, 23);
+            this.lblDate.Size = new System.Drawing.Size(253, 28);
             this.lblDate.TabIndex = 11;
             this.lblDate.Text = "10/12/2023";
             // 
             // lblTaille
             // 
-            this.lblTaille.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblTaille.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblTaille.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.lblTaille.Location = new System.Drawing.Point(831, 277);
+            this.lblTaille.Location = new System.Drawing.Point(1108, 341);
+            this.lblTaille.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTaille.Name = "lblTaille";
-            this.lblTaille.Size = new System.Drawing.Size(190, 23);
+            this.lblTaille.Size = new System.Drawing.Size(253, 28);
             this.lblTaille.TabIndex = 11;
             this.lblTaille.Text = "0.0 ko";
             // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.label5.Location = new System.Drawing.Point(720, 312);
+            this.label5.Location = new System.Drawing.Point(960, 384);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 23);
+            this.label5.Size = new System.Drawing.Size(133, 28);
             this.label5.TabIndex = 11;
             this.label5.Text = "Date";
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.label2.Location = new System.Drawing.Point(720, 277);
+            this.label2.Location = new System.Drawing.Point(960, 341);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.Size = new System.Drawing.Size(133, 28);
             this.label2.TabIndex = 11;
             this.label2.Text = "Taille";
             // 
             // lblType
             // 
-            this.lblType.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.lblType.Location = new System.Drawing.Point(831, 242);
+            this.lblType.Location = new System.Drawing.Point(1108, 298);
+            this.lblType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(190, 23);
+            this.lblType.Size = new System.Drawing.Size(253, 28);
             this.lblType.TabIndex = 11;
             this.lblType.Text = "Type Fichier";
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.label1.Location = new System.Drawing.Point(720, 242);
+            this.label1.Location = new System.Drawing.Point(960, 298);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(133, 28);
             this.label1.TabIndex = 11;
             this.label1.Text = "Type";
             // 
@@ -192,17 +203,17 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.txtMotCle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtMotCle.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtMotCle.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMotCle.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.txtMotCle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtMotCle.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMotCle.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.txtMotCle.Location = new System.Drawing.Point(691, 180);
-            this.txtMotCle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMotCle.Location = new System.Drawing.Point(921, 222);
+            this.txtMotCle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtMotCle.Name = "txtMotCle";
             this.txtMotCle.PlaceholderText = "Mot clé";
             this.txtMotCle.SelectedText = "";
             this.txtMotCle.ShadowDecoration.Color = System.Drawing.Color.DarkGray;
             this.txtMotCle.ShadowDecoration.Depth = 50;
-            this.txtMotCle.Size = new System.Drawing.Size(330, 35);
+            this.txtMotCle.Size = new System.Drawing.Size(440, 43);
             this.txtMotCle.TabIndex = 10;
             // 
             // txtLibelle
@@ -218,18 +229,18 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.txtLibelle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtLibelle.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtLibelle.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtLibelle.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.txtLibelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtLibelle.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtLibelle.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.txtLibelle.Location = new System.Drawing.Point(691, 102);
-            this.txtLibelle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLibelle.Location = new System.Drawing.Point(921, 126);
+            this.txtLibelle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtLibelle.Multiline = true;
             this.txtLibelle.Name = "txtLibelle";
             this.txtLibelle.PlaceholderText = "Libellé";
             this.txtLibelle.SelectedText = "";
             this.txtLibelle.ShadowDecoration.Color = System.Drawing.Color.DarkGray;
             this.txtLibelle.ShadowDecoration.Depth = 50;
-            this.txtLibelle.Size = new System.Drawing.Size(330, 70);
+            this.txtLibelle.Size = new System.Drawing.Size(440, 86);
             this.txtLibelle.TabIndex = 10;
             // 
             // btnNettoyer
@@ -243,14 +254,14 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btnNettoyer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnNettoyer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnNettoyer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.btnNettoyer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnNettoyer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnNettoyer.ForeColor = System.Drawing.Color.White;
             this.btnNettoyer.Image = global::ArchiveManagerApp.Properties.Resources.broom_26px;
             this.btnNettoyer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnNettoyer.Location = new System.Drawing.Point(981, 48);
-            this.btnNettoyer.Margin = new System.Windows.Forms.Padding(5);
+            this.btnNettoyer.Location = new System.Drawing.Point(1308, 59);
+            this.btnNettoyer.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnNettoyer.Name = "btnNettoyer";
-            this.btnNettoyer.Size = new System.Drawing.Size(40, 40);
+            this.btnNettoyer.Size = new System.Drawing.Size(53, 49);
             this.btnNettoyer.TabIndex = 9;
             this.btnNettoyer.Click += new System.EventHandler(this.btnNettoyer_Click);
             // 
@@ -265,14 +276,14 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btnAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnAnnuler.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnAnnuler.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.btnAnnuler.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnAnnuler.ForeColor = System.Drawing.Color.White;
             this.btnAnnuler.Image = global::ArchiveManagerApp.Properties.Resources.cancel_26px;
             this.btnAnnuler.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAnnuler.Location = new System.Drawing.Point(691, 588);
-            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAnnuler.Location = new System.Drawing.Point(921, 724);
+            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(160, 40);
+            this.btnAnnuler.Size = new System.Drawing.Size(213, 49);
             this.btnAnnuler.TabIndex = 9;
             this.btnAnnuler.Text = "Annuler";
             // 
@@ -287,14 +298,14 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btnImporter.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnImporter.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnImporter.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.btnImporter.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnImporter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnImporter.ForeColor = System.Drawing.Color.White;
             this.btnImporter.Image = global::ArchiveManagerApp.Properties.Resources.download_26px;
             this.btnImporter.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnImporter.Location = new System.Drawing.Point(691, 48);
-            this.btnImporter.Margin = new System.Windows.Forms.Padding(5);
+            this.btnImporter.Location = new System.Drawing.Point(921, 59);
+            this.btnImporter.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnImporter.Name = "btnImporter";
-            this.btnImporter.Size = new System.Drawing.Size(280, 40);
+            this.btnImporter.Size = new System.Drawing.Size(373, 49);
             this.btnImporter.TabIndex = 9;
             this.btnImporter.Text = "Importer un document";
             this.btnImporter.Click += new System.EventHandler(this.btnImporter_Click);
@@ -310,16 +321,17 @@ namespace ArchiveManagerApp.Modules.View.Pop
             this.btnArchiver.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnArchiver.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnArchiver.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(252)))));
-            this.btnArchiver.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnArchiver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnArchiver.ForeColor = System.Drawing.Color.White;
             this.btnArchiver.Image = global::ArchiveManagerApp.Properties.Resources.save_26px;
             this.btnArchiver.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnArchiver.Location = new System.Drawing.Point(861, 588);
-            this.btnArchiver.Margin = new System.Windows.Forms.Padding(5);
+            this.btnArchiver.Location = new System.Drawing.Point(1148, 724);
+            this.btnArchiver.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnArchiver.Name = "btnArchiver";
-            this.btnArchiver.Size = new System.Drawing.Size(160, 40);
+            this.btnArchiver.Size = new System.Drawing.Size(213, 49);
             this.btnArchiver.TabIndex = 9;
             this.btnArchiver.Text = "Archiver";
+            this.btnArchiver.Click += new System.EventHandler(this.btnArchiver_Click);
             // 
             // bouger
             // 
@@ -330,12 +342,13 @@ namespace ArchiveManagerApp.Modules.View.Pop
             // 
             // EditDocumentView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1033, 640);
+            this.ClientSize = new System.Drawing.Size(1377, 788);
             this.Controls.Add(this.pnl_body);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EditDocumentView";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowIcon = false;

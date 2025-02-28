@@ -10,20 +10,43 @@ using System.Threading.Tasks;
 using PdfiumViewer;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
+using ArchiveManagerApp.Model;
+using ArchiveManagerApp.Util;
 
 namespace ArchiveManagerApp.Modules.View.Pop
 {
     public partial class EditDocumentView: Form
     {
+        public Archive Archive { get; set; }
         string path;
         private PdfViewer viewer;
         private Microsoft.Office.Interop.Word.Application wordApp;
-        private Document wordDoc;
-        public EditDocumentView()
+        private Microsoft.Office.Interop.Word.Document wordDoc;
+        public EditDocumentView(Archive archive = null)
         {
             InitializeComponent();
+
+            if(archive != null)
+            {
+                Detail(archive);
+            }
         }
 
+
+        void Detail(Archive archive)
+        {
+            var _path = Functions.ShowPDF(archive.Document.Fichier);
+            txtLibelle.Text = archive.Document.Libelle;
+            txtMotCle.Text = archive.Document.MotCle;
+            viewer = new PdfViewer();
+
+            var doc = PdfDocument.Load(_path);
+            viewer.Document = doc;
+            viewer.Dock = DockStyle.Fill;
+            pnlDocument.Controls.Clear();
+            pnlDocument.Controls.Add(viewer);
+        }
+        
         private void btnImporter_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -67,6 +90,33 @@ namespace ArchiveManagerApp.Modules.View.Pop
         private void btnNettoyer_Click(object sender, EventArgs e)
         {
 
+        }
+        private void btnArchiver_Click(object sender, EventArgs e)
+        {
+            Archive = new Archive();
+            Archive.Document.Fichier = Functions.ConvertPdfToByteArray(path);
+            Archive.Document.MotCle = txtMotCle.Text;
+            Archive.Document.Libelle = txtLibelle.Text;
+
+            Archive.Document.Extension = path.Trim().ToLower().Contains(".pdf") ? Model.Helper.Util.ExtensionType.PDF :
+                path.Trim().ToLower().Contains(".doc") ? Model.Helper.Util.ExtensionType.DOC : Model.Helper.Util.ExtensionType.IMAGE;
+
+            Archive.Date = DateTime.Now;
+
+            if (new Dao.ArchiveDao().Add(Archive) > 0)
+            {
+                MessageBox.Show("Enregistrement effectué avec succès", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.InitControl(pnl_body);
+            }
+            else
+            {
+                MessageBox.Show("Une Erreur est survenue lors de l'enregistrement.\n" +
+                                " Rassurez-vous d'avoir rempli tous les champs !!", "Erreur",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            this.Close();
         }
     }
 }

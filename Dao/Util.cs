@@ -21,5 +21,53 @@ namespace ArchiveManagerApp.Dao.AppUtil
                     return ExtensionType.PDF;
             }
         }
+
+        public static int ToIndexImageType(string extension)
+        {
+            switch (extension)
+            {
+                case "PDF":
+                    return 0;
+                case "DOC":
+                    return 1;
+                case "IMAGE":
+                    return 2;
+
+                default:
+                    return 0;
+            }
+        }
+
+        public ExtensionType GetExtensionType(string extension)
+        {
+            switch (extension)
+            {
+                case ".pdf":
+                    return ExtensionType.PDF;
+                case ".docx":
+                case ".doc":
+                    return ExtensionType.DOC;
+                case ".png":
+                case ".jpg":
+                    return ExtensionType.IMAGE;
+            }
+            return ExtensionType.PDF;
+        }
+
+        public int GetIndexOfExtensionImage(string extension)
+        {
+            switch (extension)
+            {
+                case ".pdf":
+                    return 0;
+                case ".docx":
+                case ".doc":
+                    return 1;
+                case ".png":
+                case ".jpg":
+                    return 2;
+            }
+            return -1;
+        }
     }
 }

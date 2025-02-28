@@ -90,20 +90,22 @@ namespace ArchiveManagerApp.Modules.View
             .Select(c => new ListViewItem(c.data)).ToArray());
         }
 
+        private void btn_ajouter_Click(object sender, EventArgs e)
+        {
+            var editAgentView = new EditAgentView();
+            editAgentView.ShowDialog();
+
+            agent = editAgentView.Agent;
+            MessageBox.Show(agent.Name + ", ajouté avec succès", "Information",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            AddItemInListView(agent);
+        }
+
         private void AgentView_Load(object sender, EventArgs e)
         {
             DrawListView();
             LoadAgents();
-        }
-     
-
-        private void btn_ajouter_Click(object sender, EventArgs e)
-        {
-            Form Page = new EditAgentView();
-            Page.ShowDialog();
-            agent = ((EditAgentView)Page).Agent;
-            MessageBox.Show(agent.Name + ", ajouté avec succès", "Information",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

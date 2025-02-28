@@ -21,7 +21,7 @@ namespace ArchiveManagerApp.Dao
         private static DbConnection _connection;
         static string server = "127.0.0.1";
         static string user = "root";
-        static string pwd = "hunterxhunterA1";
+        static string pwd = "linda";
         static string db = "gestion_archivage_db";
         static string port = "3306";
 

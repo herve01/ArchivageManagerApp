@@ -177,7 +177,6 @@ namespace ArchiveManagerApp.Dao
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", System.Data.DbType.String, agent.Id));
 
-
                 Reader = Command.ExecuteReader();
 
                 if (Reader != null && Reader.HasRows)
@@ -189,12 +188,12 @@ namespace ArchiveManagerApp.Dao
                 if (_instance != null)
                 {
                     instance = Create(_instance, false, true, true);
-                    instance.Agent = agent;
+                    //instance.Agent = agent;
                 }                   
 
                 return instance;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return null;
@@ -241,6 +240,7 @@ namespace ArchiveManagerApp.Dao
                 { "old_service_id", reader["old_service_id"] },
                 { "service_id", reader["service_id"] },
                 { "date", reader["date"] },
+                { "is_end", reader["is_end"] },
             };
         }
         Affectation Create(Dictionary<string, object> row, bool withAgent = false, bool withService = false, bool withOldService = false)
@@ -256,7 +256,7 @@ namespace ArchiveManagerApp.Dao
             if (withService)
                 instance.Service = new ServiceDao().Get(row["service_id"].ToString());
 
-            if (withOldService)
+            if (withOldService & !(row["old_service_id"] is DBNull))
                 instance.OldService = new ServiceDao().Get(row["old_service_id"].ToString());
 
             return instance;

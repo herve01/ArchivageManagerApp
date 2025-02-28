@@ -14,5 +14,10 @@ namespace ArchiveManagerApp.Model
         public string Libelle { get; set; }
         public ExtensionType Extension { get; set; }
         public string MotCle { get; set; }
+
+        public int Index
+        {
+            get => Dao.AppUtil.Util.ToIndexImageType(Extension.ToString());
+        }
     }
 }

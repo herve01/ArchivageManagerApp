@@ -60,7 +60,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
                 Agent.Email = txtEmail.Text;
                 Agent.Grade = txtGrade.Text;
                 Agent.Fonction = txtFonction.Text;
-                Agent.Photo = picProfile.Image != null ? Model.Helper.ImageUtil.ImageFileToByte(path) : null;
+                Agent.Photo = Model.Helper.ImageUtil.BitmapToByte(picProfile.Image);
                 Agent.CurrentAffectation.Service = (Service)cbxService.SelectedItem;
                 Agent.CurrentAffectation.Date = DateTime.Now;
                 Agent.CurrentAffectation.IsEnd = false;              

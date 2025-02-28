@@ -18,23 +18,55 @@ namespace ArchiveManagerApp.Util
 {
     public class Functions
     {
+
+
+        public static string ConvertByteArrayToPdf(byte[] pdfData)
+        {
+            var path = string.Empty;
+
+            try
+            {
+                // Write the byte array to a file (PDF)
+                File.WriteAllBytes(path, pdfData);
+                //Console.WriteLine($"PDF saved to {outputPath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error saving PDF: " + ex.Message);
+            }
+            return path;
+        }
+
         public static string ShowPDF(byte[] pdfData)
         {
-            string tempFile = Path.Combine(Path.GetTempPath(), "temp.pdf");
+
+            var path = "";
 
             using (MemoryStream ms = new MemoryStream(pdfData))
             {
-                // Write the byte array to a temporary file in memory using a MemoryStream
-                //string tempFile = Path.Combine(Path.GetTempPath(), "temp.pdf");
+                string tempFile = Path.Combine(Path.GetTempPath(), "temp.pdf");
 
-                // Save the byte array to a temporary file
                 File.WriteAllBytes(tempFile, ms.ToArray());
 
-                // Load the temporary PDF file in WebBrowser
-                //webBrowser.Navigate(tempFile);
+                path = tempFile;
             }
 
-            return tempFile;
+            return path;
+        }
+
+        public static byte[] ConvertPdfToByteArray(string filePath)
+        {
+            try
+            {
+                // Read the PDF file into a byte array
+                byte[] pdfBytes = File.ReadAllBytes(filePath);
+                return pdfBytes;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error reading PDF file: " + ex.Message);
+                return null;
+            }
         }
 
         public static void InitControl(Control parent)
