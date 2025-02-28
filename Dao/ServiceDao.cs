@@ -118,10 +118,13 @@ namespace ArchiveManagerApp.Dao
                     }
 
                 Reader.Close();
-
+                int i = 0;
                 foreach (var row in _instances)
                 {
-                    instances.Add(Create(row, true));
+                    i++;
+                    var _obj = Create(row, true);
+                    _obj.NumberRow = i;
+                    instances.Add(_obj);
                 }
 
                 return instances;

@@ -9,5 +9,6 @@ namespace ArchiveManagerApp.Model
     public class ModelBase
     {
         public string Id { get; set; }
+        public int NumberRow { get; set; }
     }
 }
