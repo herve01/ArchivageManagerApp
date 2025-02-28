@@ -31,7 +31,7 @@ namespace ArchiveManagerApp.Dao
             {
                 //"server={0};user={1};password={2};database={3};port={4}"
 
-                var connectionString = $"server={server};{port};user={user};password={pwd};database={db}";
+                var connectionString = $"server={server},{port};user={user};password={pwd};database={db}";
 
                 try
                 {

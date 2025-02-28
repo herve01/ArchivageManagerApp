@@ -7,14 +7,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ArchiveManagerApp.Model;
+using Microsoft.Office.Interop.Word;
+using ArchiveManagerApp.Modules.Extension;
+using ArchiveManagerApp.Util;
+using Guna.UI2.WinForms;
 
 namespace ArchiveManagerApp.Modules.View
 {
     public partial class ServiceView: UserControl
     {
+        //Declaration variable
+        Service service;
+        List<Service> services;
+
         public ServiceView()
         {
+            services = new List<Service>();
             InitializeComponent();
+        }
+
+        void DrawListView()
+        {
+            lstServices.View = System.Windows.Forms.View.Details;
+            lstServices.GridLines = true;
+            lstServices.FullRowSelect = true;
+
+            var sizeColumn = (lstServices.Width - 50); // pour fixer la taille dynamique de colonne, nous envlevons la taille de la 1ere colonne
+
+            //Ajouter les noms des entetes de la liste
+            lstServices.Columns.Add("#", 50);
+            lstServices.Columns.Add("Description", sizeColumn);       
+        }
+
+        void AddItemInListView(Service instance = null)
+        {
+            if(instance == null)
+                foreach (var row in services)
+                {
+                    lstServices.Items.Add(new ListViewItem(row.data));
+                }
+            else
+            {
+                instance.NumberRow = services.Count == 0 ? 1 : services.FindLast(s => s.NumberRow > 0).NumberRow + 1;
+                lstServices.Items.Add(new ListViewItem(instance.data));
+
+                services.Add(instance);
+                //"{0}"
+            }
+        }
+
+        async System.Threading.Tasks.Task LoadServices()
+        {
+            lstServices.Items.Clear();
+
+            services = await System.Threading.Tasks.Task.Run(() => new Dao.ServiceDao().GetAllAsync());
+
+            AddItemInListView();
         }
 
         private void txtService_KeyUp(object sender, KeyEventArgs e)
@@ -31,10 +80,54 @@ namespace ArchiveManagerApp.Modules.View
 
         private void btn_ajouter_Click(object sender, EventArgs e)
         {
-            int nb = lstServices.Items.Count + 1;
-            lstServices.Items.Add(new ListViewItem(new string[] { nb.ToString(), txtService.Text, "0" }));
-            txtService.Clear();
+            if (Functions.IsEmptyTextBox(pnlControls))
+                MessageBox.Show("Une Erreur est survenue lors de l'enregistrement.\n Rassurez-vous d'avoir rempli tous les champs !!", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                service = new Model.Service();
+
+                service.Designation = txtService.Text;
+           
+
+                if (new Dao.ServiceDao().Add(service) > 0)
+                {
+                    MessageBox.Show("Enregistrement reussi avec succès !!", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AddItemInListView(service);
+                    Functions.InitControl(pnlControls);
+                }
+            }
+            //int nb = lstServices.Items.Count + 1;
+            //lstServices.Items.Add(new ListViewItem(new string[] { nb.ToString(), txtService.Text, "0" }));
+            //txtService.Clear();
+
+
             btnAjouter.Enabled = false;
+        }
+
+        private void txtService_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_recherche_TextChanged(object sender, EventArgs e)
+        {
+            var motif = ((Guna2TextBox)sender).Text.Trim().ToLower().NoAccent();
+
+            if (motif == null)
+                return;
+
+            lstServices.Items.Clear();
+
+            lstServices.Items.AddRange(services.Where(i => string.IsNullOrEmpty(motif) || 
+            i.Designation.ToLower().Trim().NoAccent().StartsWith(motif) || 
+            i.Designation.ToLower().Trim().NoAccent().Contains(motif))
+            .Select(c => new ListViewItem(c.data)).ToArray());
+        }
+
+        private void ServiceView_Load(object sender, EventArgs e)
+        {
+            DrawListView();
+            LoadServices();
         }
     }
 }

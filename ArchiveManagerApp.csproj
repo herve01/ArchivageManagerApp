@@ -93,6 +93,7 @@
     <Compile Include="Model\PasswordStorage.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Modules\Extension\StringExtensions.cs" />
     <Compile Include="Modules\View\AgentView.cs">
       <SubType>UserControl</SubType>
     </Compile>

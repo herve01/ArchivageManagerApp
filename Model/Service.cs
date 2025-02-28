@@ -13,6 +13,16 @@ namespace ArchiveManagerApp.Model
             Agents = new List<Agent>();
         }
         public string Designation { get; set; }
-        public List<Agent> Agents { get; set; } 
+        public List<Agent> Agents { get; set; }
+
+        public override string ToString()
+        {
+            return Designation;
+        }
+
+        public string[] data
+        {
+            get => new string[] { NumberRow.ToString(), ""+this };
+        }
     }
 }
