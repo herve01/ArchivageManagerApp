@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,39 +20,9 @@ namespace ArchiveManagerApp.Util
     public class Functions
     {
 
-
-        public static string ConvertByteArrayToPdf(byte[] pdfData)
+        public static MemoryStream LoadPdfFromByteArray(byte[] pdfData)
         {
-            var path = string.Empty;
-
-            try
-            {
-                // Write the byte array to a file (PDF)
-                File.WriteAllBytes(path, pdfData);
-                //Console.WriteLine($"PDF saved to {outputPath}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error saving PDF: " + ex.Message);
-            }
-            return path;
-        }
-
-        public static string ShowPDF(byte[] pdfData)
-        {
-
-            var path = "";
-
-            using (MemoryStream ms = new MemoryStream(pdfData))
-            {
-                string tempFile = Path.Combine(Path.GetTempPath(), "temp.pdf");
-
-                File.WriteAllBytes(tempFile, ms.ToArray());
-
-                path = tempFile;
-            }
-
-            return path;
+            return new MemoryStream(pdfData);
         }
 
 

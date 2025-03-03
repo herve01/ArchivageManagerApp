@@ -32,10 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArchiveView));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.lstArchive = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lst_image_grand = new System.Windows.Forms.ImageList(this.components);
             this.lst_image_petit = new System.Windows.Forms.ImageList(this.components);
             this.btn_ajouter = new Guna.UI2.WinForms.Guna2Button();
@@ -69,14 +65,11 @@
             // 
             // lstArchive
             // 
-            this.lstArchive.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.lstArchive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(247)))), ((int)(((byte)(241)))));
+            this.lstArchive.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstArchive.ContextMenuStrip = this.menuArchive;
             this.lstArchive.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lstArchive.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstArchive.FullRowSelect = true;
             this.lstArchive.GridLines = true;
             this.lstArchive.HideSelection = false;
@@ -90,25 +83,6 @@
             this.lstArchive.TabIndex = 1;
             this.lstArchive.UseCompatibleStateImageBehavior = false;
             this.lstArchive.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "#";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Libellé";
-            this.columnHeader2.Width = 383;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Mot Clé";
-            this.columnHeader3.Width = 205;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Type";
-            this.columnHeader4.Width = 173;
             // 
             // lst_image_grand
             // 
@@ -222,7 +196,7 @@
             this.menuArchive.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.menuArchive.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.menuArchive.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.menuArchive.Size = new System.Drawing.Size(211, 116);
+            this.menuArchive.Size = new System.Drawing.Size(148, 88);
             // 
             // détailToolStripMenuItem
             // 
@@ -278,10 +252,6 @@
         private Guna.UI2.WinForms.Guna2Button btn_ajouter;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Button btn_filtrer;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ImageList lst_image_grand;
         private System.Windows.Forms.ImageList lst_image_petit;
         private System.Windows.Forms.ListView lstArchive;

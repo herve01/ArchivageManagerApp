@@ -36,12 +36,12 @@ namespace ArchiveManagerApp.Modules.View.Pop
 
         void Detail(Archive archive)
         {
-            var _path = Functions.ShowPDF(archive.Document.Fichier);
             txtLibelle.Text = archive.Document.Libelle;
             txtMotCle.Text = archive.Document.MotCle;
             viewer = new PdfViewer();
 
-            var doc = PdfDocument.Load(_path);
+            var byteFile = archive.Document.Fichier;
+            var doc = PdfDocument.Load(Functions.LoadPdfFromByteArray(byteFile));
             viewer.Document = doc;
             viewer.Dock = DockStyle.Fill;
             pnlDocument.Controls.Clear();
