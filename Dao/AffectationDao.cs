@@ -193,9 +193,8 @@ namespace ArchiveManagerApp.Dao
 
                 return instance;
             }
-            catch (Exception e)
+            catch
             {
-
                 return null;
             }
         }

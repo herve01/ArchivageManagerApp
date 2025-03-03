@@ -12,6 +12,7 @@ using Microsoft.Office.Interop.Word;
 using ArchiveManagerApp.Modules.Extension;
 using ArchiveManagerApp.Util;
 using Guna.UI2.WinForms;
+using ArchiveManagerApp.Tools;
 
 namespace ArchiveManagerApp.Modules.View
 {
@@ -81,7 +82,7 @@ namespace ArchiveManagerApp.Modules.View
 
         private void btn_ajouter_Click(object sender, EventArgs e)
         {
-            if (Functions.IsEmptyTextBox(pnlControls))
+            if (ViewDesign.TextBoxIsNullOrEmpty(pnlControls))
                 MessageBox.Show("Une Erreur est survenue lors de l'enregistrement.\n Rassurez-vous d'avoir rempli tous les champs !!", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -93,7 +94,7 @@ namespace ArchiveManagerApp.Modules.View
                 if (new Dao.ServiceDao().Add(service) > 0)
                 {
                     AddItemInListView(service); //Ajouter dans la liste
-                    Functions.InitControl(pnlControls); //Nettoyer les champs
+                    ViewDesign.TextBoxIsNullOrEmpty(pnlControls); //Nettoyer les champs
                 }
                 else
                 {

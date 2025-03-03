@@ -179,7 +179,7 @@ namespace ArchiveManagerApp.Dao
 
                 return instances;
             }
-            catch (Exception e)
+            catch
             {
                 return null;
             }

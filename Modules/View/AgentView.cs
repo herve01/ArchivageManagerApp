@@ -30,20 +30,20 @@ namespace ArchiveManagerApp.Modules.View
 
         void DrawListView()
         {
-            lst_agents.View = System.Windows.Forms.View.Details;
-            lst_agents.GridLines = true;
-            lst_agents.FullRowSelect = true;
+            lstUsers.View = System.Windows.Forms.View.Details;
+            lstUsers.GridLines = true;
+            lstUsers.FullRowSelect = true;
 
-            var sizeColumn = (lst_agents.Width - 250) /4 ; // pour fixer la taille dynamique de colonne, nous envlevons la taille de la 1ere colonne
+            var sizeColumn = (lstUsers.Width - 250) /4 ; // pour fixer la taille dynamique de colonne, nous envlevons la taille de la 1ere colonne
 
             //Ajouter les noms des entetes de la liste
-            lst_agents.Columns.Add("#", 50);
-            lst_agents.Columns.Add("Noms", sizeColumn + 100);
-            lst_agents.Columns.Add("Sexe", 100);
-            lst_agents.Columns.Add("Téléphone", 100);
-            lst_agents.Columns.Add("Mail", sizeColumn - 50);
-            lst_agents.Columns.Add("Poste", sizeColumn + 50);
-            lst_agents.Columns.Add("Service", sizeColumn -100);
+            lstUsers.Columns.Add("#", 50);
+            lstUsers.Columns.Add("Noms", sizeColumn + 100);
+            lstUsers.Columns.Add("Sexe", 100);
+            lstUsers.Columns.Add("Téléphone", 100);
+            lstUsers.Columns.Add("Mail", sizeColumn - 50);
+            lstUsers.Columns.Add("Poste", sizeColumn + 50);
+            lstUsers.Columns.Add("Service", sizeColumn -100);
         }
 
         void AddItemInListView(Agent instance = null)
@@ -51,12 +51,12 @@ namespace ArchiveManagerApp.Modules.View
             if (instance == null)
                 foreach (var row in agents)
                 {
-                    lst_agents.Items.Add(new ListViewItem(row.data));
+                    lstUsers.Items.Add(new ListViewItem(row.data));
                 }
             else
             {
                 instance.NumberRow = agents.Count == 0 ? 1 : agents.FindLast(s => s.NumberRow > 0).NumberRow + 1;
-                lst_agents.Items.Add(new ListViewItem(instance.data));
+                lstUsers.Items.Add(new ListViewItem(instance.data));
 
                 agents.Add(instance);
             }
@@ -66,7 +66,7 @@ namespace ArchiveManagerApp.Modules.View
 
         async System.Threading.Tasks.Task LoadAgents()
         {
-            lst_agents.Items.Clear();
+            lstUsers.Items.Clear();
 
             agents = await System.Threading.Tasks.Task.Run(() => new Dao.AgentDao().GetAllAsync());
 
@@ -80,9 +80,9 @@ namespace ArchiveManagerApp.Modules.View
             if (motif == null)
                 return;
 
-            lst_agents.Items.Clear();
+            lstUsers.Items.Clear();
 
-            lst_agents.Items.AddRange(agents.Where(i => string.IsNullOrEmpty(motif) ||
+            lstUsers.Items.AddRange(agents.Where(i => string.IsNullOrEmpty(motif) ||
             i.Name.ToLower().Trim().NoAccent().StartsWith(motif) ||
             i.Name.ToLower().Trim().NoAccent().Contains(motif) ||
             i.CurrentAffectation.Service.ToString().ToLower().Trim().NoAccent().StartsWith(motif) ||

@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\Helper\ServerConfiguration.cs" />
     <Compile Include="Dao\Util.cs" />
     <Compile Include="Model\App\AppConfig.cs" />
     <Compile Include="Dao\AffectationDao.cs" />
@@ -79,15 +80,15 @@
     <Compile Include="Dao\Helper\TableKeyHelper.cs" />
     <Compile Include="Dao\ServiceDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
-    <Compile Include="Main.cs">
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Affectation.cs" />
     <Compile Include="Model\Agent.cs" />
-    <Compile Include="Model\Archive.cs" />
+    <Compile Include="Model\archive.cs" />
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\Helper\ImageUtil.cs" />
     <Compile Include="Model\Helper\NumberToLetter.cs" />
@@ -127,22 +128,40 @@
     <Compile Include="Modules\View\Controls\ElementTDB.Designer.cs">
       <DependentUpon>ElementTDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\View\ParametreUserView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\View\ParametreUserView.Designer.cs">
+      <DependentUpon>ParametreUserView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\View\ParametreServerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\View\ParametreServerView.Designer.cs">
+      <DependentUpon>ParametreServerView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\View\ParametreView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\View\ParametreView.Designer.cs">
       <DependentUpon>ParametreView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\View\EditAgentView.cs">
+    <Compile Include="Modules\View\PopUp\DocumentView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\View\EditAgentView.Designer.cs">
+    <Compile Include="Modules\View\PopUp\DocumentView.Designer.cs">
+      <DependentUpon>DocumentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\View\PopUp\EditAgentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\View\PopUp\EditAgentView.Designer.cs">
       <DependentUpon>EditAgentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\View\EditDocumentView.cs">
+    <Compile Include="Modules\View\PopUp\EditDocumentView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\View\EditDocumentView.Designer.cs">
+    <Compile Include="Modules\View\PopUp\EditDocumentView.Designer.cs">
       <DependentUpon>EditDocumentView.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\View\ServiceView.cs">
@@ -151,17 +170,18 @@
     <Compile Include="Modules\View\ServiceView.Designer.cs">
       <DependentUpon>ServiceView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\View\TableDeBordView.cs">
+    <Compile Include="Modules\View\DashBordView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\View\TableDeBordView.Designer.cs">
-      <DependentUpon>TableDeBordView.cs</DependentUpon>
+    <Compile Include="Modules\View\DashBordView.Designer.cs">
+      <DependentUpon>DashBordView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="util\Functions.cs" />
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="Tools\Functions.cs" />
+    <Compile Include="Tools\ViewDesign.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\AgentView.resx">
       <DependentUpon>AgentView.cs</DependentUpon>
@@ -178,20 +198,29 @@
     <EmbeddedResource Include="Modules\View\Controls\ElementTDB.resx">
       <DependentUpon>ElementTDB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\View\ParametreUserView.resx">
+      <DependentUpon>ParametreUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\View\ParametreServerView.resx">
+      <DependentUpon>ParametreServerView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\ParametreView.resx">
       <DependentUpon>ParametreView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\View\EditAgentView.resx">
+    <EmbeddedResource Include="Modules\View\PopUp\DocumentView.resx">
+      <DependentUpon>DocumentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\View\PopUp\EditAgentView.resx">
       <DependentUpon>EditAgentView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\View\EditDocumentView.resx">
+    <EmbeddedResource Include="Modules\View\PopUp\EditDocumentView.resx">
       <DependentUpon>EditDocumentView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\ServiceView.resx">
       <DependentUpon>ServiceView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\View\TableDeBordView.resx">
-      <DependentUpon>TableDeBordView.cs</DependentUpon>
+    <EmbeddedResource Include="Modules\View\DashBordView.resx">
+      <DependentUpon>DashBordView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -219,6 +248,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dao\db\gestion_archivage_db_script.sql" />
+    <None Include="Resources\invisible_26px.png" />
+    <None Include="Resources\eye_26px.png" />
+    <None Include="Resources\refresh_26px.png" />
+    <None Include="Resources\database_administrator_26px.png" />
+    <None Include="Resources\male_user_26px.png" />
+    <None Include="Resources\2138041.png" />
     <None Include="Resources\hierarchy_26px.png" />
     <None Include="Resources\save_26px.png" />
     <None Include="Resources\cancel_26px.png" />
@@ -237,7 +272,6 @@
   <ItemGroup>
     <Folder Include="DLL\" />
     <Folder Include="Global\" />
-    <Folder Include="Model\POCO\" />
     <Folder Include="Modules\Raports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
