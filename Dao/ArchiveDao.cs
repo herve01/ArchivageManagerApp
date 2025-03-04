@@ -39,7 +39,7 @@ namespace ArchiveManagerApp.Dao
                     "VALUES (@v_id, @v_user_id, @v_document_id, @v_date)";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", System.Data.DbType.String, id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance?.User?.Id?? "11"));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_user_id", System.Data.DbType.String, instance?.User?.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_document_id", System.Data.DbType.String, instance.Document.Id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_date", System.Data.DbType.DateTime, instance.Date));
                 

@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -35,7 +36,24 @@ namespace ArchiveManagerApp.Dao
             }
             catch (Exception)
             {
-                Console.WriteLine("> Connection impossible.");
+                MessageBox.Show("> Connection impossible.");
+                throw;
+            }
+        }
+        public void NewConnection()
+        {
+            try
+            {
+                Connection = Dao.Connection.GetNewConnection();
+                Command = Connection.CreateCommand();
+                Adapter = DbProviderFactories.GetFactory("MySql.Data.MySqlClient").CreateDataAdapter();
+
+                if (Connection.State == System.Data.ConnectionState.Closed)
+                    Connection.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("> Connection impossible.");
                 throw;
             }
         }

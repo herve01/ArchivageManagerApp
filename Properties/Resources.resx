@@ -136,14 +136,20 @@
   <data name="user_account_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_account_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cancel_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="search_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upload_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="info_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="slider_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\slider_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="invisible_26px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\invisible_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="categorize_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\categorize_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,6 +166,9 @@
   <data name="broom_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\broom_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="eye_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eye_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hierarchy_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hierarchy_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,16 +178,13 @@
   <data name="male_user_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\male_user_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cancel_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancel_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="slider_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slider_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2138041" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2138041.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eye_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eye_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="invisible_26px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\invisible_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="upload_26px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

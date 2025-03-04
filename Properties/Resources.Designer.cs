@@ -263,6 +263,26 @@ namespace ArchiveManagerApp.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap upload_26px {
+            get {
+                object obj = ResourceManager.GetObject("upload_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap upload_26px2 {
+            get {
+                object obj = ResourceManager.GetObject("upload_26px2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap user_account_26px {
             get {
                 object obj = ResourceManager.GetObject("user_account_26px", resourceCulture);

@@ -23,7 +23,8 @@ namespace ArchiveManagerApp.Dao
         static string pwd = "hunterxhunterA1";
         static string db = "gestion_archivage_db";
         static string port = "3306";
-
+        public static string provider = "MySql.Data.MySqlClient";
+        
         public static DbConnection GetConnection()
         {
             if (_connection == null)
@@ -39,21 +40,36 @@ namespace ArchiveManagerApp.Dao
 
                 try
                 {
-                    _connection = DbProviderFactories.GetFactory("MySql.Data.MySqlClient").CreateConnection();
+                    _connection = DbProviderFactories.GetFactory(provider).CreateConnection();
                     _connection.ConnectionString = connectionString;
                     _connection.Open();
-                    MessageBox.Show("> Connection établie avec le serveur.");
-                    Console.WriteLine("> Connection établie avec le serveur.");
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show("Erreur de connection", ex.Message);
                     _connection = null;
-                    MessageBox.Show($"> Impossible d'atteindre le serveur.\n{ex.Message}");
-                    Console.WriteLine($"> Impossible d'atteindre le serveur.\n{ex.Message}");
                 }
-
             }
             return _connection;
+        }
+        public static DbConnection GetNewConnection()
+        {
+            var connectionString = $"server={server},{port};user={user};password={pwd};database={db}";
+
+            try
+            {
+                
+                var connection = DbProviderFactories.GetFactory(provider).CreateConnection();
+                connection.ConnectionString = connectionString;
+                connection.Open();
+
+                return connection;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur de connection");
+                return null;
+            } 
         }
     }
 }

@@ -32,7 +32,14 @@
             this.lstUsers = new System.Windows.Forms.ListView();
             this.btnAjouter = new Guna.UI2.WinForms.Guna2Button();
             this.txtRecherche = new Guna.UI2.WinForms.Guna2TextBox();
+            this.menuArchive = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            this.détailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.suprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlList.SuspendLayout();
+            this.menuArchive.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlList
@@ -53,6 +60,7 @@
             // 
             // lstUsers
             // 
+            this.lstUsers.ContextMenuStrip = this.menuArchive;
             this.lstUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lstUsers.GridLines = true;
@@ -117,6 +125,60 @@
             this.txtRecherche.TabIndex = 10;
             this.txtRecherche.TextChanged += new System.EventHandler(this.txt_recherche_TextChanged);
             // 
+            // menuArchive
+            // 
+            this.menuArchive.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuArchive.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.détailToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.modifierToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.suprimerToolStripMenuItem});
+            this.menuArchive.Name = "menuArchive";
+            this.menuArchive.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.menuArchive.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.menuArchive.RenderStyle.ColorTable = null;
+            this.menuArchive.RenderStyle.RoundedEdges = true;
+            this.menuArchive.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.menuArchive.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.menuArchive.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.menuArchive.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.menuArchive.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.menuArchive.Size = new System.Drawing.Size(181, 104);
+            // 
+            // détailToolStripMenuItem
+            // 
+            this.détailToolStripMenuItem.Name = "détailToolStripMenuItem";
+            this.détailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.détailToolStripMenuItem.Text = "Détail";
+            this.détailToolStripMenuItem.Click += new System.EventHandler(this.détailToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // modifierToolStripMenuItem
+            // 
+            this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
+            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modifierToolStripMenuItem.Text = "Modifier";
+            this.modifierToolStripMenuItem.Click += new System.EventHandler(this.modifierToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // suprimerToolStripMenuItem
+            // 
+            this.suprimerToolStripMenuItem.Name = "suprimerToolStripMenuItem";
+            this.suprimerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.suprimerToolStripMenuItem.Text = "Supprimer";
+            this.suprimerToolStripMenuItem.Click += new System.EventHandler(this.suprimerToolStripMenuItem_Click);
+            // 
             // AgentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -130,6 +192,7 @@
             this.Size = new System.Drawing.Size(900, 600);
             this.Load += new System.EventHandler(this.AgentView_Load);
             this.pnlList.ResumeLayout(false);
+            this.menuArchive.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -139,5 +202,11 @@
         private Guna.UI2.WinForms.Guna2Button btnAjouter;
         private Guna.UI2.WinForms.Guna2TextBox txtRecherche;
         private System.Windows.Forms.ListView lstUsers;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip menuArchive;
+        private System.Windows.Forms.ToolStripMenuItem détailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem suprimerToolStripMenuItem;
     }
 }

@@ -6,6 +6,7 @@ using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Dao.Helper;
 using System.Data.Common;
 using ArchiveManagerApp.Dao.Util;
+using System.Windows.Forms;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -15,14 +16,13 @@ namespace ArchiveManagerApp.Dao
         {
             TableName = "user";
         }
-
         public override int Add(User instance)
         {
             try
             {
                 var id = TableKeyHelper.GetKey(TableName);
 
-                var hash = PasswordStorage.CreateHash(instance.PassWd);
+                var hash = PasswordStorage.CreateHash(instance.Password);
                 var split = hash.Split(':');
                 var salt = split[0];
                 var pwd = string.Format("{0}:{1}", split[1], split[2]);
@@ -30,9 +30,9 @@ namespace ArchiveManagerApp.Dao
                 Command.CommandText = "INSERT INTO user (id, agent_id, username, passwd, salt) " +
                     "VALUES (@v_id, @v_agent_id, @v_username, @v_passwd, @v_salt) ";
 
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", DbType.String, instance.Id));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_id", DbType.String, id));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_agent_id", DbType.String, instance.Agent.Id));
-                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_login", DbType.String, instance.UserName));
+                Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_username", DbType.String, instance.UserName));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_passwd", DbType.String, pwd));
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_salt", DbType.String, salt));
 
@@ -43,8 +43,9 @@ namespace ArchiveManagerApp.Dao
 
                 return 1;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+               MessageBox.Show("Erreur", e.Message);
                 return 0;
             }
 
@@ -171,10 +172,13 @@ namespace ArchiveManagerApp.Dao
                     }
 
                 Reader.Close();
-
+                int i = 0;
                 foreach (var row in _instances)
                 {
-                    instances.Add(Create(row, true));
+                    i++;
+                    var _obj = Create(row, true);
+                    _obj.NumberRow = i;
+                    instances.Add(_obj);
                 }
 
                 return instances;

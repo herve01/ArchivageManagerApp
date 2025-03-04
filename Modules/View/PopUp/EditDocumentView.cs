@@ -98,6 +98,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             Archive.Document.Fichier = Functions.ConvertPdfToByteArray(path);
             Archive.Document.MotCle = txtMotCle.Text;
             Archive.Document.Libelle = txtLibelle.Text;
+            Archive.User = new User() { Id = "0e02ac1d84b390c344f8ae57b60a4359" };
 
             Archive.Document.Extension = path.Trim().ToLower().Contains(".pdf") ? Model.Helper.Util.ExtensionType.PDF :
                 path.Trim().ToLower().Contains(".doc") ? Model.Helper.Util.ExtensionType.DOC : Model.Helper.Util.ExtensionType.IMAGE;

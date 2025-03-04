@@ -96,16 +96,43 @@ namespace ArchiveManagerApp.Modules.View
             editAgentView.ShowDialog();
 
             agent = editAgentView.Agent;
-            MessageBox.Show(agent.Name + ", ajouté avec succès", "Information",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(agent != null)
+            {
+                MessageBox.Show(agent.Name + ", ajouté avec succès", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            AddItemInListView(agent);
+                AddItemInListView(agent);
+            }
         }
 
         private void AgentView_Load(object sender, EventArgs e)
         {
             DrawListView();
             LoadAgents();
+        }
+
+        private void détailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void suprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

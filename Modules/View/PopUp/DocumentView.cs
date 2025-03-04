@@ -1,5 +1,7 @@
 ﻿using ArchiveManagerApp.Model;
+using ArchiveManagerApp.Tools;
 using ArchiveManagerApp.Util;
+using DocumentFormat.OpenXml.Packaging;
 using PdfiumViewer;
 using System;
 using System.Collections.Generic;
@@ -18,7 +20,6 @@ namespace ArchiveManagerApp.Modules.View.PopUp
         public DocumentView(Archive archive = null)
         {
             InitializeComponent();
-
             if (archive != null)
             {
                 OpenDocument(archive);
@@ -32,40 +33,47 @@ namespace ArchiveManagerApp.Modules.View.PopUp
             lstDetails.Items.Add(new ListViewItem("Type : ", archive.Document.Extension.ToString()));
             lstDetails.Items.Add(new ListViewItem("Date Archivage : ", archive.Date.ToString("G")));
 
+            byte[] fichier = archive.Document.Fichier;
+
             switch (archive.Document.Extension)
             {
                 case Model.Helper.Util.ExtensionType.PDF:
-                    OpenPDF();
-                    break;
+                    OpenPDF(fichier); break;
                 case Model.Helper.Util.ExtensionType.IMAGE:
-                    OpenPicture();
-                    break;
+                    OpenPicture(fichier); break;
                 case Model.Helper.Util.ExtensionType.DOC:
-                    OpenDocument();
-                    break;
+                    OpenDocument(fichier); break;
             }
         }
 
-        void OpenPicture()
+        void OpenPicture(byte[] fichier)
         {
             var picture = new PictureBox();
+            picture.Image = ArchiveDocumentConvert.ConvertByteToImage(fichier);
             picture.SizeMode = PictureBoxSizeMode.Zoom;
             picture.Dock = DockStyle.Fill;
+
             pnlDocument.Controls.Clear();
             pnlDocument.Controls.Add(picture);
         }
-        void OpenPDF()
+        void OpenPDF(byte[] fichier)
         {
             var viewer = new PdfViewer();
-            var doc = PdfDocument.Load("_path");
-            viewer.Document = doc;
+            viewer.Document = ArchiveDocumentConvert.ConvertByteToPDF(fichier);
             viewer.Dock = DockStyle.Fill;
+
             pnlDocument.Controls.Clear();
             pnlDocument.Controls.Add(viewer);
         }
-        void OpenDocument()
+        void OpenDocument(byte[] fichier)
         {
+            var txtBox = new TextBox();
+            txtBox.Text = ArchiveDocumentConvert.ConvertWordToText(ArchiveDocumentConvert.ConvertByteToWord(fichier));
+            txtBox.Multiline = true;
+            txtBox.Dock = DockStyle.Fill;
 
+            pnlDocument.Controls.Clear();
+            pnlDocument.Controls.Add(txtBox);
         }
 
         void DrawListView()
@@ -80,12 +88,6 @@ namespace ArchiveManagerApp.Modules.View.PopUp
             //Ajouter les noms des entetes de la liste
             lstDetails.Columns.Add("Libellé", 50);
             lstDetails.Columns.Add("Description", sizeColumn);
-
-            
-        }
-        private void pnl_body_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

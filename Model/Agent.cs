@@ -31,12 +31,12 @@ namespace ArchiveManagerApp.Model
 
         public override string ToString()
         {
-            return NumberRow.ToString();
+            return Name;
         }
 
         public string[] data
         {
-            get => new string[] { "" + this, Name, Sexe, Phone, Email, Grade + "" + Fonction  , CurrentAffectation.Service.ToString()};
+            get => new string[] { NumberRow.ToString(), Name, Sexe, Phone, Email, Grade + "" + Fonction  , CurrentAffectation.Service.ToString()};
         }
     }
 }

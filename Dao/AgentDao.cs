@@ -227,7 +227,7 @@ namespace ArchiveManagerApp.Dao
             {
                 { "id", reader["id"] },
                 { "nom", reader["nom"] },
-                { "postnom", reader["prenom"] },
+                { "postnom", reader["postnom"] },
                 { "prenom", reader["prenom"] },
                 { "sexe", reader["sexe"] },
                 { "mail", reader["mail"] },

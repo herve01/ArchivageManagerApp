@@ -82,10 +82,13 @@ namespace ArchiveManagerApp.Modules.View
 
             archive = editDocumentView.Archive;
 
-            MessageBox.Show(archive.Document.Libelle + ", ajouté avec succès", "Information",
+            if(archive != null)
+            {
+                MessageBox.Show(archive.Document.Libelle + ", ajouté avec succès", "Information",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            AddItemInListView(archive);
+                AddItemInListView(archive);
+            }      
         }
 
         private void ArchiveView_Load(object sender, EventArgs e)

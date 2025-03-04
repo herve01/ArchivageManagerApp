@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.UI.Design.WebControls;
 using System.Windows.Forms;
 using ArchiveManagerApp.Modules.View;
+using ArchiveManagerApp.Modules.View.Controls;
 using ArchiveManagerApp.Tools;
 using G = Guna.UI2.WinForms;
 
@@ -43,6 +44,8 @@ namespace WindowsFormsApp1
         }
         private void btnArchives_Click(object sender, EventArgs e)
         {
+            Form t = new Toast("Test message toast", 3, Color.Green, Color.White);
+            
             ViewDesign.ShowPage(pnlBody, pageArchives);
             ViewDesign.CheckButton(sender, pnlMenu);
         }
