@@ -16,7 +16,7 @@ namespace ArchiveManagerApp.Model
 
         public string[] data
         {
-            get => new string[] { NumberRow.ToString(), Agent.Name, UserName};
+            get => new string[] { NumberRow.ToString(), Agent?.Name, UserName};
         }
     }
 }

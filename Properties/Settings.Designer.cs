@@ -22,5 +22,65 @@ namespace ArchiveManagerApp.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("gestion_archivage_db")]
+        public string local_dbname {
+            get {
+                return ((string)(this["local_dbname"]));
+            }
+            set {
+                this["local_dbname"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string local_user {
+            get {
+                return ((string)(this["local_user"]));
+            }
+            set {
+                this["local_user"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("linda")]
+        public string local_pwd {
+            get {
+                return ((string)(this["local_pwd"]));
+            }
+            set {
+                this["local_pwd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string local_server {
+            get {
+                return ((string)(this["local_server"]));
+            }
+            set {
+                this["local_server"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3306")]
+        public string local_port {
+            get {
+                return ((string)(this["local_port"]));
+            }
+            set {
+                this["local_port"] = value;
+            }
+        }
     }
 }

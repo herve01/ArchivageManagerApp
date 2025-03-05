@@ -9,21 +9,11 @@ using System.Windows.Forms;
 
 namespace ArchiveManagerApp.Dao
 {
-    /* Le nom des bibliothèques pour le SGBD
-        MySql       : MySql.Data.MySqlClient
-        SQLServer   : System.Data.SqlClient
-        Oracle      : Oracle.ManagedDataAccess.Client
-     */
+
 
     public class Connection
     {
         private static DbConnection _connection;
-        static string server = "127.0.0.1";
-        static string user = "root";
-        static string pwd = "hunterxhunterA1";
-        static string db = "gestion_archivage_db";
-        static string port = "3306";
-        public static string provider = "MySql.Data.MySqlClient";
         
         public static DbConnection GetConnection()
         {
@@ -31,16 +21,16 @@ namespace ArchiveManagerApp.Dao
             {
 
                 /* Chaine pour la connection au SGBD
-                    SQLServer $"server={0};user={1};password={2};database={3};port={4}"
+                    SQLServer $"server={0};port={4};user={1};password={2};database={3}"
                     MySQL $"server={server},{port};user={user};password={pwd};database={db}"
                     Oracle ...
                 */
 
-                var connectionString = $"server={server},{port};user={user};password={pwd};database={db}";
+                var connectionString = $"server={DbConfig.ServerName},{DbConfig.DbPort};user={DbConfig.DbUser};password={DbConfig.DbPassword};database={DbConfig.DbName}";
 
                 try
                 {
-                    _connection = DbProviderFactories.GetFactory(provider).CreateConnection();
+                    _connection = DbProviderFactories.GetFactory(DbConfig.Provider).CreateConnection();
                     _connection.ConnectionString = connectionString;
                     _connection.Open();
                 }
@@ -54,12 +44,12 @@ namespace ArchiveManagerApp.Dao
         }
         public static DbConnection GetNewConnection()
         {
-            var connectionString = $"server={server},{port};user={user};password={pwd};database={db}";
+            var connectionString = $"server={DbConfig.ServerName},{DbConfig.DbPort};user={DbConfig.DbUser};password={DbConfig.DbPassword};database={DbConfig.DbName}";
 
             try
             {
                 
-                var connection = DbProviderFactories.GetFactory(provider).CreateConnection();
+                var connection = DbProviderFactories.GetFactory(DbConfig.Provider).CreateConnection();
                 connection.ConnectionString = connectionString;
                 connection.Open();
 

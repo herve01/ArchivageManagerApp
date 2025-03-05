@@ -17,23 +17,16 @@ namespace ArchiveManagerApp.Modules.View.PopUp
 {
     public partial class DocumentView: Form
     {
-        public DocumentView(Archive archive = null)
+        public DocumentView(Archive archive)
         {
             InitializeComponent();
-            if (archive != null)
-            {
-                OpenDocument(archive);
-            }
+            OpenDocument(archive);
         }
         void OpenDocument(Archive archive)
         {
-            lstDetails.Items.Add(new ListViewItem("Libellé : ", archive.Document.Libelle));
-            lstDetails.Items.Add(new ListViewItem("Mot clé : ", archive.Document.MotCle));
-            lstDetails.Items.Add(new ListViewItem("Type Fichier : ", archive.Document.Extension.ToString()));
-            lstDetails.Items.Add(new ListViewItem("Type : ", archive.Document.Extension.ToString()));
-            lstDetails.Items.Add(new ListViewItem("Date Archivage : ", archive.Date.ToString("G")));
-
             byte[] fichier = archive.Document.Fichier;
+
+            AddItemInListView(archive);
 
             switch (archive.Document.Extension)
             {
@@ -49,7 +42,8 @@ namespace ArchiveManagerApp.Modules.View.PopUp
         void OpenPicture(byte[] fichier)
         {
             var picture = new PictureBox();
-            picture.Image = ArchiveDocumentConvert.ConvertByteToImage(fichier);
+            //picture.Image = ArchiveDocumentConvert.ConvertByteToImage(fichier);
+            picture.Image = Model.Helper.ImageUtil.ByteToBitmap(fichier);
             picture.SizeMode = PictureBoxSizeMode.Zoom;
             picture.Dock = DockStyle.Fill;
 
@@ -59,7 +53,9 @@ namespace ArchiveManagerApp.Modules.View.PopUp
         void OpenPDF(byte[] fichier)
         {
             var viewer = new PdfViewer();
-            viewer.Document = ArchiveDocumentConvert.ConvertByteToPDF(fichier);
+            var doc = PdfDocument.Load(Functions.LoadPdfFromByteArray(fichier));
+            viewer.Document = doc;
+            // viewer.Document = ArchiveDocumentConvert.ConvertByteToPDF(fichier);
             viewer.Dock = DockStyle.Fill;
 
             pnlDocument.Controls.Clear();
@@ -78,16 +74,29 @@ namespace ArchiveManagerApp.Modules.View.PopUp
 
         void DrawListView()
         {
-            lstDetails.View = System.Windows.Forms.View.Details;
-            lstDetails.GridLines = true;
-            lstDetails.FullRowSelect = true;
+            //lstDetails.View = System.Windows.Forms.View.Details;
+            //lstDetails.GridLines = true;
+            //lstDetails.FullRowSelect = true;
 
             // pour fixer la taille dynamique de colonne
-            var sizeColumn = (lstDetails.Width) / 2;
+            var sizeColumn = lstDetails.Width - 150;
 
-            //Ajouter les noms des entetes de la liste
-            lstDetails.Columns.Add("Libellé", 50);
-            lstDetails.Columns.Add("Description", sizeColumn);
+            lstDetails.Columns.Add("", 150);
+            lstDetails.Columns.Add("", sizeColumn);
+        }
+
+        private void DocumentView_Load(object sender, EventArgs e)
+        {
+            DrawListView();
+        }
+
+        void AddItemInListView(Archive archive)
+        {
+            lstDetails.Items.Add(new ListViewItem(new string[] { "Libellé : ", archive.Document.Libelle }));
+            lstDetails.Items.Add(new ListViewItem(new string[] { "Mot clé : ", archive.Document.MotCle }));
+            lstDetails.Items.Add(new ListViewItem(new string[] { "Type Fichier : ", archive.Document.Extension.ToString() }));
+            lstDetails.Items.Add(new ListViewItem(new string[] { "Taille : ",   Functions.GetSizeInMemory(archive.Document.Fichier.LongLength) }));
+            lstDetails.Items.Add(new ListViewItem(new string[] { "Date Archivage : ", archive.Date.ToString("dd-MM-yyyy à HH:mm:ss") }));
         }
     }
 }

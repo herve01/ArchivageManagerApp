@@ -74,6 +74,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\DbConfig.cs" />
+    <Compile Include="Dao\Helper\AppDao.cs" />
     <Compile Include="Dao\Helper\ServerConfiguration.cs" />
     <Compile Include="Dao\Util.cs" />
     <Compile Include="Model\App\AppConfig.cs" />

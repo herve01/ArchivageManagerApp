@@ -19,6 +19,19 @@ namespace ArchiveManagerApp.Util
 {
     public class Functions
     {
+        public static string GetSizeInMemory(long bytesize)
+        {
+            string[] sizes = { "o", "Ko", "Mo", "Go", "To" };
+            double len = Convert.ToDouble(bytesize);
+            int order = 0;
+            while (len >= 1024D && order < sizes.Length - 1)
+            {
+                order++;
+                len /= 1024;
+            }
+
+            return string.Format(CultureInfo.CurrentCulture, "{0:0.##} {1}", len, sizes[order]);
+        }
 
         public static MemoryStream LoadPdfFromByteArray(byte[] pdfData)
         {

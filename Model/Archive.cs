@@ -21,7 +21,7 @@ namespace ArchiveManagerApp.Model
 
         public override string ToString()
         {
-            return Document.Libelle +"\n"+ Date.ToString("dd-MM-yyyy");
+            return Document.Libelle +"\n"+ Date.ToString("dd-MM-yyyy à HH:mm") +"\n by"+ User?.Agent?.ToString();
         }
 
 
