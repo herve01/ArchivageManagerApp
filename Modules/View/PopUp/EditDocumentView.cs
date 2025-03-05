@@ -20,7 +20,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
     {
         public Archive Archive { get; set; }
         string path;
-        private PdfViewer viewer;
+        //private PdfViewer viewer;
         private Microsoft.Office.Interop.Word.Application wordApp;
         private Microsoft.Office.Interop.Word.Document wordDoc;
         public EditDocumentView(Archive archive = null)
@@ -38,14 +38,14 @@ namespace ArchiveManagerApp.Modules.View.Pop
         {
             txtLibelle.Text = archive.Document.Libelle;
             txtMotCle.Text = archive.Document.MotCle;
-            viewer = new PdfViewer();
+            //viewer = new PdfViewer();
 
             var byteFile = archive.Document.Fichier;
             var doc = PdfDocument.Load(Functions.LoadPdfFromByteArray(byteFile));
-            viewer.Document = doc;
-            viewer.Dock = DockStyle.Fill;
-            pnlDocument.Controls.Clear();
-            pnlDocument.Controls.Add(viewer);
+            //viewer.Document = doc;
+            //viewer.Dock = DockStyle.Fill;
+            //pnlDocument.Controls.Clear();
+            //pnlDocument.Controls.Add(viewer);
         }
         
         private void btnImporter_Click(object sender, EventArgs e)
@@ -58,10 +58,11 @@ namespace ArchiveManagerApp.Modules.View.Pop
             {
                 path = openFileDialog.FileName;
 
+                txtLibelle.Text = Path.GetFileName(path);
+
                 if (path.ToLower().Contains(".pdf"))
                 {
-                    viewer = new PdfViewer();
-
+                    var viewer = new PdfViewer();
                     var doc = PdfDocument.Load(path);
                     viewer.Document = doc;
                     viewer.Dock = DockStyle.Fill;
@@ -98,7 +99,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             Archive.Document.Fichier = Functions.ConvertPdfToByteArray(path);
             Archive.Document.MotCle = txtMotCle.Text;
             Archive.Document.Libelle = txtLibelle.Text;
-            Archive.User = new User() { Id = "0e02ac1d84b390c344f8ae57b60a4359" };
+            Archive.User = new User() { Id = "ZERI0100001RU983KDHOJE9747K3" };
 
             Archive.Document.Extension = path.Trim().ToLower().Contains(".pdf") ? Model.Helper.Util.ExtensionType.PDF :
                 path.Trim().ToLower().Contains(".doc") ? Model.Helper.Util.ExtensionType.DOC : Model.Helper.Util.ExtensionType.IMAGE;

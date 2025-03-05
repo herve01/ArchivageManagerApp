@@ -49,7 +49,8 @@ namespace ArchiveManagerApp.Modules.View.PopUp
         void OpenPicture(byte[] fichier)
         {
             var picture = new PictureBox();
-            picture.Image = ArchiveDocumentConvert.ConvertByteToImage(fichier);
+            //picture.Image = ArchiveDocumentConvert.ConvertByteToImage(fichier);
+            picture.Image = Model.Helper.ImageUtil.ByteToBitmap(fichier);
             picture.SizeMode = PictureBoxSizeMode.Zoom;
             picture.Dock = DockStyle.Fill;
 
@@ -59,7 +60,9 @@ namespace ArchiveManagerApp.Modules.View.PopUp
         void OpenPDF(byte[] fichier)
         {
             var viewer = new PdfViewer();
-            viewer.Document = ArchiveDocumentConvert.ConvertByteToPDF(fichier);
+            var doc = PdfDocument.Load(Functions.LoadPdfFromByteArray(fichier));
+            viewer.Document = doc;
+            // viewer.Document = ArchiveDocumentConvert.ConvertByteToPDF(fichier);
             viewer.Dock = DockStyle.Fill;
 
             pnlDocument.Controls.Clear();
@@ -88,6 +91,11 @@ namespace ArchiveManagerApp.Modules.View.PopUp
             //Ajouter les noms des entetes de la liste
             lstDetails.Columns.Add("Libellé", 50);
             lstDetails.Columns.Add("Description", sizeColumn);
+        }
+
+        private void pnl_ruban_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

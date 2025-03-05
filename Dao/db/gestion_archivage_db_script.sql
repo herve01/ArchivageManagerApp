@@ -1,6 +1,16 @@
 create database gestion_archivage_db;
 use gestion_archivage_db;
 
+create table gestion_archivage_db_info
+(
+	param varchar(100),
+    valeur mediumtext,
+	constraint pk_gestion_archivage_db_info primary key(param)
+);
+
+INSERT INTO gestion_archivage_db_info
+VALUES('dbname','gestion_archivage_db'), ('creator','Hervé KAYEMBE');
+
 create table service
 (
 	id varchar(32),
@@ -53,6 +63,10 @@ create table user
 	constraint pk_user primary key(id),
     constraint fk_user_agent foreign key(agent_id) references agent(id)
 );
+
+INSERT INTO user
+VALUES('ZERI0100001RU983KDHOJE9747K3', null, 'sysadmin', 'KU8mQ/Y3hO2G56/jO9X77eRv:18', 'hGRRd6yN+GX+0BcgFWHrJSisJY6h8Znx');
+
 create table archive
 (
 	id varchar(32),

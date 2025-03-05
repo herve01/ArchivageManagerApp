@@ -13,6 +13,7 @@ using Microsoft.Office.Interop.Word;
 using Guna.UI2.WinForms;
 using ArchiveManagerApp.Modules.Extension;
 using System.Runtime.InteropServices;
+using ArchiveManagerApp.Modules.View.PopUp;
 
 namespace ArchiveManagerApp.Modules.View
 {
@@ -130,7 +131,7 @@ namespace ArchiveManagerApp.Modules.View
 
                 archive = (Archive)selectedItem;
 
-                var editDocumentView = new EditDocumentView(archive);
+                var editDocumentView = new DocumentView(archive);
                 editDocumentView.ShowDialog();
             }
         }

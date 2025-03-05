@@ -161,7 +161,7 @@ namespace ArchiveManagerApp.Dao
 
             try
             {
-                Command.CommandText = "SELECT * FROM user";
+                Command.CommandText = "SELECT * FROM user where username <> 'sysadmin'";
 
                 Reader = await Command.ExecuteReaderAsync();
 
