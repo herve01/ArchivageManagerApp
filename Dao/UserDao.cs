@@ -204,7 +204,7 @@ namespace ArchiveManagerApp.Dao
             instance.Id = row["id"].ToString();
             instance.UserName = row["username"].ToString();
 
-            if (withAgent)
+            if (withAgent & !!(row["agent_id"] is DBNull))
                 instance.Agent = new AgentDao().Get(row["agent_id"].ToString());
 
             return instance;

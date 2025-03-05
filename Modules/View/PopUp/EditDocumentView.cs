@@ -13,6 +13,7 @@ using Microsoft.Office.Interop.Word;
 using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Util;
 using ArchiveManagerApp.Tools;
+using ArchiveManagerApp.Model.App;
 
 namespace ArchiveManagerApp.Modules.View.Pop
 {
@@ -99,7 +100,7 @@ namespace ArchiveManagerApp.Modules.View.Pop
             Archive.Document.Fichier = Functions.ConvertPdfToByteArray(path);
             Archive.Document.MotCle = txtMotCle.Text;
             Archive.Document.Libelle = txtLibelle.Text;
-            Archive.User = new User() { Id = "ZERI0100001RU983KDHOJE9747K3" };
+            Archive.User = AppConfig.CURRENT_USER;
 
             Archive.Document.Extension = path.Trim().ToLower().Contains(".pdf") ? Model.Helper.Util.ExtensionType.PDF :
                 path.Trim().ToLower().Contains(".doc") ? Model.Helper.Util.ExtensionType.DOC : Model.Helper.Util.ExtensionType.IMAGE;
