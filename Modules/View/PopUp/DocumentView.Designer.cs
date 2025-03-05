@@ -49,11 +49,10 @@
             this.pnl_ruban.Controls.Add(this.btn_close);
             this.pnl_ruban.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_ruban.Location = new System.Drawing.Point(0, 0);
-            this.pnl_ruban.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_ruban.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_ruban.Name = "pnl_ruban";
             this.pnl_ruban.Size = new System.Drawing.Size(1375, 43);
             this.pnl_ruban.TabIndex = 1;
-            this.pnl_ruban.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_ruban_Paint);
             // 
             // lblEntete
             // 
@@ -75,7 +74,7 @@
             this.btn_close.FillColor = System.Drawing.Color.Transparent;
             this.btn_close.IconColor = System.Drawing.Color.White;
             this.btn_close.Location = new System.Drawing.Point(1308, 0);
-            this.btn_close.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(4);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(67, 43);
             this.btn_close.TabIndex = 1;
@@ -89,7 +88,7 @@
             this.pnl_body.Controls.Add(this.pnl_ruban);
             this.pnl_body.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_body.Location = new System.Drawing.Point(1, 1);
-            this.pnl_body.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_body.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_body.Name = "pnl_body";
             this.pnl_body.Size = new System.Drawing.Size(1375, 786);
             this.pnl_body.TabIndex = 9;
@@ -97,11 +96,11 @@
             // lstDetails
             // 
             this.lstDetails.BackColor = System.Drawing.SystemColors.Control;
-            this.lstDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lstDetails.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstDetails.GridLines = true;
             this.lstDetails.HideSelection = false;
             this.lstDetails.Location = new System.Drawing.Point(921, 59);
-            this.lstDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstDetails.Margin = new System.Windows.Forms.Padding(4);
             this.lstDetails.Name = "lstDetails";
             this.lstDetails.ShowItemToolTips = true;
             this.lstDetails.Size = new System.Drawing.Size(439, 297);
@@ -114,7 +113,7 @@
             this.pnlDocument.BackColor = System.Drawing.Color.Transparent;
             this.pnlDocument.BorderRadius = 10;
             this.pnlDocument.Location = new System.Drawing.Point(17, 59);
-            this.pnlDocument.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlDocument.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDocument.Name = "pnlDocument";
             this.pnlDocument.Size = new System.Drawing.Size(893, 714);
             this.pnlDocument.TabIndex = 12;
@@ -159,13 +158,14 @@
             this.ClientSize = new System.Drawing.Size(1377, 788);
             this.Controls.Add(this.pnl_body);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DocumentView";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PopArchive";
+            this.Load += new System.EventHandler(this.DocumentView_Load);
             this.pnl_ruban.ResumeLayout(false);
             this.pnl_body.ResumeLayout(false);
             this.ResumeLayout(false);
