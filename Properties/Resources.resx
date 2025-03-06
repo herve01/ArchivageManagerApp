@@ -118,8 +118,41 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="maintenance_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\maintenance_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user_account_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_account_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="invisible_26px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\invisible_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Plan de travail 5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Plan de travail 5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sig In - Covers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sig In - Covers.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_copy_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new_copy_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="categorize_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\categorize_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enter_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enter_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancel_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upload_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="customer_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\customer_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hierarchy_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hierarchy_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slider_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slider_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="folder_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,38 +163,35 @@
   <data name="invisible_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\invisible_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Maquette - Archive Document-05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Maquette - Archive Document-05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="opened_folder_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\opened_folder_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user_account_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_account_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cancel_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancel_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="upload_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\upload_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="male_user_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\male_user_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="info_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="invisible_26px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\invisible_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="search_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="categorize_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\categorize_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lock_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lock_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upload_26px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="database_administrator_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\database_administrator_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="download_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\download_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="new_copy_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\new_copy_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="maintenance_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maintenance_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="broom_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\broom_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,22 +199,13 @@
   <data name="eye_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hierarchy_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hierarchy_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="refresh_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\refresh_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="male_user_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\male_user_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="slider_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\slider_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="download_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2138041" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2138041.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="upload_26px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\upload_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="5130169" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5130169.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

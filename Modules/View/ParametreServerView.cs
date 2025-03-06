@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ArchiveManagerApp.Dao.Helper;
-using WindowsFormsApp1;
+using ArchiveManagerApp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using G = Guna.UI2.WinForms;
 using ArchiveManagerApp.Dao;
@@ -19,42 +19,38 @@ namespace ArchiveManagerApp.Modules.View
     public partial class ParametreServerView: UserControl
     {
         string defaultdbName = "gestion_archivage_db";
+        DbConnection connection;
+        ServerConfig ServerConfig = new ServerConfig();
         public ParametreServerView()
         {
             InitializeComponent();
-            txtPassWord.IconRightClick += IconRigt_Click;
-
         }
-        DbConnection connection;
-        private void IconRigt_Click(object sender, EventArgs e)
-        {
-
-        }
-
+     
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
-            if (Dao.Helper.AppDao.TestDatabase(connection, cmbDbs.SelectedItem.ToString().Trim()))
+            if (Dao.Helper.ServerConfig.TestDatabase(connection, cbxDataBase.SelectedItem.ToString().Trim()))
             {
-                //IsTested = true;
-                MessageBox.Show("Connexion réussie !", "Stone Consulting", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Connexion réussie !", "Test Connection",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-                MessageBox.Show("La connexion a échoué. Vous avez choisi une mauvaise base de données !");
+                MessageBox.Show("La connexion a échoué.\nVous avez choisi une mauvaise base de données !",
+                    "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void btnModifier_Click(object sender, EventArgs e)
         {
             Modification(btnModifier.Text == "Modifier");
 
-            DbConfig.DbName = Properties.Settings.Default.local_dbname = cmbDbs?.SelectedItem?.ToString();
-            DbConfig.DbUser = Properties.Settings.Default.local_user = txtUserName.Text.Trim();
-            DbConfig.DbPassword = Properties.Settings.Default.local_pwd = txtPassWord.Text.Trim();
-            DbConfig.ServerName = Properties.Settings.Default.local_server = txtServer.Text.Trim();
-            DbConfig.DbPort = Properties.Settings.Default.local_port = txtPort.Text.Trim();
+            ServerConfig.DataBase = Properties.Settings.Default.local_database = cbxDataBase?.SelectedItem?.ToString();
+            ServerConfig.User = Properties.Settings.Default.local_user = txtUserName.Text.Trim();
+            ServerConfig.Password = Properties.Settings.Default.local_password = txtPassWord.Text.Trim();
+            ServerConfig.Server= Properties.Settings.Default.local_server = txtServer.Text.Trim();
+            ServerConfig.Port = Properties.Settings.Default.local_port = txtPort.Text.Trim();
 
             Properties.Settings.Default.Save();
 
-            MessageBox.Show("Enregistrement reussi avec succès !!", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            MessageBox.Show("Enregistrement reussi avec succès !!", "Enregistrement",
+                       MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
@@ -85,7 +81,8 @@ namespace ArchiveManagerApp.Modules.View
         {
             if (((G.Guna2ComboBox)sender).Items.Count == 0)
             {
-                var feed = Dao.Helper.AppDao.CreateConnection(txtServer.Text.Trim(), txtUserName.Text.Trim(), txtPassWord.Text.Trim(), txtPort.Text.Trim());
+                var feed = ServerConfig.GetConnection(txtServer.Text.Trim(), txtPort.Text.Trim(), cbxDataBase.Text.Trim(),
+                           txtUserName.Text.Trim(), txtPassWord.Text.Trim());
                 if (feed is DbConnection)
                 {
                     connection = (DbConnection)feed;
@@ -100,10 +97,10 @@ namespace ArchiveManagerApp.Modules.View
 
         async Task LoadDatabases(object p = null)
         {
-            cmbDbs.Items.Clear();
+            cbxDataBase.Items.Clear();
             //cmbDbs.AutoCompleteCustomSource.Clear();
 
-            var list = await Task.Run(() => Dao.Helper.AppDao.GetDatabases(connection));
+            var list = await Task.Run(() => ServerConfig.GetDatabases(connection));
 
             //cmbDbs.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             //cmbDbs.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -111,10 +108,10 @@ namespace ArchiveManagerApp.Modules.View
             foreach (var row in list)
             {
                 //cmbDbs.AutoCompleteCustomSource.Add(row.ToString());
-                cmbDbs.Items.Add(row);
+                cbxDataBase.Items.Add(row);
             }
 
-            cmbDbs.Text = list.Count > 0 ? defaultdbName : null;
+            cbxDataBase.Text = list.Count > 0 ? defaultdbName : null;
         }
 
         private void ParametreServerView_Load(object sender, EventArgs e)

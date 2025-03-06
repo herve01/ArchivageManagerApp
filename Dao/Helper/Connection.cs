@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArchiveManagerApp.Dao.Helper;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.IO;
@@ -9,34 +10,35 @@ using System.Windows.Forms;
 
 namespace ArchiveManagerApp.Dao
 {
-
-
     public class Connection
     {
         private static DbConnection _connection;
-        
+        private static ServerConfig serverConfig = new ServerConfig();
         public static DbConnection GetConnection()
         {
             if (_connection == null)
             {
-
                 /* Chaine pour la connection au SGBD
                     SQLServer $"server={0};port={4};user={1};password={2};database={3}"
                     MySQL $"server={server},{port};user={user};password={pwd};database={db}"
                     Oracle ...
                 */
 
-                var connectionString = $"server={DbConfig.ServerName},{DbConfig.DbPort};user={DbConfig.DbUser};password={DbConfig.DbPassword};database={DbConfig.DbName}";
+                var connectionString = $"server={serverConfig.Server}," +
+                    $"{serverConfig.Port};" +
+                    $"user={serverConfig.User};" +
+                    $"password={serverConfig.Password};" +
+                    $"database={serverConfig.DataBase}";
 
                 try
                 {
-                    _connection = DbProviderFactories.GetFactory(DbConfig.Provider).CreateConnection();
+                    _connection = DbProviderFactories.GetFactory(serverConfig.Provider).CreateConnection();
                     _connection.ConnectionString = connectionString;
                     _connection.Open();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erreur de connection", ex.Message);
+                    MessageBox.Show(ex.Message, "Erreur de connection");
                     _connection = null;
                 }
             }
@@ -44,12 +46,15 @@ namespace ArchiveManagerApp.Dao
         }
         public static DbConnection GetNewConnection()
         {
-            var connectionString = $"server={DbConfig.ServerName},{DbConfig.DbPort};user={DbConfig.DbUser};password={DbConfig.DbPassword};database={DbConfig.DbName}";
-
+            var connectionString = $"server={serverConfig.Server}," +
+                    $"{serverConfig.Port};" +
+                    $"user={serverConfig.User};" +
+                    $"password={serverConfig.Password};" +
+                    $"database={serverConfig.DataBase}";
             try
             {
-                
-                var connection = DbProviderFactories.GetFactory(DbConfig.Provider).CreateConnection();
+                var connection = DbProviderFactories.GetFactory(serverConfig.Provider).CreateConnection();
+
                 connection.ConnectionString = connectionString;
                 connection.Open();
 

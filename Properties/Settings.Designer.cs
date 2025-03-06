@@ -26,12 +26,12 @@ namespace ArchiveManagerApp.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("gestion_archivage_db")]
-        public string local_dbname {
+        public string local_database {
             get {
-                return ((string)(this["local_dbname"]));
+                return ((string)(this["local_database"]));
             }
             set {
-                this["local_dbname"] = value;
+                this["local_database"] = value;
             }
         }
         
@@ -49,13 +49,13 @@ namespace ArchiveManagerApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("linda")]
-        public string local_pwd {
+        [global::System.Configuration.DefaultSettingValueAttribute("hunterxhunterA1")]
+        public string local_password {
             get {
-                return ((string)(this["local_pwd"]));
+                return ((string)(this["local_password"]));
             }
             set {
-                this["local_pwd"] = value;
+                this["local_password"] = value;
             }
         }
         

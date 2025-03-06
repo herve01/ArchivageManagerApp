@@ -34,9 +34,9 @@ namespace ArchiveManagerApp.Dao
                 if (Connection.State == System.Data.ConnectionState.Closed)
                     Connection.Open();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("> Connection impossible.");
+                MessageBox.Show($"> Connection impossible.\n{ex.Message}");
                 throw;
             }
         }

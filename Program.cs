@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace ArchiveManagerApp
 {
     static class Program
     {
@@ -15,11 +15,11 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            DbConfig.DbName = ArchiveManagerApp.Properties.Settings.Default.local_dbname;
-            DbConfig.DbUser = ArchiveManagerApp.Properties.Settings.Default.local_user;
-            DbConfig.DbPassword = ArchiveManagerApp.Properties.Settings.Default.local_pwd;
-            DbConfig.ServerName = ArchiveManagerApp.Properties.Settings.Default.local_server;
-            DbConfig.DbPort = ArchiveManagerApp.Properties.Settings.Default.local_port;
+            //DbConfig.DbName = ArchiveManagerApp.Properties.Settings.Default.local_database;
+            //DbConfig.DbUser = ArchiveManagerApp.Properties.Settings.Default.local_user;
+            //DbConfig.DbPassword = ArchiveManagerApp.Properties.Settings.Default.local_password;
+            //DbConfig.ServerName = ArchiveManagerApp.Properties.Settings.Default.local_server;
+            //DbConfig.DbPort = ArchiveManagerApp.Properties.Settings.Default.local_port;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

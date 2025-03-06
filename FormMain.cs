@@ -14,7 +14,7 @@ using ArchiveManagerApp.Modules.View.Controls;
 using ArchiveManagerApp.Tools;
 using G = Guna.UI2.WinForms;
 
-namespace WindowsFormsApp1
+namespace ArchiveManagerApp
 {
     public partial class FormMain: Form
     {
@@ -44,8 +44,6 @@ namespace WindowsFormsApp1
         }
         private void btnArchives_Click(object sender, EventArgs e)
         {
-            Form t = new Toast("Test message toast", 3, Color.Green, Color.White);
-            
             ViewDesign.ShowPage(pnlBody, pageArchives);
             ViewDesign.CheckButton(sender, pnlMenu);
         }

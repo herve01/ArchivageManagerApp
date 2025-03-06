@@ -49,7 +49,7 @@ namespace ArchiveManagerApp.Modules.View
         void AddItemInListView(Agent instance = null)
         {
             if (instance == null)
-                foreach (var row in agents)
+                foreach (Agent row in agents)
                 {
                     lstUsers.Items.Add(new ListViewItem(row.data));
                 }

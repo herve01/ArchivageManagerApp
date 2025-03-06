@@ -73,6 +73,16 @@ namespace ArchiveManagerApp.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5130169 {
+            get {
+                object obj = ResourceManager.GetObject("5130169", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap broom_26px {
             get {
                 object obj = ResourceManager.GetObject("broom_26px", resourceCulture);
@@ -103,6 +113,16 @@ namespace ArchiveManagerApp.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap customer_26px {
+            get {
+                object obj = ResourceManager.GetObject("customer_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap database_administrator_26px {
             get {
                 object obj = ResourceManager.GetObject("database_administrator_26px", resourceCulture);
@@ -116,6 +136,16 @@ namespace ArchiveManagerApp.Properties {
         internal static System.Drawing.Bitmap download_26px {
             get {
                 object obj = ResourceManager.GetObject("download_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap enter_26px {
+            get {
+                object obj = ResourceManager.GetObject("enter_26px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +213,16 @@ namespace ArchiveManagerApp.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lock_26px {
+            get {
+                object obj = ResourceManager.GetObject("lock_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap maintenance_26px {
             get {
                 object obj = ResourceManager.GetObject("maintenance_26px", resourceCulture);
@@ -203,6 +243,16 @@ namespace ArchiveManagerApp.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Maquette___Archive_Document_05 {
+            get {
+                object obj = ResourceManager.GetObject("Maquette - Archive Document-05", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap new_copy_26px {
             get {
                 object obj = ResourceManager.GetObject("new_copy_26px", resourceCulture);
@@ -216,6 +266,16 @@ namespace ArchiveManagerApp.Properties {
         internal static System.Drawing.Bitmap opened_folder_26px {
             get {
                 object obj = ResourceManager.GetObject("opened_folder_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Plan_de_travail_5 {
+            get {
+                object obj = ResourceManager.GetObject("Plan de travail 5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +306,16 @@ namespace ArchiveManagerApp.Properties {
         internal static System.Drawing.Bitmap search_26px {
             get {
                 object obj = ResourceManager.GetObject("search_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sig_In___Covers {
+            get {
+                object obj = ResourceManager.GetObject("Sig In - Covers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
