@@ -8,7 +8,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.Design.WebControls;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using ArchiveManagerApp.Model.App;
 using ArchiveManagerApp.Modules.View;
 using ArchiveManagerApp.Modules.View.Controls;
 using ArchiveManagerApp.Tools;
@@ -24,7 +26,38 @@ namespace ArchiveManagerApp
         {
             InitializeComponent();
             Initialisation();
+
+            timer = new Timer();
+            timer.Interval = 1;
+            timer.Tick += timer_Tick;
+
+            timer.Start();
         }
+        Timer timer;
+
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
+            timer = null;
+
+            if (Dao.Connection.GetConnection() == null)
+            {
+                Login();
+            }
+            else
+            {
+                Login();
+            }
+        }
+
+        private void Login()
+        {
+            new LoginView().ShowDialog();
+
+            ViewDesign.EnabledButton(pnlMenu, AppConfig.CURRENT_USER != null);
+        }
+
         private void Initialisation()
         {
             pageDashBord = new DashBordView();

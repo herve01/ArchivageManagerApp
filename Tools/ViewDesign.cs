@@ -37,6 +37,13 @@ namespace ArchiveManagerApp.Tools
                 control.Image = null;
             }
         }
+
+        public static void EnabledButton(Control parent, bool isEnabled = false)
+        {
+            foreach (var control in parent.Controls.OfType<Guna2Button>())
+                    control.Enabled = isEnabled;
+        }
+
         public static void ShowPage(Panel panelContener, UserControl pageSelected)
         {
             if (!panelContener.Controls.Contains(pageSelected))

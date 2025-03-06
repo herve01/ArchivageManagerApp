@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Dao.Helper;
 using System.Data.Common;
-using ArchiveManagerApp.Dao.Util;
+
 using System.Windows.Forms;
 
 namespace ArchiveManagerApp.Dao
@@ -128,7 +128,7 @@ namespace ArchiveManagerApp.Dao
             {
                 Command.CommandText = "select * " +
                     "from user " +
-                    "where username = @v_username or email = @v_username";
+                    "where username = @v_username";
 
                 Command.Parameters.Add(DbUtil.CreateParameter(Command, "@v_username", DbType.String, username));
 
@@ -137,7 +137,7 @@ namespace ArchiveManagerApp.Dao
                 if (Reader.HasRows && Reader.Read())
                 {
                     var uPwd = Reader["passwd"].ToString();
-                    var uSalt = Reader["m_salt"].ToString();
+                    var uSalt = Reader["salt"].ToString();
 
                     if (PasswordStorage.VerifyPassword(passwd, uSalt, uPwd))
                         _user = GetMapping(Reader);
@@ -146,7 +146,7 @@ namespace ArchiveManagerApp.Dao
                 Reader.Close();
 
                 if (_user != null)
-                    user = Create(_user);
+                    user = Create(_user, true);
             }
             catch (Exception)
             {

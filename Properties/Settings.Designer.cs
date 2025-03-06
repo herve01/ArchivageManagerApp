@@ -49,7 +49,7 @@ namespace ArchiveManagerApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("hunterxhunterA1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("linda")]
         public string local_password {
             get {
                 return ((string)(this["local_password"]));
@@ -80,6 +80,18 @@ namespace ArchiveManagerApp.Properties {
             }
             set {
                 this["local_port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string last_connected_user_name {
+            get {
+                return ((string)(this["last_connected_user_name"]));
+            }
+            set {
+                this["last_connected_user_name"] = value;
             }
         }
     }

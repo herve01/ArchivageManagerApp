@@ -16,5 +16,12 @@ namespace ArchiveManagerApp.Modules.View
         {
             InitializeComponent();
         }
+
+        private void DashBordView_Load(object sender, EventArgs e)
+        {
+            tdbArchives.Number = new Dao.ArchiveDao().Count().ToString();
+            tdbServices.Number = new Dao.ServiceDao().Count().ToString();
+            tdbAgents.Number = new Dao.AgentDao().Count().ToString();
+        }
     }
 }

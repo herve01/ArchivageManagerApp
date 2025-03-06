@@ -96,13 +96,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dao\Helper\ServerConfig.cs" />
+    <Compile Include="Dao\Helper\AppDao.cs" />
+    <Compile Include="Dao\Helper\DbConfig.cs" />
     <Compile Include="Dao\Util.cs" />
-    <Compile Include="FormConnexion.cs">
+    <Compile Include="LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormConnexion.Designer.cs">
-      <DependentUpon>FormConnexion.cs</DependentUpon>
+    <Compile Include="LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\App\AppConfig.cs" />
     <Compile Include="Dao\AffectationDao.cs" />
@@ -111,8 +112,6 @@
     <Compile Include="Dao\Dao.cs" />
     <Compile Include="Dao\DocumentDao.cs" />
     <Compile Include="Dao\Helper\Connection.cs" />
-    <Compile Include="Dao\Helper\DbUtil.cs" />
-    <Compile Include="Dao\Helper\TableKeyHelper.cs" />
     <Compile Include="Dao\ServiceDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="FormMain.cs">
@@ -227,8 +226,8 @@
     <Compile Include="Tools\ArchiveDocumentConvert.cs" />
     <Compile Include="Tools\Functions.cs" />
     <Compile Include="Tools\ViewDesign.cs" />
-    <EmbeddedResource Include="FormConnexion.resx">
-      <DependentUpon>FormConnexion.cs</DependentUpon>
+    <EmbeddedResource Include="LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

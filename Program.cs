@@ -1,4 +1,5 @@
 ﻿using ArchiveManagerApp.Dao;
+using ArchiveManagerApp.Dao.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace ArchiveManagerApp
         [STAThread]
         static void Main()
         {
-            //DbConfig.DbName = ArchiveManagerApp.Properties.Settings.Default.local_database;
-            //DbConfig.DbUser = ArchiveManagerApp.Properties.Settings.Default.local_user;
-            //DbConfig.DbPassword = ArchiveManagerApp.Properties.Settings.Default.local_password;
-            //DbConfig.ServerName = ArchiveManagerApp.Properties.Settings.Default.local_server;
-            //DbConfig.DbPort = ArchiveManagerApp.Properties.Settings.Default.local_port;
+            DbConfig.DbName = ArchiveManagerApp.Properties.Settings.Default.local_database;
+            DbConfig.DbUser = ArchiveManagerApp.Properties.Settings.Default.local_user;
+            DbConfig.DbPassword = ArchiveManagerApp.Properties.Settings.Default.local_password;
+            DbConfig.ServerName = ArchiveManagerApp.Properties.Settings.Default.local_server;
+            DbConfig.DbPort = ArchiveManagerApp.Properties.Settings.Default.local_port;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

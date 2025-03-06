@@ -6,7 +6,6 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using ArchiveManagerApp.Dao.Util;
 using ArchiveManagerApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
@@ -82,6 +81,20 @@ namespace ArchiveManagerApp.Dao
                 return 0;
             }
 
+        }
+        public int Count()
+        {
+            try
+            {
+                Command.CommandText = "select count(*) from archive";
+
+                return Convert.ToInt32(Command.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                return -1;
+            }
         }
         public override int Update(Archive instance)
         {

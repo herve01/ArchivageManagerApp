@@ -13,7 +13,6 @@ namespace ArchiveManagerApp.Dao
     public class Connection
     {
         private static DbConnection _connection;
-        private static ServerConfig serverConfig = new ServerConfig();
         public static DbConnection GetConnection()
         {
             if (_connection == null)
@@ -24,15 +23,15 @@ namespace ArchiveManagerApp.Dao
                     Oracle ...
                 */
 
-                var connectionString = $"server={serverConfig.Server}," +
-                    $"{serverConfig.Port};" +
-                    $"user={serverConfig.User};" +
-                    $"password={serverConfig.Password};" +
-                    $"database={serverConfig.DataBase}";
+                var connectionString = $"server={DbConfig.ServerName}," +
+                    $"{DbConfig.DbPort};" +
+                    $"user={DbConfig.DbUser};" +
+                    $"password={DbConfig.DbPassword};" +
+                    $"database={DbConfig.DbName}";
 
                 try
                 {
-                    _connection = DbProviderFactories.GetFactory(serverConfig.Provider).CreateConnection();
+                    _connection = DbProviderFactories.GetFactory(DbConfig.Provider).CreateConnection();
                     _connection.ConnectionString = connectionString;
                     _connection.Open();
                 }
@@ -46,14 +45,14 @@ namespace ArchiveManagerApp.Dao
         }
         public static DbConnection GetNewConnection()
         {
-            var connectionString = $"server={serverConfig.Server}," +
-                    $"{serverConfig.Port};" +
-                    $"user={serverConfig.User};" +
-                    $"password={serverConfig.Password};" +
-                    $"database={serverConfig.DataBase}";
+            var connectionString = $"server={DbConfig.ServerName}," +
+                    $"{DbConfig.DbPort};" +
+                    $"user={DbConfig.DbUser};" +
+                    $"password={DbConfig.DbPassword};" +
+                    $"database={DbConfig.DbName}";
             try
             {
-                var connection = DbProviderFactories.GetFactory(serverConfig.Provider).CreateConnection();
+                var connection = DbProviderFactories.GetFactory(DbConfig.Provider).CreateConnection();
 
                 connection.ConnectionString = connectionString;
                 connection.Open();

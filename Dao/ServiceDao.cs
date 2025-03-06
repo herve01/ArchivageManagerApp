@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using ArchiveManagerApp.Dao.Util;
+
 using ArchiveManagerApp.Dao.Helper;
 
 namespace ArchiveManagerApp.Dao
@@ -98,6 +98,21 @@ namespace ArchiveManagerApp.Dao
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        public int Count()
+        {
+            try
+            {
+                Command.CommandText = "select count(*) from service";
+
+                return Convert.ToInt32(Command.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                return -1;
             }
         }
         public async Task<List<Service>> GetAllAsync()

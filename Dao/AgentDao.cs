@@ -6,9 +6,11 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using ArchiveManagerApp.Model;
-using ArchiveManagerApp.Dao.Util;
 using ArchiveManagerApp.Dao.Helper;
 using ArchiveManagerApp.Util;
+using ArchiveManagerApp.Model.App;
+using DocumentFormat.OpenXml.Office2016.Excel;
+using System.Data;
 
 namespace ArchiveManagerApp.Dao
 {
@@ -236,6 +238,22 @@ namespace ArchiveManagerApp.Dao
                 { "grade", reader["grade"] },
             };
         }
+
+        public int Count()
+        {
+            try
+            {
+                Command.CommandText = "select count(*) from agent";
+
+                return Convert.ToInt32(Command.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                return -1;
+            }
+        }
+
         Agent Create(Dictionary<string, object> row, bool withCurrentAffec = false)
         {
             var instance = new Agent();

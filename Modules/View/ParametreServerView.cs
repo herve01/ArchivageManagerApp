@@ -13,6 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using G = Guna.UI2.WinForms;
 using ArchiveManagerApp.Dao;
 using System.Data.Common;
+using ArchiveManagerApp.Model;
 
 namespace ArchiveManagerApp.Modules.View
 {
@@ -20,7 +21,6 @@ namespace ArchiveManagerApp.Modules.View
     {
         string defaultdbName = "gestion_archivage_db";
         DbConnection connection;
-        ServerConfig ServerConfig = new ServerConfig();
         public ParametreServerView()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace ArchiveManagerApp.Modules.View
      
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
-            if (Dao.Helper.ServerConfig.TestDatabase(connection, cbxDataBase.SelectedItem.ToString().Trim()))
+            if (AppDao.TestDatabase(connection, cbxDataBase.SelectedItem.ToString().Trim()))
             {
                 MessageBox.Show("Connexion réussie !", "Test Connection",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -41,11 +41,11 @@ namespace ArchiveManagerApp.Modules.View
         {
             Modification(btnModifier.Text == "Modifier");
 
-            ServerConfig.DataBase = Properties.Settings.Default.local_database = cbxDataBase?.SelectedItem?.ToString();
-            ServerConfig.User = Properties.Settings.Default.local_user = txtUserName.Text.Trim();
-            ServerConfig.Password = Properties.Settings.Default.local_password = txtPassWord.Text.Trim();
-            ServerConfig.Server= Properties.Settings.Default.local_server = txtServer.Text.Trim();
-            ServerConfig.Port = Properties.Settings.Default.local_port = txtPort.Text.Trim();
+            DbConfig.DbName = ArchiveManagerApp.Properties.Settings.Default.local_database = cbxDataBase?.SelectedItem?.ToString();
+            DbConfig.DbUser = ArchiveManagerApp.Properties.Settings.Default.local_user = txtUserName.Text;
+            DbConfig.DbPassword = ArchiveManagerApp.Properties.Settings.Default.local_password = txtPassWord.Text;
+            DbConfig.ServerName = ArchiveManagerApp.Properties.Settings.Default.local_server = txtServer.Text;
+            DbConfig.DbPort = ArchiveManagerApp.Properties.Settings.Default.local_port = txtPort.Text;
 
             Properties.Settings.Default.Save();
 
@@ -81,8 +81,7 @@ namespace ArchiveManagerApp.Modules.View
         {
             if (((G.Guna2ComboBox)sender).Items.Count == 0)
             {
-                var feed = ServerConfig.GetConnection(txtServer.Text.Trim(), txtPort.Text.Trim(), cbxDataBase.Text.Trim(),
-                           txtUserName.Text.Trim(), txtPassWord.Text.Trim());
+                var feed = AppDao.CreateConnection(txtServer.Text.Trim(), txtUserName.Text, txtPassWord.Text.Trim(), txtPort.Text);
                 if (feed is DbConnection)
                 {
                     connection = (DbConnection)feed;
@@ -100,7 +99,7 @@ namespace ArchiveManagerApp.Modules.View
             cbxDataBase.Items.Clear();
             //cmbDbs.AutoCompleteCustomSource.Clear();
 
-            var list = await Task.Run(() => ServerConfig.GetDatabases(connection));
+            var list = await Task.Run(() => AppDao.GetDatabases(connection));
 
             //cmbDbs.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             //cmbDbs.AutoCompleteSource = AutoCompleteSource.CustomSource;

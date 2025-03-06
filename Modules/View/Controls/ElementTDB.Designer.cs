@@ -36,9 +36,10 @@
             // 
             this.lbl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbl_title.Font = new System.Drawing.Font("Open Sans", 14F);
-            this.lbl_title.Location = new System.Drawing.Point(10, 10);
+            this.lbl_title.Location = new System.Drawing.Point(13, 12);
+            this.lbl_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(180, 30);
+            this.lbl_title.Size = new System.Drawing.Size(241, 37);
             this.lbl_title.TabIndex = 0;
             this.lbl_title.Text = "Title";
             this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -47,25 +48,27 @@
             // 
             this.lbl_number.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_number.Font = new System.Drawing.Font("Open Sans", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_number.Location = new System.Drawing.Point(10, 40);
-            this.lbl_number.MaximumSize = new System.Drawing.Size(180, 110);
-            this.lbl_number.MinimumSize = new System.Drawing.Size(180, 110);
+            this.lbl_number.Location = new System.Drawing.Point(13, 49);
+            this.lbl_number.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_number.MaximumSize = new System.Drawing.Size(240, 135);
+            this.lbl_number.MinimumSize = new System.Drawing.Size(240, 135);
             this.lbl_number.Name = "lbl_number";
-            this.lbl_number.Size = new System.Drawing.Size(180, 110);
+            this.lbl_number.Size = new System.Drawing.Size(240, 135);
             this.lbl_number.TabIndex = 0;
             this.lbl_number.Text = "00.00";
             this.lbl_number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ElementTDB
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lbl_number);
             this.Controls.Add(this.lbl_title);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ElementTDB";
-            this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(200, 160);
+            this.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.Size = new System.Drawing.Size(267, 197);
             this.ResumeLayout(false);
 
         }
