@@ -23,5 +23,10 @@ namespace ArchiveManagerApp.Modules.View
             tdbServices.Number = new Dao.ServiceDao().Count().ToString();
             tdbAgents.Number = new Dao.AgentDao().Count().ToString();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

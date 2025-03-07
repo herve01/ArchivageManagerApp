@@ -65,7 +65,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lbl_number);
             this.Controls.Add(this.lbl_title);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ElementTDB";
             this.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.Size = new System.Drawing.Size(267, 197);

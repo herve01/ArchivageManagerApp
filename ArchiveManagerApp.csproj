@@ -57,7 +57,7 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Plan de travail 5.ico</ApplicationIcon>
+    <ApplicationIcon>Global\Plan de travail 5.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml">
@@ -99,10 +99,10 @@
     <Compile Include="Dao\Helper\AppDao.cs" />
     <Compile Include="Dao\Helper\DbConfig.cs" />
     <Compile Include="Dao\Util.cs" />
-    <Compile Include="LoginView.cs">
+    <Compile Include="Global\LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginView.Designer.cs">
+    <Compile Include="Global\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\App\AppConfig.cs" />
@@ -114,10 +114,10 @@
     <Compile Include="Dao\Helper\Connection.cs" />
     <Compile Include="Dao\ServiceDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="Global\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Global\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Affectation.cs" />
@@ -229,10 +229,10 @@
     <Compile Include="View\Contract\ICallerViewModel.cs" />
     <Compile Include="View\Contract\IChooserView.cs" />
     <Compile Include="View\Contract\IStructureView.cs" />
-    <EmbeddedResource Include="LoginView.resx">
+    <EmbeddedResource Include="Global\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Global\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\View\AgentView.resx">
@@ -298,7 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dao\db\gestion_archivage_db_script.sql" />
-    <Content Include="Plan de travail 5.ico" />
+    <Content Include="Global\Plan de travail 5.ico" />
     <None Include="Resources\5130169.jpg" />
     <None Include="Resources\Plan de travail 5.png" />
     <None Include="Resources\Maquette - Archive Document-05.png" />
@@ -330,7 +330,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DLL\" />
-    <Folder Include="Global\" />
     <Folder Include="Modules\Raports\" />
   </ItemGroup>
   <ItemGroup>
