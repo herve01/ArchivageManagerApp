@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace ArchiveManagerApp.Model
 {
-    public class Archive : ModelBase
+    public class Archive : ModelBase, ICloneable
     {
         public Archive()
         {
@@ -24,6 +24,10 @@ namespace ArchiveManagerApp.Model
             return Document.Libelle +"\n"+ Date.ToString("dd-MM-yyyy à HH:mm") +"\n by"+ User?.Agent?.ToString();
         }
 
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
 
         public string[] data
         {

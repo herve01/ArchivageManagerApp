@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArchiveManagerApp.Model
 {
-    public class Agent : ModelBase
+    public class Agent : ModelBase, ICloneable
     {
         public Agent()
         {
@@ -34,9 +34,14 @@ namespace ArchiveManagerApp.Model
             return Name;
         }
 
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+
         public string[] data
         {
-            get => new string[] { NumberRow.ToString(), Name, Sexe, Phone, Email, Grade + "" + Fonction  , CurrentAffectation.Service.ToString()};
+            get => new string[] { NumberRow.ToString(), Name, Sexe, Phone, Email, Grade + " - " + Fonction, CurrentAffectation.Service.ToString()};
         }
     }
 }

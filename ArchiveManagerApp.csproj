@@ -226,6 +226,9 @@
     <Compile Include="Tools\ArchiveDocumentConvert.cs" />
     <Compile Include="Tools\Functions.cs" />
     <Compile Include="Tools\ViewDesign.cs" />
+    <Compile Include="View\Contract\ICallerViewModel.cs" />
+    <Compile Include="View\Contract\IChooserView.cs" />
+    <Compile Include="View\Contract\IStructureView.cs" />
     <EmbeddedResource Include="LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>

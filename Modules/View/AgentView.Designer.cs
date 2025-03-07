@@ -38,6 +38,7 @@
             this.suprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAjouter = new Guna.UI2.WinForms.Guna2Button();
             this.txtRecherche = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2MessageDialog1 = new Guna.UI2.WinForms.Guna2MessageDialog();
             this.pnlList.SuspendLayout();
             this.menuArchive.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +67,7 @@
             this.lstUsers.GridLines = true;
             this.lstUsers.HideSelection = false;
             this.lstUsers.Location = new System.Drawing.Point(13, 12);
-            this.lstUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstUsers.Margin = new System.Windows.Forms.Padding(4);
             this.lstUsers.Name = "lstUsers";
             this.lstUsers.ShowItemToolTips = true;
             this.lstUsers.Size = new System.Drawing.Size(1094, 588);
@@ -100,33 +101,28 @@
             this.détailToolStripMenuItem.Name = "détailToolStripMenuItem";
             this.détailToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.détailToolStripMenuItem.Text = "Détail";
-            this.détailToolStripMenuItem.Click += new System.EventHandler(this.détailToolStripMenuItem_Click);
-            // 
+              // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(144, 6);
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
+             // 
             // modifierToolStripMenuItem
             // 
             this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
             this.modifierToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.modifierToolStripMenuItem.Text = "Modifier";
-            this.modifierToolStripMenuItem.Click += new System.EventHandler(this.modifierToolStripMenuItem_Click);
-            // 
+             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(144, 6);
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
+             // 
             // suprimerToolStripMenuItem
             // 
             this.suprimerToolStripMenuItem.Name = "suprimerToolStripMenuItem";
             this.suprimerToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.suprimerToolStripMenuItem.Text = "Supprimer";
-            this.suprimerToolStripMenuItem.Click += new System.EventHandler(this.suprimerToolStripMenuItem_Click);
             // 
             // btnAjouter
             // 
@@ -145,7 +141,7 @@
             this.btnAjouter.Image = global::ArchiveManagerApp.Properties.Resources.new_copy_26px;
             this.btnAjouter.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnAjouter.Location = new System.Drawing.Point(920, 30);
-            this.btnAjouter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAjouter.Margin = new System.Windows.Forms.Padding(4);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(227, 43);
             this.btnAjouter.TabIndex = 12;
@@ -171,7 +167,7 @@
             this.txtRecherche.IconRight = global::ArchiveManagerApp.Properties.Resources.search_26px;
             this.txtRecherche.IconRightOffset = new System.Drawing.Point(10, 0);
             this.txtRecherche.Location = new System.Drawing.Point(53, 30);
-            this.txtRecherche.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtRecherche.Margin = new System.Windows.Forms.Padding(5);
             this.txtRecherche.Name = "txtRecherche";
             this.txtRecherche.PlaceholderText = "Recherche...";
             this.txtRecherche.SelectedText = "";
@@ -181,6 +177,15 @@
             this.txtRecherche.TabIndex = 10;
             this.txtRecherche.TextChanged += new System.EventHandler(this.txt_recherche_TextChanged);
             // 
+            // guna2MessageDialog1
+            // 
+            this.guna2MessageDialog1.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            this.guna2MessageDialog1.Caption = null;
+            this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.None;
+            this.guna2MessageDialog1.Parent = null;
+            this.guna2MessageDialog1.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
+            this.guna2MessageDialog1.Text = null;
+            // 
             // AgentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -189,7 +194,7 @@
             this.Controls.Add(this.pnlList);
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.btnAjouter);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AgentView";
             this.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.Size = new System.Drawing.Size(1200, 738);
@@ -211,5 +216,6 @@
         private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem suprimerToolStripMenuItem;
+        private Guna.UI2.WinForms.Guna2MessageDialog guna2MessageDialog1;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArchiveManagerApp.Model
 {
-    public class Service : ModelBase
+    public class Service : ModelBase, ICloneable
     {
         public Service()
         {
@@ -18,6 +18,11 @@ namespace ArchiveManagerApp.Model
         public override string ToString()
         {
             return Designation;
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
 
         public string[] data

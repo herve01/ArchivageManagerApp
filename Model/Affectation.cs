@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArchiveManagerApp.Model
 {
-    public class Affectation : ModelBase
+    public class Affectation : ModelBase, ICloneable
     {
         public Agent Agent { get; set; }
         public Service Service { get; set; }
@@ -21,6 +21,11 @@ namespace ArchiveManagerApp.Model
         public Affectation()
         {
             IsEnd = false;
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

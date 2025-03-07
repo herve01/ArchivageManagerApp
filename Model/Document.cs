@@ -8,7 +8,7 @@ using static ArchiveManagerApp.Model.Helper.Util;
 
 namespace ArchiveManagerApp.Model
 {
-    public class Document : ModelBase
+    public class Document : ModelBase, ICloneable
     {
         public byte[] Fichier { get; set; }
         public string Libelle { get; set; }
@@ -18,6 +18,11 @@ namespace ArchiveManagerApp.Model
         public int Index
         {
             get => Dao.AppUtil.Util.ToIndexImageType(Extension.ToString());
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

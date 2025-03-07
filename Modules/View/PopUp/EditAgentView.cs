@@ -1,5 +1,6 @@
 ﻿using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Tools;
+using ArchiveManagerApp.View.Contract;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -10,11 +11,14 @@ namespace ArchiveManagerApp.Modules.View.Pop
     public partial class EditAgentView: Form
     {
         string path;
-        public Agent Agent { get; set; }
-        public EditAgentView()
+        ICallerView callerView;
+      
+        public EditAgentView(ICallerView callerView)
         {
+            this.callerView = callerView;
             InitializeComponent();
         }
+ 
         private void btn_nettoyer_Click(object sender, EventArgs e)
         {
             ViewDesign.ControlsClear(pnl_body);
@@ -45,25 +49,27 @@ namespace ArchiveManagerApp.Modules.View.Pop
             }
             else
             {
-                Agent = new Agent();
-                Agent.Nom = txtNom.Text;
-                Agent.PostNom = txtPostnom.Text;
-                Agent.Prenom = txtPrenom.Text;
-                Agent.Sexe = cbxSexe.SelectedItem.ToString();
-                Agent.Phone = txtPhone.Text;
-                Agent.Email = txtEmail.Text;
-                Agent.Grade = txtGrade.Text;
-                Agent.Fonction = txtFonction.Text;
-                Agent.Photo = Model.Helper.ImageUtil.BitmapToByte(picProfile.Image);
-                Agent.CurrentAffectation.Service = (Service)cbxService.SelectedItem;
-                Agent.CurrentAffectation.Date = DateTime.Now;
-                Agent.CurrentAffectation.IsEnd = false;              
+                var agent = new Agent();
+                agent.Nom = txtNom.Text;
+                agent.PostNom = txtPostnom.Text;
+                agent.Prenom = txtPrenom.Text;
+                agent.Sexe = cbxSexe.SelectedItem.ToString();
+                agent.Phone = txtPhone.Text;
+                agent.Email = txtEmail.Text;
+                agent.Grade = txtGrade.Text;
+                agent.Fonction = txtFonction.Text;
+                agent.Photo = Model.Helper.ImageUtil.BitmapToByte(picProfile.Image);
+                agent.CurrentAffectation.Service = (Service)cbxService.SelectedItem;
+                agent.CurrentAffectation.Date = DateTime.Now;
+                agent.CurrentAffectation.IsEnd = false;              
 
-                if (new Dao.AgentDao().Add(Agent) > 0)
+                if (new Dao.AgentDao().Add(agent) > 0)
                 {
                     MessageBox.Show("Enregistrement effectué avec succès", "Information",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     ViewDesign.ControlsClear(pnl_body);
+                    callerView.AddObject(agent);
                 }
                 else
                 {
@@ -84,17 +90,11 @@ namespace ArchiveManagerApp.Modules.View.Pop
 
         async Task LoadServices()
         {
-
             cbxService.Items.Clear();
             var list = await Task.Run(() => new Dao.ServiceDao().GetAllAsync());
 
-            //cbxService.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
             foreach (var row in list)
-            {
-                //cbxService.AutoCompleteCustomSource.Add(row.ToString());
                 cbxService.Items.Add(row);
-            }
 
             cbxService.SelectedIndex = list != null ? 0 : -1;
         }

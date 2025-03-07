@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArchiveManagerApp.Model
 {
-    public class User : ModelBase
+    public class User : ModelBase, ICloneable
     {
         public Agent Agent { get; set; }
         public string UserName { get; set; }
@@ -17,6 +17,11 @@ namespace ArchiveManagerApp.Model
         public string[] data
         {
             get => new string[] { NumberRow.ToString(), Agent?.Name, UserName};
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }
