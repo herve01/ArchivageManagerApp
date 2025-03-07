@@ -138,6 +138,7 @@
             this.btnExporter.Size = new System.Drawing.Size(213, 42);
             this.btnExporter.TabIndex = 9;
             this.btnExporter.Text = "Exporter";
+            this.btnExporter.Click += new System.EventHandler(this.btnExporter_Click);
             // 
             // bouger
             // 

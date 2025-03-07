@@ -14,7 +14,6 @@ using ArchiveManagerApp.Model.App;
 using ArchiveManagerApp.Modules.View;
 using ArchiveManagerApp.Modules.View.Controls;
 using ArchiveManagerApp.Tools;
-using G = Guna.UI2.WinForms;
 
 namespace ArchiveManagerApp
 {

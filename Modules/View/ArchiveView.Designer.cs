@@ -32,17 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArchiveView));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.lstArchive = new System.Windows.Forms.ListView();
-            this.lst_image_grand = new System.Windows.Forms.ImageList(this.components);
-            this.lst_image_petit = new System.Windows.Forms.ImageList(this.components);
-            this.btn_ajouter = new Guna.UI2.WinForms.Guna2Button();
-            this.txt_recherche = new Guna.UI2.WinForms.Guna2TextBox();
-            this.btn_filtrer = new Guna.UI2.WinForms.Guna2Button();
             this.menuArchive = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.détailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.suprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lst_image_grand = new System.Windows.Forms.ImageList(this.components);
+            this.lst_image_petit = new System.Windows.Forms.ImageList(this.components);
+            this.btn_ajouter = new Guna.UI2.WinForms.Guna2Button();
+            this.txt_recherche = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btn_filtrer = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1.SuspendLayout();
             this.menuArchive.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,57 @@
             this.lstArchive.TabIndex = 1;
             this.lstArchive.UseCompatibleStateImageBehavior = false;
             this.lstArchive.View = System.Windows.Forms.View.Details;
+            // 
+            // menuArchive
+            // 
+            this.menuArchive.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.menuArchive.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuArchive.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.détailToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.modifierToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.suprimerToolStripMenuItem});
+            this.menuArchive.Name = "menuArchive";
+            this.menuArchive.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.menuArchive.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.menuArchive.RenderStyle.ColorTable = null;
+            this.menuArchive.RenderStyle.RoundedEdges = true;
+            this.menuArchive.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.menuArchive.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.menuArchive.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.menuArchive.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.menuArchive.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.menuArchive.Size = new System.Drawing.Size(211, 128);
+            // 
+            // détailToolStripMenuItem
+            // 
+            this.détailToolStripMenuItem.Name = "détailToolStripMenuItem";
+            this.détailToolStripMenuItem.Size = new System.Drawing.Size(210, 28);
+            this.détailToolStripMenuItem.Text = "Détail";
+            this.détailToolStripMenuItem.Click += new System.EventHandler(this.détailToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
+            // 
+            // modifierToolStripMenuItem
+            // 
+            this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
+            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(210, 28);
+            this.modifierToolStripMenuItem.Text = "Modifier";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(207, 6);
+            // 
+            // suprimerToolStripMenuItem
+            // 
+            this.suprimerToolStripMenuItem.Name = "suprimerToolStripMenuItem";
+            this.suprimerToolStripMenuItem.Size = new System.Drawing.Size(210, 28);
+            this.suprimerToolStripMenuItem.Text = "Supprimer";
             // 
             // lst_image_grand
             // 
@@ -176,56 +227,6 @@
             this.btn_filtrer.TabIndex = 12;
             this.btn_filtrer.Text = "Filtrer";
             this.btn_filtrer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // menuArchive
-            // 
-            this.menuArchive.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuArchive.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.détailToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.modifierToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.suprimerToolStripMenuItem});
-            this.menuArchive.Name = "menuArchive";
-            this.menuArchive.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.menuArchive.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
-            this.menuArchive.RenderStyle.ColorTable = null;
-            this.menuArchive.RenderStyle.RoundedEdges = true;
-            this.menuArchive.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.menuArchive.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.menuArchive.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.menuArchive.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.menuArchive.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.menuArchive.Size = new System.Drawing.Size(148, 88);
-            // 
-            // détailToolStripMenuItem
-            // 
-            this.détailToolStripMenuItem.Name = "détailToolStripMenuItem";
-            this.détailToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.détailToolStripMenuItem.Text = "Détail";
-            this.détailToolStripMenuItem.Click += new System.EventHandler(this.détailToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
-            // 
-            // modifierToolStripMenuItem
-            // 
-            this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
-            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.modifierToolStripMenuItem.Text = "Modifier";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(207, 6);
-            // 
-            // suprimerToolStripMenuItem
-            // 
-            this.suprimerToolStripMenuItem.Name = "suprimerToolStripMenuItem";
-            this.suprimerToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.suprimerToolStripMenuItem.Text = "Supprimer";
             // 
             // ArchiveView
             // 

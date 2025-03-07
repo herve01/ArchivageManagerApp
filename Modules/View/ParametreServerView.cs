@@ -48,7 +48,7 @@ namespace ArchiveManagerApp.Modules.View
             DbConfig.DbPort = ArchiveManagerApp.Properties.Settings.Default.local_port = txtPort.Text;
 
             Properties.Settings.Default.Save();
-
+              
             MessageBox.Show("Enregistrement reussi avec succès !!", "Enregistrement",
                        MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

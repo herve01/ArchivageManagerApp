@@ -13,6 +13,8 @@ using ArchiveManagerApp.Modules.Extension;
 using ArchiveManagerApp.Util;
 using Guna.UI2.WinForms;
 using ArchiveManagerApp.Tools;
+using ArchiveManagerApp.Modules.View.Controls;
+using ArchiveManagerApp.Modules.View.PopUp;
 
 namespace ArchiveManagerApp.Modules.View
 {
@@ -46,12 +48,12 @@ namespace ArchiveManagerApp.Modules.View
             if(instance == null)
                 foreach (var row in services)
                 {
-                    lstServices.Items.Add(new ListViewItem(row.data));
+                    lstServices.Items.Add(listViewItem(row));
                 }
             else
             {
                 instance.NumberRow = services.Count == 0 ? 1 : services.FindLast(s => s.NumberRow > 0).NumberRow + 1;
-                lstServices.Items.Add(new ListViewItem(instance.data));
+                lstServices.Items.Add(listViewItem(instance));
 
                 services.Add(instance);
             }
@@ -119,13 +121,38 @@ namespace ArchiveManagerApp.Modules.View
             lstServices.Items.AddRange(services.Where(i => string.IsNullOrEmpty(motif) || 
             i.Designation.ToLower().Trim().NoAccent().StartsWith(motif) || 
             i.Designation.ToLower().Trim().NoAccent().Contains(motif))
-            .Select(c => new ListViewItem(c.data)).ToArray());
+            .Select(c => listViewItem(c)).ToArray());
+        }
+
+        ListViewItem listViewItem(Service instance)
+        {
+            var lstview = new ListViewItem(instance.data);
+            lstview.Tag = instance;
+
+            return lstview;
+
         }
 
         private void ServiceView_Load(object sender, EventArgs e)
         {
             DrawListView();
             LoadServices();
+        }
+
+        private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lstServices.SelectedItems.Count > 0)
+            {
+                var selectedItem = lstServices.SelectedItems[0].Tag;
+
+                service = (Service)selectedItem;
+
+                txtService.Text = service.Designation;
+
+                btnAjouter.Text = "Modifier";
+
+                btnAjouter.Enabled = true;
+            }
         }
     }
 }

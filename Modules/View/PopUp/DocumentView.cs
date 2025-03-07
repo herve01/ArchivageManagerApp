@@ -1,16 +1,8 @@
 ﻿using ArchiveManagerApp.Model;
 using ArchiveManagerApp.Tools;
 using ArchiveManagerApp.Util;
-using DocumentFormat.OpenXml.Packaging;
 using PdfiumViewer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArchiveManagerApp.Modules.View.PopUp
@@ -97,6 +89,11 @@ namespace ArchiveManagerApp.Modules.View.PopUp
             lstDetails.Items.Add(new ListViewItem(new string[] { "Type Fichier : ", archive.Document.Extension.ToString() }));
             lstDetails.Items.Add(new ListViewItem(new string[] { "Taille : ",   Functions.GetSizeInMemory(archive.Document.Fichier.LongLength) }));
             lstDetails.Items.Add(new ListViewItem(new string[] { "Date Archivage : ", archive.Date.ToString("dd-MM-yyyy à HH:mm:ss") }));
+        }
+
+        private void btnExporter_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

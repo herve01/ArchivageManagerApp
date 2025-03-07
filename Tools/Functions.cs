@@ -1,6 +1,4 @@
-﻿using Guna.UI2.WinForms;
-using PdfiumViewer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,10 +7,6 @@ using System.Data.Common;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Forms;
 
 
 namespace ArchiveManagerApp.Util
@@ -57,135 +51,6 @@ namespace ArchiveManagerApp.Util
         {
             return (int.Parse(chaine)).ToString("D5");
         }
-
-        public static string GetMonthName(int mois)
-        {
-            SortedList<int, string> months = new SortedList<int, string>();
-            months.Add(1, "Janvier");
-            months.Add(2, "Février");
-            months.Add(3, "Mars");
-            months.Add(4, "Avril");
-            months.Add(5, "Mai");
-            months.Add(6, "Juin");
-            months.Add(7, "Juillet");
-            months.Add(8, "Août");
-            months.Add(9, "Septembre");
-            months.Add(10, "Octobre");
-            months.Add(11, "Novembre");
-            months.Add(12, "Décembre");
-
-            if (mois <= months.Count)
-            {
-                return months[mois];
-            }
-
-            return string.Empty;
-        }
-
-        public static string GetMonthNameWithYear(int mois, int annee)
-        {
-            SortedList<int, string> months = new SortedList<int, string>();
-            months.Add(1, "Janvier");
-            months.Add(2, "Février");
-            months.Add(3, "Mars");
-            months.Add(4, "Avril");
-            months.Add(5, "Mai");
-            months.Add(6, "Juin");
-            months.Add(7, "Juillet");
-            months.Add(8, "Août");
-            months.Add(9, "Septembre");
-            months.Add(10, "Octobre");
-            months.Add(11, "Novembre");
-            months.Add(12, "Décembre");
-
-            if (mois <= months.Count)
-            {
-                return months[mois] +"_"+ annee.ToString();
-            }
-
-            return string.Empty;
-        }
-
-        public static int GetKeyMonthYear(string mois)
-        {
-            SortedList<string, int> months = new SortedList<string, int>();
-            months.Add("Janvier", 1);
-            months.Add("Février", 2);
-            months.Add("Mars", 3);
-            months.Add("Avril", 4);
-            months.Add("Mai", 5);
-            months.Add("Juin", 6);
-            months.Add("Juillet", 7);
-            months.Add("Août", 8);
-            months.Add("Septembre", 9);
-            months.Add("Octobre", 10) ;
-            months.Add("Novembre", 11);
-            months.Add("Décembre", 12);
-
-            return months[mois];
-        }
-
-      
-        public static List<string> getMonthNames()
-        {
-            return new List<string>()
-            {
-                "Janvier",
-                "Février",
-                "Mars",
-                "Avril",
-                "Mai",
-                "Juin",
-                "Juillet",
-                "Août",
-                "Septembre",
-                "Octobre",
-                "Novembre",
-                "Décembre"
-            };
-        }
-
-
-        public static List<string> getMonthNamesAll()
-        {
-            return new List<string>()
-            {
-                "Tous",
-                "Janvier",
-                "Février",
-                "Mars",
-                "Avril",
-                "Mai",
-                "Juin",
-                "Juillet",
-                "Août",
-                "Septembre",
-                "Octobre",
-                "Novembre",
-                "Décembre"
-            };
-        }
-
-
-        
-        public static ObservableCollection<string> Town()
-        {
-
-            return new ObservableCollection<string>()
-            {
-                "Bandundu", "Baraka", "Beni", "Boende", "Boma", "Bukavu",
-                "Bumba", "Bunia", "Buta", "Butembo", "Fungurume","Gandajika",
-                "Gbadolite", "Gemena", "Goma", "Inga", "Inongo", "Isiro",
-                "Kabinda", "Kafubu", "Kalemie", "Kambove", "Kamina", "Kananga", "Kapolowe",
-                "Kasumbalesa", "Kenge","Kiela Kalanda", "Kikwit", "Kimpese", "Kindu", 
-                "Kinshasa", "Kipushi", "Kisangani", "Kolwezi", "Likasi", "Lubudi", 
-                "Lubumbashi", "Lufu", "Lukala", "Matadi", "Mbakana", "Mbandaka",
-                "Mbanza-Ngungu", "Mbuji-Mayi", "Muanda", "Mwene-Ditu", "Tshikapa",
-                "Uvira", "Zongo"
-            };
-        }
-
-
 
         public static DataTable CreateTable<T>()
         {
